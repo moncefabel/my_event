@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from "@firebase/auth"
-import { collection, doc, setDoc } from "@firebase/firestore"
+import { collection, doc, getDocs, setDoc } from "@firebase/firestore"
 import { getDownloadURL, ref } from "@firebase/storage"
 import express from 'express'
 const {db,auth,storage} = require("../config/db")
@@ -38,4 +38,26 @@ const createAccountOwner = async (req:express.Request, res:express.Response) => 
     
 }
 
-export = {createAccountOwner}
+function getData(data){
+    let dataOwners:any[] = []
+    dataOwners = data.docs.map(element => 
+        element.data()
+    );
+    return dataOwners
+}
+
+const getAllOwners = async(req:express.Request, res:express.Response) => {
+    try{
+        const userCollectionRef = collection(db,"proprio")
+        const data = await getDocs(userCollectionRef)
+        const dataOwners = getData(data)
+        res.status(200).send(dataOwners)
+    }catch(error){
+        res.send(error)
+    }
+}
+
+export = {
+    createAccountOwner,
+    getAllOwners
+}
