@@ -26,6 +26,7 @@ const createAccountOwner = async (req:express.Request, res:express.Response) => 
             maxCapacity: req.body.maxCapacity,
             opening: req.body.opening,
             closing: req.body.closing,
+            phoneNumber: req.body.phoneNumber,
             pictures: imageEtbUrl
         }
 
@@ -73,8 +74,12 @@ const getOwnerById = async(req,res) => {
     }
 }
 
+
+
 export = {
     createAccountOwner,
     getAllOwners,
-    getOwnerById
+    getOwnerById,
 }
+
+
