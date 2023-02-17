@@ -16,6 +16,7 @@ const createAccountOwner = async (req:express.Request, res:express.Response) => 
         const ownerInofrmations = {
             name: req.body.name,
             firstName: req.body.firstName,
+            phoneNumber: req.body.phoneNumber,
         }
 
         const etbInformations = {
@@ -26,7 +27,6 @@ const createAccountOwner = async (req:express.Request, res:express.Response) => 
             maxCapacity: req.body.maxCapacity,
             opening: req.body.opening,
             closing: req.body.closing,
-            phoneNumber: req.body.phoneNumber,
             pictures: imageEtbUrl
         }
 
