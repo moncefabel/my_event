@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from "@firebase/auth"
-import { collection, doc, getDocs, setDoc } from "@firebase/firestore"
+import { collection, doc, getDoc, getDocs, setDoc } from "@firebase/firestore"
 import { getDownloadURL, ref } from "@firebase/storage"
 import express from 'express'
 const {db,auth,storage} = require("../config/db")
@@ -57,7 +57,24 @@ const getAllOwners = async(req:express.Request, res:express.Response) => {
     }
 }
 
+const getOwnerById = async(req,res) => {
+
+    try{
+        const dataOwnersRef = doc(db,"proprio",req.params.id)
+        const docSnap = await getDoc(dataOwnersRef)
+        if(docSnap.exists()){
+            res.status(200).send(docSnap.data())
+        }else{
+            res.status(200).send("No data")
+        }
+        
+    }catch(error:any){
+        res.status(400).send(error.message)
+    }
+}
+
 export = {
     createAccountOwner,
-    getAllOwners
+    getAllOwners,
+    getOwnerById
 }
