@@ -4,6 +4,9 @@ const etbController = require('../controllers/etbController')
 
 
 //Ajouter une annonce
-routerEtb.post("/etb/add",etbController.addEtb)
+routerEtb.post("/add",etbController.addEtb)
+
+//Recuperer tous les etablissemets
+routerEtb.get("/allEtbs", etbController.getAllEtbs)
 
 export = routerEtb

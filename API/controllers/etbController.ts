@@ -1,6 +1,6 @@
 const {db,auth,storage} = require("../config/db")
 import { getDownloadURL, ref } from "firebase/storage"
-import { collection, setDoc, doc } from "firebase/firestore"
+import { collection, setDoc, doc, getDocs } from "firebase/firestore"
 
 
 
@@ -29,4 +29,29 @@ const addEtb = async(req,res) => {
     }
 
 }
-export = {addEtb}
+
+function getData(data){
+    let dataOwners:any[] = []
+    dataOwners = data.docs.map(element => 
+        element.data()
+    );
+    
+    return dataOwners
+}
+
+const getAllEtbs = async (req, res) => {
+
+    try{    
+        const owner = auth.currentUser
+        const etbCollectionRef = collection(db,"proprio/"+owner.uid+"/etablissements")
+        const etbs = await getDocs(etbCollectionRef)
+        const dataEtbs = getData(etbs)
+        res.status(200).send(dataEtbs)
+    }catch(error:any){
+        res.status(400).send(error.message)
+    }
+}
+export = {
+    addEtb,
+    getAllEtbs
+}
