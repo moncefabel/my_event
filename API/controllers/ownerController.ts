@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword } from "@firebase/auth"
-import { collection, doc, getDoc, getDocs, setDoc } from "@firebase/firestore"
+import { createUserWithEmailAndPassword, updateEmail, updatePassword } from "@firebase/auth"
+import { collection, doc, getDoc, getDocs, setDoc, updateDoc } from "@firebase/firestore"
 import { getDownloadURL, ref } from "@firebase/storage"
 import express from 'express'
 const {db,auth,storage} = require("../config/db")
@@ -74,12 +74,31 @@ const getOwnerById = async(req,res) => {
     }
 }
 
+const updateDataOwner = async (req, res) => {
+    try{
+        const user = auth.currentUser
+        const userDocRef = doc(db, "proprio", user.uid)
+        const ownerInofrmations = {
+            name: req.body.name,
+            firstName: req.body.firstName,
+            phoneNumber: req.body.phoneNumber
+        }
+        await updateEmail(user, req.body.email)
+        await updatePassword(user, req.body.password)
+        await updateDoc(userDocRef, ownerInofrmations)
+        res.status(200).send("User updated succesfully")
+    }catch(error:any){
+        res.send(error.message);
+        
+    }
+}
 
 
 export = {
     createAccountOwner,
     getAllOwners,
     getOwnerById,
+    updateDataOwner
 }
 
 

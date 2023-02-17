@@ -19,4 +19,7 @@ router.get("/proprios", ownerController.getAllOwners)
 //Recuperer un proprio par son id
 router.get("/proprios/:id", ownerController.getOwnerById)
 
+//Modifier les infos du proprio
+router.put("/update/:id",ownerController.updateDataOwner)
+
 export = router
