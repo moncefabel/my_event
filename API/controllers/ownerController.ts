@@ -17,17 +17,17 @@ const createAccountOwner = async (req:express.Request, res:express.Response) => 
         const ownerInofrmations = {
             name: req.body.name,
             firstName: req.body.firstName,
-            phoneNumber: req.body.phoneNumber,
+            // phoneNumber: req.body.phoneNumber,
         }
 
         const etbInformations = {
             name: req.body.nameEtb,
-            place: req.body.place,
-            activity: req.body.activity,
-            minCapacity: req.body.minCapacity,
-            maxCapacity: req.body.maxCapacity,
-            opening: req.body.opening,
-            closing: req.body.closing,
+            // place: req.body.place,
+            // activity: req.body.activity,
+            // minCapacity: req.body.minCapacity,
+            // maxCapacity: req.body.maxCapacity,
+            // opening: req.body.opening,
+            // closing: req.body.closing,
             pictures: imageEtbUrl
         }
 

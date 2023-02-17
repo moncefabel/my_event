@@ -1,6 +1,6 @@
 const {db,auth,storage} = require("../config/db")
 import { getDownloadURL, ref } from "firebase/storage"
-import { collection, setDoc, doc, getDocs, deleteDoc } from "firebase/firestore"
+import { collection, setDoc, doc, getDocs, deleteDoc, updateDoc } from "firebase/firestore"
 
 
 
@@ -52,6 +52,29 @@ const getAllEtbs = async (req, res) => {
     }
 }
 
+const updateEtb = async (req, res) => {
+
+    try{
+        const user = auth.currentUser
+        const etbCollectionRef = doc(db,"proprio/"+user.uid+"/etablissements/"+req.params.id)
+
+        const etbUpdate = {
+            name: req.body.nameEtb,
+            // place: req.body.place,
+            // activity: req.body.activity,
+            // minCapacity: req.body.minCapacity,
+            // maxCapacity: req.body.maxCapacity,
+            // opening: req.body.opening,
+            // closing: req.body.closing,
+        } 
+        await updateDoc(etbCollectionRef,etbUpdate)
+        res.status(200).send("Annonce modifié")
+
+    }catch(error:any){
+        res.status(400).send(error.message)
+    }
+}
+
 const deleteAllEtb = async(req, res) => {
 
     try{
@@ -70,5 +93,6 @@ const deleteAllEtb = async(req, res) => {
 export = {
     addEtb,
     getAllEtbs,
-    deleteAllEtb
+    deleteAllEtb,
+    updateEtb
 }
