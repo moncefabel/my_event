@@ -22,4 +22,7 @@ router.get("/proprios/:id", ownerController.getOwnerById)
 //Modifier les infos du proprio
 router.put("/update/:id",ownerController.updateDataOwner)
 
+//Supprimer un proriétaire
+router.delete("/delete/:id",ownerController.deleteOwner)
+
 export = router

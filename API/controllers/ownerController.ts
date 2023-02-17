@@ -1,8 +1,9 @@
 import { createUserWithEmailAndPassword, updateEmail, updatePassword } from "@firebase/auth"
-import { collection, doc, getDoc, getDocs, setDoc, updateDoc } from "@firebase/firestore"
+import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from "@firebase/firestore"
 import { getDownloadURL, ref } from "@firebase/storage"
 import express from 'express'
 const {db,auth,storage} = require("../config/db")
+const etbController = require("../controllers/etbController")
 
 const createAccountOwner = async (req:express.Request, res:express.Response) => {
  
@@ -93,12 +94,26 @@ const updateDataOwner = async (req, res) => {
     }
 }
 
+const deleteOwner = async(req, res) => {
+
+    try{
+        etbController.deleteAllEtb(req,res)
+        const user = auth.currentUser
+        const ownerCollectionRef = doc(db, "proprio",user.uid)
+        await deleteDoc(ownerCollectionRef)
+        res.status(200).send("User deleted succcesfully")
+    }catch(error:any){
+        res.status(400).send(error.message);
+        
+    }
+}
 
 export = {
     createAccountOwner,
     getAllOwners,
     getOwnerById,
-    updateDataOwner
+    updateDataOwner,
+    deleteOwner
 }
 
 

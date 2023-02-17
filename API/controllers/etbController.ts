@@ -1,6 +1,6 @@
 const {db,auth,storage} = require("../config/db")
 import { getDownloadURL, ref } from "firebase/storage"
-import { collection, setDoc, doc, getDocs } from "firebase/firestore"
+import { collection, setDoc, doc, getDocs, deleteDoc } from "firebase/firestore"
 
 
 
@@ -51,7 +51,24 @@ const getAllEtbs = async (req, res) => {
         res.status(400).send(error.message)
     }
 }
+
+const deleteAllEtb = async(req, res) => {
+
+    try{
+        const user = auth.currentUser
+        const etbCollectionRef = collection(db, "proprio/"+user.uid+"/etablissements")        
+        const idEtb = await getDocs(etbCollectionRef)
+        
+        idEtb.docs.map(async element => 
+            await deleteDoc(element.ref)  
+        )
+    }catch(error:any){
+        res.status(400).send(error.message);
+    }
+}
+
 export = {
     addEtb,
-    getAllEtbs
+    getAllEtbs,
+    deleteAllEtb
 }
