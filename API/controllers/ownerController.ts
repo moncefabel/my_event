@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const model = require('../models/proprio')
-const ObjectID = require('mongoose').Types.ObjectID
+const ObjectId = require('mongoose').Types.ObjectId
+const bcrypt = require('bcrypt')
 
 const getAllOwners =  async (req,res) => {
 
@@ -25,8 +26,7 @@ const getOwnerById =async (req, res) => {
 
 const updateOwner = async(req, res) => {
     
-    // if(!ObjectID.isValid(req.params.id))
-    //     res.status(400).send("ID unknown")
+    checkingValidId(req,res)
     try{
         const user = await model.Proprio.findById(req.params.id)
         
@@ -35,17 +35,37 @@ const updateOwner = async(req, res) => {
         user.phoneNumber= req.body.phoneNumber || user.phoneNumber
         user.email= req.body.email || user.email
         
-        const newUser = await user.save()
-        res.status(200).send(newUser)
+        await user.save()
+        res.status(200).send("Informations modifiées")
         
     }catch(error:any){
         res.status(400).send(error.message)
     }
 }
 
+const changePassword = async (req, res) => {
+    checkingValidId(req, res)
+
+    try{
+        const user = await model.Proprio.findById(req.params.id)
+        const salt = await bcrypt.genSalt()
+        user.password =  await bcrypt.hash(req.body.password, salt)
+        await user.save()
+        res.status(200).send("Mot de passe modifié")
+    }catch(error:any){
+        res.status(400).send(error.message)
+    }
+}
+
+
+function checkingValidId(req, res){
+    if(!ObjectId.isValid(req.params.id))
+        res.status(400).send("ID unknown")
+}
 
 export = {
     getAllOwners,
     getOwnerById,
-    updateOwner
+    updateOwner,
+    changePassword
 }

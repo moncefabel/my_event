@@ -12,7 +12,16 @@ router.get("/proprios/:id", ownerController.getOwnerById)
 //Créer un utilisateur
 router.post("/register", authController.addUser)
 
+//Connexion d'un utilisateur
+router.post("/signIn",authController.signIn )
+
+//Déconnexion d'un utilisateur
+router.post("/logOut",authController.logOut)
+
 //Modifier les informations d'un utilisateur
 router.put("/update/:id", ownerController.updateOwner)
+
+//Modification du mot de passe
+router.put("/updatePassword/:id", ownerController.changePassword)
 
 export = router

@@ -16,8 +16,8 @@ const proprioSchema = new mongoose.Schema({
             typeEtablissement: {type: String, required: true}
         }
     ]
-
 })
+
 
 const proprioModel = mongoose.model("proprios",proprioSchema)
 module.exports = {Proprio: proprioModel}
