@@ -11,4 +11,4 @@ const proprioSchema = new mongoose.Schema({
 })
 
 const proprioModel = mongoose.model("proprios",proprioSchema)
-export = {Proprio: proprioModel}
+module.exports = {Proprio: proprioModel}

@@ -11,4 +11,18 @@ const getAllOwners =  async (req,res) => {
     }
 }
 
-export = {getAllOwners}
+
+
+const getOwnerById =async (req, res) => {
+    
+    try{
+        const user = await model.Proprio.findById(req.params.id)
+        res.status(200).json(user)
+    }catch(error:any){
+        res.status(400).send(error.message)
+    }
+    
+}
+
+
+export = {getAllOwners,getOwnerById}
