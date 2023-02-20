@@ -1,6 +1,6 @@
 import express from 'express'
 import router from './routes/owner.routes'
-// const routerEtb = require('./routes/etb.routes')
+const routerEtb = require('./routes/etb.routes')
 import cors from 'cors'
 import bodyParser from 'body-parser'
 const dotenv = require("dotenv").config({path: "./config/.env"})
@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
 app.use("/api",router)
-// app.use("/apiEtb", routerEtb)
+app.use("/apiEtb", routerEtb)
 
 
 db.connect()
