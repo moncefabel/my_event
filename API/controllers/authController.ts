@@ -31,7 +31,6 @@ const signIn = async(req, res) => {
         const user = await model.Proprio.findOne({email: req.body.email})
         if(isExists(user)){
             const auth = await bcrypt.compare(req.body.password, user.password)    
-            console.log(auth);
                     
             if(auth){
                 const token = createToken(user._id)

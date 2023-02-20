@@ -3,7 +3,8 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import router from './routes/owner.routes'
-const routerEtb = require('./routes/etb.routes')
+import routerEtb from './routes/etb.routes'
+import {checkUser, checkAuth} from './middleware/authMiddleware'
 const dotenv = require("dotenv").config({path: "./config/.env"})
 const db = require ("./config/db")
 const port = 5000
@@ -15,6 +16,11 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
 app.use(cookieParser())
+
+app.use('*',checkUser)
+app.use("/jwtid",checkAuth, (req,res) => {
+    res.status(200).send(res.locals.user.id)
+})
 app.use("/api",router)
 app.use("/apiEtb", routerEtb)
 
