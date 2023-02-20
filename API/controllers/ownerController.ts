@@ -25,19 +25,17 @@ const getOwnerById =async (req, res) => {
 
 const updateOwner = async(req, res) => {
     
-    if(!ObjectID.isValid(req.params.id))
-        res.status(400).send("ID unknown")
+    // if(!ObjectID.isValid(req.params.id))
+    //     res.status(400).send("ID unknown")
     try{
-        const filter = ({_id: req.params.id})
-        const update = {
-            lastName: req.body.lastName,
-            firstName: req.body.firstName,
-            phoneNumber: req.body.phoneNumber,
-            email: req.body.email,
-        }
-        const newUser = await model.Proprio.findOneAndUpdate(filter,update,{
-            new: true
-        })
+        const user = await model.Proprio.findById(req.params.id)
+        
+        user.lastName= req.body.lastName || user.lastName
+        user.firstName= req.body.firstName || user.firstName
+        user.phoneNumber= req.body.phoneNumber || user.phoneNumber
+        user.email= req.body.email || user.email
+        
+        const newUser = await user.save()
         res.status(200).send(newUser)
         
     }catch(error:any){
