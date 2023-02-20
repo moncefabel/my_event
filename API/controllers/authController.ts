@@ -13,12 +13,8 @@ const addUser =  async (req,res) => {
             firstName: req.body.firstName,
             phoneNumber: req.body.phoneNumber,
             email: req.body.email,
-<<<<<<< HEAD
-            password: hashPassword
-=======
-            password: req.body.password,
+            password: hashPassword,
             etablissement: req.body.etablissement
->>>>>>> 6764e12fe999057bfedaf48d28e173673b22cecf
         })
 
         res.status(200).json(newUser.id)
