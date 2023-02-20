@@ -9,7 +9,8 @@ const addUser =  async (req,res) => {
             firstName: req.body.firstName,
             phoneNumber: req.body.phoneNumber,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            etablissement: req.body.etablissement
         })
 
         res.status(200).json(newUser)
