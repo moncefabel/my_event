@@ -21,3 +21,4 @@ doc/api/
 *.js.map
 
 API/node_modules
+.env
