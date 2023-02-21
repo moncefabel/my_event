@@ -8,11 +8,12 @@ export const checkAuth = async (req, res, next) => {
         return res.status(401).send("No token");
     }
 
-    jwt.verify(token , process.env.TOKEN_SECRET, (err, userId) => {
+    jwt.verify(token , process.env.TOKEN_SECRET, async (err, decodedToken) => {
         if(err)
             return res.status(403).send("Invalid token")
-        res.user = {
-            id: userId
+        let user = await model.Proprio.findById(decodedToken.id);
+        if(user){
+            res.locals.user = user;
         }
         next()
     })
@@ -21,7 +22,6 @@ export const checkAuth = async (req, res, next) => {
 export const checkUser = async (req, res, next) => {
 
     const token = req.cookies.jwt;
-    console.log(token);
     
     if (token) {
         jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
