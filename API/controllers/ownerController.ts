@@ -44,6 +44,7 @@ const updateOwner = async(req, res) => {
 }
 
 const changePassword = async (req, res) => {
+
     checkingValidId(req, res)
 
     try{
@@ -57,15 +58,27 @@ const changePassword = async (req, res) => {
     }
 }
 
-
 function checkingValidId(req, res){
     if(!ObjectId.isValid(req.params.id))
         res.status(400).send("ID unknown")
 }
 
+const deleteOwner = async(req, res) => {
+    checkingValidId(req, res)
+
+    try{
+        await model.Proprio.deleteOne({_id: req.params.id})
+        res.status(200).send("Utilsiateur supprimé")
+    }catch(error:any){
+        res.status(400).send(error.message)
+    }
+}
+
+
 export = {
     getAllOwners,
     getOwnerById,
     updateOwner,
-    changePassword
+    changePassword,
+    deleteOwner
 }

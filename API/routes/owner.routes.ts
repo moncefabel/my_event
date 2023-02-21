@@ -25,4 +25,7 @@ router.put("/update/:id",checkAuth, ownerController.updateOwner)
 //Modification du mot de passe
 router.put("/updatePassword/:id", checkAuth, ownerController.changePassword)
 
+//Supprimer un propriétaire
+router.delete("/delete/:id",checkAuth, ownerController.deleteOwner)
+
 export = router
