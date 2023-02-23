@@ -5,8 +5,8 @@ const ObjectId = require('mongoose').Types.ObjectId
 const getAllEtablissements =  async (req,res) => {
 
     try{
-        const user = await model.Proprio.findById(req.params.id)
-        res.status(200).send(user.etablissement)
+        const etbs = await model.Etb.find({userId: req.params.id})
+        res.status(200).send(etbs)
         
     }catch(error:any){
         res.status(400).send(error.message)
