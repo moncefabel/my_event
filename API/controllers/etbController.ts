@@ -26,8 +26,6 @@ const addEtb = async(req, res) => {
             type: req.body.type,
             userId: req.params.id
         })
-        
-        
         res.status(200).send("Etablissement ajouté avec succées")
 
     }catch(error:any){
@@ -37,12 +35,8 @@ const addEtb = async(req, res) => {
 
 const deleteEtb = async(req, res) => {
 
-    
     try{ 
-        const user = await model.Proprio.findById(req.params.idUser)
-        const newUser = await user.get('etablissement')
-        console.log(newUser);
-        
+        await model.Etb.deleteOne(req.params.id)
         res.status(200).send("Etablissement supprimé")
     }catch(error:any){
         res.status(400).send(error.message)

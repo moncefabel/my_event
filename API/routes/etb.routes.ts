@@ -10,7 +10,7 @@ router.get("/etb/:id", checkAuth, etbController.getAllEtablissements)
 router.post("/add/:id", checkAuth, etbController.addEtb)
 
 //Supprimer un établissement
-router.delete("/etb/delete/:idUser/:idEtb",checkAuth, etbController.deleteEtb)
+router.delete("/etb/delete/:idEtb",checkAuth, etbController.deleteEtb)
 
 
 
