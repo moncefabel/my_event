@@ -4,14 +4,17 @@ const router:express.Router = express.Router()
 const etbController = require('../controllers/etbController')
 
 //Recuperer tous les établissements d'un propriétaire
-router.get("/etb/:id", checkAuth, etbController.getAllEtablissements)
+router.get("/allEtb/:id", checkAuth, etbController.getAllEtablissements)
 
 //Ajouter un établissement 
 router.post("/add/:id", checkAuth, etbController.addEtb)
 
-//Supprimer un établissement
-router.delete("/etb/delete/:idEtb",checkAuth, etbController.deleteEtb)
 
+//Modifier les informations d'un établissement
+router.put("/update/:id", checkAuth, etbController.updateEtb)
+
+//Supprimer un établissement
+router.delete("/delete/:idEtb",checkAuth, etbController.deleteEtb)
 
 
 export = router
