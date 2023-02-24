@@ -5,7 +5,8 @@ const etbSchema = new mongooseEtb.Schema({
     lieu: {type:String, required:true},
     horaires: {type:String, required:true},
     type: {type: String, required:true},
-    userId: {type: mongooseEtb.ObjectId, required:true}
+    userId: {type: mongooseEtb.ObjectId, required:true},
+    images: {type: String}
 })
 
 
