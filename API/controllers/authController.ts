@@ -59,7 +59,7 @@ function createToken(id){
     return jwt.sign({ id }, process.env.TOKEN_SECRET, {
       expiresIn: maxAge,
     });
-  };
+};
 
 export = {
     addUser,

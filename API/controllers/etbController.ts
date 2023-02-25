@@ -17,7 +17,7 @@ const addEtb = async(req, res) => {
 
     checkingValidId(req,res)
     try{
-        
+
         const newEtb = await model.Etb.create({
             nomEtablissement: req.body.nomEtablissement,
             prix: req.body.prix,
@@ -67,14 +67,6 @@ const deleteEtb = async(req, res) => {
     }
 }
 
-const uploadImages = async(req, res ) => {
-     try{
-        const imgUrl = `http://localhost:5000/file/${req.file.filename}`
-        res.status(200).send("Image uploaded")
-     }catch(error:any){
-        res.status(400).send(error.message)
-     }
-}
 
 function checkingValidId(req, res){
     if(!ObjectId.isValid(req.params.id))
@@ -85,6 +77,5 @@ export = {
     getAllEtablissements,
     addEtb,
     updateEtb,
-    uploadImages,
     deleteEtb
 }
