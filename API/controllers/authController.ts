@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const model = require('../models/proprio')
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken");
+const {signUpErrors} = require('../utils/errors')
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 
 
@@ -21,7 +22,8 @@ const addUser =  async (req,res) => {
 
         res.status(200).json(newUser.id)
     }catch(error:any){
-        res.status(400).send(error.message)
+        const errors = signUpErrors(error)
+        res.status(400).json({msg:errors})
     }
 }
 
