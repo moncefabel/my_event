@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app_web/routing/route_names.dart';
 import 'package:app_web/views/Home/home_views.dart';
 import '../views/About/about_view.dart';
-import '../views/Connection/connection_view.dart';
+import '../views/Connection/sign_in_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -11,7 +11,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case aboutRoute:
       return _getPageRoute(const AboutView());
     case connectionRoute:
-      return _getPageRoute(const ConnectionView());
+      return _getPageRoute(const SignInScreen());
     default:
       throw MaterialPageRoute(
         builder: (_) => Scaffold(
