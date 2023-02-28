@@ -10,9 +10,6 @@ router.get("/allEtb/:id", checkAuth, etbController.getAllEtablissements)
 //Ajouter un établissement 
 router.post("/add/:id", checkAuth,upload.single("images"), etbController.addEtb)
 
-//Ajout image
-router.post("/uploadImage",checkAuth, etbController.uploadImages)
-
 //Modifier les informations d'un établissement
 router.put("/update/:id", checkAuth, etbController.updateEtb)
 

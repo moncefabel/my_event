@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/locator.dart';
-import 'package:testapp/views/Layout_Template/layout_template.dart';
+import 'package:app_web/locator.dart';
+import 'package:app_web/views/Layout_Template/layout_template.dart';
 import 'Widgets/Navigation_Drawer/navigation_drawer.dart';
 
 void main(List<String> args) {

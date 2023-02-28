@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:testapp/Services/navigation_service.dart';
-import 'package:testapp/locator.dart';
+import 'package:app_web/Services/navigation_service.dart';
+import 'package:app_web/locator.dart';
 
 class NavBarItem extends StatelessWidget {
   final String title;

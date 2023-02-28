@@ -1,3 +1,4 @@
+import 'package:app_web/views/Connection/auth_screen.dart';
 import 'package:flutter/material.dart';
 
 class ConnectionView extends StatelessWidget {
@@ -5,8 +6,6 @@ class ConnectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
-    );
+    return AuthScreen();
   }
 }

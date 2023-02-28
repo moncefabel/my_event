@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/Widgets/Navigation_bar/navbar_logo.dart';
-import 'package:testapp/routing/route_names.dart';
+import 'package:app_web/Widgets/Navigation_bar/navbar_logo.dart';
+import 'package:app_web/routing/route_names.dart';
 
 class NavigationBarMobile extends StatefulWidget {
   const NavigationBarMobile({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/routing/route_names.dart';
-import 'package:testapp/views/Home/home_views.dart';
+import 'package:app_web/routing/route_names.dart';
+import 'package:app_web/views/Home/home_views.dart';
 import '../views/About/about_view.dart';
 import '../views/Connection/connection_view.dart';
 
