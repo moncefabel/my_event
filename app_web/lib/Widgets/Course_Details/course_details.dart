@@ -16,28 +16,28 @@ class CourseDetails extends StatelessWidget {
 
       return SizedBox(
           width: 600,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'MyEvent\nFor our owners',
-                style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    height: 0.9,
-                    fontSize: titleSize),
-                textAlign: textAlignment,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Text(
-                'Joins us today and become a members of a future growing community.',
-                style: TextStyle(fontSize: descriptionSize, height: 1.7),
-                textAlign: textAlignment,
-              ),
-            ],
-          ));
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'MyEvent\nFor our owners',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      height: 0.9,
+                      fontSize: titleSize),
+                  textAlign: textAlignment,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  'Joins us today and become a members of a future growing community.',
+                  style: TextStyle(fontSize: descriptionSize, height: 1.7),
+                  textAlign: textAlignment,
+                ),
+              ],
+            ));
     });
   }
 }

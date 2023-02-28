@@ -11,7 +11,7 @@ const addUser =  async (req,res) => {
     try{
         const salt = await bcrypt.genSalt()
         const hashPassword =  await bcrypt.hash(req.body.password, salt)
-
+        
         const newUser = await model.Proprio.create({
             lastName: req.body.lastName,
             firstName: req.body.firstName,
@@ -19,11 +19,11 @@ const addUser =  async (req,res) => {
             email: req.body.email,
             password: hashPassword,
         })
-
+        
         res.status(200).json(newUser.id)
     }catch(error:any){
-        const errors = signUpErrors(error)
-        res.status(400).json({msg:errors})
+        // const errors = signUpErrors(error)
+        res.status(400).send(error.message)
     }
 }
 

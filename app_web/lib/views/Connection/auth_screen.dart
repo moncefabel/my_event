@@ -24,14 +24,19 @@ class _AuthScreenState extends State<AuthScreen> {
   final AuthService authService = AuthService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+
 
   @override
   void dispose() {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    _nameController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _phoneNumberController.dispose();
   }
 
   void signUpProprio(){
@@ -39,14 +44,16 @@ class _AuthScreenState extends State<AuthScreen> {
       context: context, 
       email: _emailController.text,
       password: _passwordController.text, 
-      name: _nameController.text
+      firstName: _firstNameController.text,
+      lastName: _lastNameController.text,
+      phoneNumber: _phoneNumberController.text,
     );
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: Column(
+      body: SingleChildScrollView(
+        child: Column(
         children: [
           const Text(
             'Welcome',
@@ -88,8 +95,18 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                   const SizedBox(height: 10,),
                   CustomTextField(
-                    controller: _nameController,
-                    hintText: 'Name',
+                    controller: _firstNameController,
+                    hintText: 'First Name',
+                  ),
+                  const SizedBox(height: 10,),
+                  CustomTextField(
+                    controller: _lastNameController,
+                    hintText: 'Last Name',
+                  ),
+                  const SizedBox(height: 10,),
+                  CustomTextField(
+                    controller: _phoneNumberController,
+                    hintText: 'Phone Number',
                   ),
                   const SizedBox(height: 10,),
                   CustomButton(
