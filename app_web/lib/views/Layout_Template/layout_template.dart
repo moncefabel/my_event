@@ -20,8 +20,8 @@ class LayoutTemplate extends StatelessWidget {
         backgroundColor: Colors.white,
         body: CenteredView(
           child: Column(
-            children: <Widget>[
-              const NavigationBars(),
+            children: [
+              const Flexible(child: NavigationBars()),
               Expanded(
                   child: Navigator(
                 key: locator<NavigationService>().navigatorKey,

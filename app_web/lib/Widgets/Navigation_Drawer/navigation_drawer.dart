@@ -13,10 +13,10 @@ class NavigationDrawers extends StatelessWidget {
       decoration: const BoxDecoration(
           color: Colors.white,
           boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 16)]),
-      child: Column(children: const <Widget>[
-        NavigationDrawerHeader(),
-        DrawerItem('Connection', Icons.login, connectionRoute),
-        DrawerItem('About', Icons.help, aboutRoute)
+      child: Flex(direction: Axis.vertical, children: const [
+        Flexible(child: NavigationDrawerHeader()),
+        Flexible(child: DrawerItem('Connection', Icons.login, connectionRoute)),
+        Flexible(child: DrawerItem('About', Icons.help, aboutRoute))
       ]),
     );
   }

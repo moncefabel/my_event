@@ -19,7 +19,7 @@ class CourseDetails extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+            children: [
               Text(
                 'MyEvent\nFor our owners',
                 style: TextStyle(
