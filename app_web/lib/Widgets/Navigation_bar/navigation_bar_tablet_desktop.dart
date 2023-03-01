@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:app_web/routing/route_names.dart';
 
 import 'navbar_item.dart';
-import 'navbar_logo.dart';
 
 class NavigationBarTabletDesktop extends StatelessWidget {
   const NavigationBarTabletDesktop({super.key});
@@ -14,7 +13,7 @@ class NavigationBarTabletDesktop extends StatelessWidget {
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              const NavBarLogo('Main', homeRoute),
+              //const NavBarLogo('Main', homeRoute),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: const <Widget>[

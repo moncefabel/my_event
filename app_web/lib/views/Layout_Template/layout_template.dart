@@ -1,3 +1,4 @@
+import 'package:app_web/Widgets/Navigation_bar/navbar_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:app_web/locator.dart';
@@ -15,13 +16,27 @@ class LayoutTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) => Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Colors.blueAccent,
+          title: const NavBarLogo('home', homeRoute),
+          actions: <Widget>[
+            ResponsiveBuilder(builder: (context, sizingInformation) {
+              if (sizingInformation.isDesktop || sizingInformation.isTablet) {
+                return const Padding(
+                  padding: EdgeInsets.only(right: 50.0),
+                  child: NavigationBars(),
+                );
+              }
+              return Container();
+            })
+          ],
+        ),
         drawer: sizingInformation.isMobile ? const NavigationDrawers() : null,
         backgroundColor: Colors.white,
         body: CenteredView(
           child: Column(
             children: <Widget>[
-              const NavigationBars(),
+              //const NavigationBars(),
               Expanded(
                   child: Navigator(
                 key: locator<NavigationService>().navigatorKey,

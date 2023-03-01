@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../Components/create_account_redirection.dart';
-import '../SignUp/Components/sign_up_form.dart';
 import '../../../constants/app_colors.dart';
 import '../SignUp/sign_up_screen.dart';
 
@@ -20,10 +19,10 @@ class LoginForm extends StatelessWidget {
             textInputAction: TextInputAction.next,
             cursorColor: primaryColor,
             onSaved: (email) {},
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: "Your email",
               prefixIcon: Padding(
-                padding: const EdgeInsets.all(defaultPadding),
+                padding: EdgeInsets.all(defaultPadding),
                 child: Icon(Icons.person),
               ),
             ),
@@ -34,10 +33,10 @@ class LoginForm extends StatelessWidget {
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: primaryColor,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Your password",
                 prefixIcon: Padding(
-                  padding: const EdgeInsets.all(defaultPadding),
+                  padding: EdgeInsets.all(defaultPadding),
                   child: Icon(Icons.lock),
                 ),
               ),
@@ -64,8 +63,8 @@ class LoginForm extends StatelessWidget {
                   },
                 ),
               );
-            },  
-          )        
+            },
+          )
         ],
       ),
     );
