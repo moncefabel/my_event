@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:app_web/Services/navigation_service.dart';
 import 'package:app_web/locator.dart';
+import 'package:app_web/Extensions/hover_extensions.dart';
 
 class NavBarItem extends StatelessWidget {
   final String title;
@@ -23,7 +24,7 @@ class NavBarItem extends StatelessWidget {
               child: Text(
                 title,
                 style: const TextStyle(fontSize: 18, color: Colors.black),
-              ),
+              ).showCursorOnHover.moveUpOnHover,
             ));
   }
 }

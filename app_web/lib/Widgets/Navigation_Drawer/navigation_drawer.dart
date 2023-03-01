@@ -1,3 +1,4 @@
+import 'package:app_web/Extensions/hover_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:app_web/Widgets/Navigation_Drawer/drawer_item.dart';
 import 'package:app_web/Widgets/Navigation_Drawer/navigation_drawer_header.dart';
@@ -13,11 +14,14 @@ class NavigationDrawers extends StatelessWidget {
       decoration: const BoxDecoration(
           color: Colors.white,
           boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 16)]),
-      child: Flex(direction: Axis.vertical, children: const [
-        NavigationDrawerHeader(),
-        Flexible(child: DrawerItem('Connection', Icons.login, connectionRoute)),
-        Flexible(child: DrawerItem('About', Icons.help, aboutRoute)),
-      ]),
+      child: Flex(direction: Axis.vertical, children: [
+        const NavigationDrawerHeader(),
+        const Flexible(
+                child: DrawerItem('Connection', Icons.login, connectionRoute))
+            .moveUpOnHover,
+        const Flexible(child: DrawerItem('About', Icons.help, aboutRoute))
+            .moveUpOnHover,
+      ]).showCursorOnHover,
     );
   }
 }
