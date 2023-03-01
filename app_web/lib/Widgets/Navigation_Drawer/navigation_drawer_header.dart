@@ -6,21 +6,23 @@ class NavigationDrawerHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      color: primaryColor,
-      alignment: Alignment.center,
-      child: Column(mainAxisSize: MainAxisSize.min, children: const <Widget>[
-        Text(
-          'Skill Up',
-          style: TextStyle(
-              fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white),
-        ),
-        Text(
-          'Click Here',
-          style: TextStyle(color: Colors.white),
-        )
-      ]),
+    return SingleChildScrollView(
+      child: Container(
+        height: 150,
+        color: primaryColor,
+        alignment: Alignment.center,
+        child: Column(mainAxisSize: MainAxisSize.min, children: const [
+          Text(
+            'Skill Up',
+            style: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white),
+          ),
+          Text(
+            'Click Here',
+            style: TextStyle(color: Colors.white),
+          )
+        ]),
+      ),
     );
   }
 }

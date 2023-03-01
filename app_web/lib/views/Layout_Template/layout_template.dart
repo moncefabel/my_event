@@ -17,7 +17,8 @@ class LayoutTemplate extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) => Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: Colors.cyan,
+          shadowColor: Colors.red,
           title: const NavBarLogo('home', homeRoute),
           actions: <Widget>[
             ResponsiveBuilder(builder: (context, sizingInformation) {
@@ -32,11 +33,10 @@ class LayoutTemplate extends StatelessWidget {
           ],
         ),
         drawer: sizingInformation.isMobile ? const NavigationDrawers() : null,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.yellow,
         body: CenteredView(
           child: Column(
-            children: <Widget>[
-              //const NavigationBars(),
+            children: [
               Expanded(
                   child: Navigator(
                 key: locator<NavigationService>().navigatorKey,
