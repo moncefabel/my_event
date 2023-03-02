@@ -1,21 +1,51 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/auth/services/auth_service.dart';
 import '../Components/create_account_redirection.dart';
 import '../SignUp/Components/sign_up_form.dart';
 import '../../../constants/app_colors.dart';
 import '../SignUp/sign_up_screen.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
+  static const String routeName = '/auth-screen';
   const LoginForm({
-    Key? key,
-  }) : super(key: key);
+    super.key
+  });
 
+  @override
+  State<LoginForm> createState() => _SignInFormState();
+}
+
+class _SignInFormState extends State<LoginForm>{
+
+final AuthService authService = AuthService();
+final _signInFormKey = GlobalKey<FormState>();
+final TextEditingController _emailController = TextEditingController();
+final TextEditingController _passwordController = TextEditingController();
+
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+  void signInProprio(){
+    authService.signInUser(
+      context: context, 
+      email: _emailController.text,
+      password: _passwordController.text, 
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _signInFormKey,
       child: Column(
         children: [
           TextFormField(
+            controller: _emailController,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: primaryColor,
@@ -31,6 +61,7 @@ class LoginForm extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: TextFormField(
+              controller: _passwordController,
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: primaryColor,
@@ -44,15 +75,18 @@ class LoginForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: defaultPadding),
-          Hero(
-            tag: "login_btn",
-            child: ElevatedButton(
-              onPressed: () {},
+          
+             ElevatedButton(
+              onPressed: () {
+                  if(_signInFormKey.currentState!.validate()){
+                    signInProprio();
+                }
+              },
               child: Text(
                 "Login".toUpperCase(),
               ),
             ),
-          ),
+          
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(
             press: () {

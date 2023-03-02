@@ -29,6 +29,7 @@ const addUser =  async (req,res) => {
 
 const signIn = async(req, res) => {
     try{
+        
         const user = await model.Proprio.findOne({email: req.body.email})
         if(isExists(user)){
             const auth = await bcrypt.compare(req.body.password, user.password)    
@@ -36,7 +37,7 @@ const signIn = async(req, res) => {
             if(auth){
                 const token = createToken(user._id)
                 res.cookie("jwt",token, {httpOnly: true, maxAge})
-                res.status(200).send(user.id)
+                res.status(200).json({token, user})
             }else{
                 throw Error("Password incorrect")
             }

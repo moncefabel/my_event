@@ -7,6 +7,7 @@ class Proprio{
   final String firstName;
   final String lastName;
   final String phoneNumber;
+  final String token;
 
   Proprio({
     required this.id, 
@@ -14,7 +15,8 @@ class Proprio{
     required this.password, 
     required this.firstName,
     required this.lastName,
-    required this.phoneNumber
+    required this.phoneNumber,
+    required this.token
   });
 
   Map<String, dynamic> toMap() {
@@ -24,7 +26,8 @@ class Proprio{
         'email': email,
         'password': password,
         'lastName': lastName,
-        'phoneNumber': phoneNumber
+        'phoneNumber': phoneNumber,
+        'token': token
       };
     }
   factory Proprio.fromMap(Map<String, dynamic> map){
@@ -35,6 +38,8 @@ class Proprio{
       firstName: map['firstName'] ?? '',
       lastName: map['lastName'] ?? '',
       phoneNumber: map['phoneNumber'] ?? '',
+      token: map['token'] ?? '',
+
 
     );
   }

@@ -154,7 +154,6 @@ final TextEditingController _phoneNumberController = TextEditingController();
 
           ElevatedButton(
             onPressed: () {
-              print("hello");
               if(_signUpFormKey.currentState!.validate()){
                 signUpProprio();
               }
