@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../features/auth/services/auth_service.dart';
 import '../Components/create_account_redirection.dart';
-import '../SignUp/Components/sign_up_form.dart';
 import '../../../constants/app_colors.dart';
 import '../SignUp/sign_up_screen.dart';
 
@@ -50,10 +49,10 @@ final TextEditingController _passwordController = TextEditingController();
             textInputAction: TextInputAction.next,
             cursorColor: primaryColor,
             onSaved: (email) {},
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: "Your email",
               prefixIcon: Padding(
-                padding: const EdgeInsets.all(defaultPadding),
+                padding: EdgeInsets.all(defaultPadding),
                 child: Icon(Icons.person),
               ),
             ),
@@ -65,10 +64,10 @@ final TextEditingController _passwordController = TextEditingController();
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: primaryColor,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Your password",
                 prefixIcon: Padding(
-                  padding: const EdgeInsets.all(defaultPadding),
+                  padding: EdgeInsets.all(defaultPadding),
                   child: Icon(Icons.lock),
                 ),
               ),
@@ -98,8 +97,8 @@ final TextEditingController _passwordController = TextEditingController();
                   },
                 ),
               );
-            },  
-          )        
+            },
+          )
         ],
       ),
     );
