@@ -1,11 +1,18 @@
+import 'package:app_web/views/Etablissements/etb_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_web/routing/route_names.dart';
 import 'package:app_web/views/Home/home_views.dart';
 import '../views/About/about_view.dart';
-import '../views/Connection/sign_in_screen.dart';
+import '../views/Connection/SignIn/sign_in_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
+    
+    case EtbScreen.routeName:
+      return MaterialPageRoute(
+        settings: settings,
+        builder:(_) => const EtbScreen(),
+      );
     case homeRoute:
       return _getPageRoute(const HomeView());
     case aboutRoute:

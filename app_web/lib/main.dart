@@ -1,11 +1,19 @@
+import 'package:app_web/providers/proprio_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:app_web/locator.dart';
 import 'package:app_web/views/Layout_Template/layout_template.dart';
+import 'package:provider/provider.dart';
 import 'Widgets/Navigation_Drawer/navigation_drawer.dart';
 
 void main(List<String> args) {
   setupLocator();
-  runApp(const MyApp());
+  runApp(MultiProvider (providers: [
+    ChangeNotifierProvider(
+      create: (context) => ProprioProvider(),
+    ),
+  ],
+  child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

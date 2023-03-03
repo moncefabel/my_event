@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../constants/app_colors.dart';
 import '../../../responsive.dart';
 import '../Components/background.dart';
-import 'Components/sign_up_form.dart';
+import 'sign_up_form.dart';
 
 
 class SignUpScreen extends StatelessWidget {

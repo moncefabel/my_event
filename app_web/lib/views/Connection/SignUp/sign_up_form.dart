@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../constants/app_colors.dart';
-import '../../../../features/auth/services/auth_service.dart';
+import '../../../constants/app_colors.dart';
+import '../../../features/auth/services/auth_service.dart';
 
 class SignUpForm extends StatefulWidget {
   static const String routeName = '/auth-screen';
