@@ -9,19 +9,17 @@ class NavigationDrawers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Drawer(
       width: 300,
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 16)]),
-      child: Flex(direction: Axis.vertical, children: [
+      child: ListView(children: [
         const NavigationDrawerHeader(),
-        const Flexible(
-                child: DrawerItem('Connection', Icons.login, connectionRoute))
+        const DrawerItem('Connection', Icons.login, null, connectionRoute)
             .moveUpOnHover,
-        const Flexible(child: DrawerItem('About', Icons.help, aboutRoute))
-            .moveUpOnHover,
-      ]).showCursorOnHover,
+        const DrawerItem('About', Icons.help, null, aboutRoute).moveUpOnHover,
+        const DrawerItem(
+                'Switch Mode', Icons.light_mode, Icons.dark_mode, aboutRoute)
+            .moveUpOnHover
+      ]),
     );
   }
 }

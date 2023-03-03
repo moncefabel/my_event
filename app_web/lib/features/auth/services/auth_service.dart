@@ -27,6 +27,7 @@ class AuthService {
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
           });
+      // ignore: use_build_context_synchronously
       httpErrorHandle(
         response: res,
         context: context,

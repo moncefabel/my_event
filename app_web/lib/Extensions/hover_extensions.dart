@@ -1,5 +1,6 @@
 import 'package:app_web/Widgets/translate_on_hover.dart';
 import 'package:flutter/material.dart';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
 extension HoverExtensions on Widget {

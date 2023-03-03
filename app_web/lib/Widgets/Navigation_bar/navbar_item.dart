@@ -24,7 +24,7 @@ class NavBarItem extends StatelessWidget {
               child: Text(
                 title,
                 style: const TextStyle(fontSize: 18, color: Colors.black),
-              ).showCursorOnHover.moveUpOnHover,
+              ).moveUpOnHover,
             ));
   }
 }
