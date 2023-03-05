@@ -1,8 +1,5 @@
 // ignore_for_file: avoid_print, unused_field
 
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -15,7 +12,6 @@ class LocationReference extends StatefulWidget {
 
 class _LocationReferenceState extends State<LocationReference> {
   final List<XFile> _imageFiles = [];
-  final List<Uint8List> _webImages = [];
   final ImagePicker imagePicker = ImagePicker();
 
   Future<void> _pickImage() async {
@@ -51,7 +47,6 @@ class _LocationReferenceState extends State<LocationReference> {
             InkWell(
               onTap: () {
                 _pickImage();
-                print('working');
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
