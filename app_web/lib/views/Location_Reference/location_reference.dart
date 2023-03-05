@@ -14,82 +14,85 @@ class LocationReference extends StatefulWidget {
 }
 
 class _LocationReferenceState extends State<LocationReference> {
-  File? _pickedImage;
-  Uint8List webImage = Uint8List(8);
+  final List<XFile> _imageFiles = [];
+  final List<Uint8List> _webImages = [];
+  final ImagePicker imagePicker = ImagePicker();
 
   Future<void> _pickImage() async {
-    if (!kIsWeb) {
-      final ImagePicker picker = ImagePicker();
-      XFile? image = await picker.pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        File selected = File(image.path);
-        setState(() {
-          _pickedImage = selected;
-        });
-      } else {
-        print('no Image');
-      }
-    } else if (kIsWeb) {
-      final ImagePicker picker = ImagePicker();
-      XFile? image = await picker.pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        Uint8List f = await image.readAsBytes();
-        setState(() {
-          webImage = f;
-          _pickedImage = File('a');
-        });
-      } else {
-        print('no Image');
-      }
-    } else {
-      print('Error');
+    final List<XFile> selectedImages = await imagePicker.pickMultiImage();
+    if (selectedImages.isNotEmpty) {
+      _imageFiles.addAll(selectedImages);
+      setState(() {});
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      Container(
-        color: Colors.white,
-      ),
-      ListView(
-        padding: const EdgeInsets.all(50),
-        scrollDirection: Axis.vertical,
-        children: [
-          const Text('Nom d\'etablissement'),
-          const TextField(),
-          const Padding(padding: EdgeInsets.only(top: 30)),
-          const Text('Adresse de l\'etablissement'),
-          const TextField(),
-          const Padding(padding: EdgeInsets.only(top: 30)),
-          const Text('Ajouter des images'),
-          ElevatedButton(
-              onPressed: () {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+                width: 1000,
+                child: Column(children: const [
+                  Padding(
+                    padding: EdgeInsets.all(30),
+                  ),
+                  Text('Nom d\'etablissement'),
+                  TextField(),
+                  Padding(padding: EdgeInsets.only(top: 30)),
+                  Text('Adresse de l\'etablissement'),
+                  TextField(),
+                  Padding(padding: EdgeInsets.only(top: 30)),
+                  Text('Ajouter des images'),
+                  Padding(padding: EdgeInsets.only(top: 30)),
+                ])),
+            InkWell(
+              onTap: () {
                 _pickImage();
+                print('working');
               },
-              child: const Icon(Icons.add)),
-          const Padding(padding: EdgeInsets.only(top: 30)),
-          ButtonBar(
-            layoutBehavior: ButtonBarLayoutBehavior.constrained,
-            children: [
-              InkWell(
-                onTap: () {},
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5.0),
-                  child: Container(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5.0),
+                child: Container(
                     color: Colors.blue,
                     padding: const EdgeInsets.all(10.0),
-                    child: const Text(
-                      'Round Button',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          )
-        ],
+                    child: const Icon(Icons.photo_camera)),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                  padding: const EdgeInsets.all(8.9),
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 7),
+                      scrollDirection: Axis.vertical,
+                      padding: const EdgeInsets.only(right: 5.0),
+                      itemCount: _imageFiles.length,
+                      itemBuilder: (context, index) {
+                        return Image.network(
+                          _imageFiles[index].path,
+                          width: 20,
+                          height: 20,
+                        );
+                      })),
+            ),
+            const Padding(padding: EdgeInsets.only(right: 30)),
+            Center(
+              child: MaterialButton(
+                  color: Colors.blue,
+                  onPressed: () {},
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(color: Colors.white),
+                  )),
+            ),
+            const Padding(padding: EdgeInsets.only(top: 30))
+          ],
+        ),
       ),
-    ]);
+    );
   }
 }
