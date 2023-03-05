@@ -32,12 +32,12 @@ class Proprio{
     }
   factory Proprio.fromMap(Map<String, dynamic> map){
     return Proprio(
-      id: map['user']['_id'] ?? '', 
-      email: map['user']['email'] ?? '', 
-      password: map['user']['password'] ?? '', 
-      firstName: map['user']['firstName'] ?? '',
-      lastName: map['user']['lastName'] ?? '',
-      phoneNumber: map['user']['phoneNumber'] ?? '',
+      id: map['_id'] ?? '', 
+      email: map['email'] ?? '', 
+      password: map['password'] ?? '', 
+      firstName: map['firstName'] ?? '',
+      lastName: map['lastName'] ?? '',
+      phoneNumber: map['phoneNumber'] ?? '',
       token: map['token'] ?? '',
     );
   }

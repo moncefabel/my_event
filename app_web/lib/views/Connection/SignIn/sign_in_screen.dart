@@ -1,11 +1,25 @@
+import 'package:app_web/features/auth/services/auth_service.dart';
+import 'package:app_web/providers/proprio_provider.dart';
+import 'package:app_web/views/Etablissements/etb_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../responsive.dart';
 import 'login_form.dart';
 import '../Components/background.dart';
 
-
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  final AuthService authService = AuthService();
+  @override
+  void initState() {
+    super.initState();
+    authService.getPrprioData(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +32,10 @@ class SignInScreen extends StatelessWidget {
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     SizedBox(
                       width: 450,
-                      child: LoginForm(),
+                      child: const LoginForm(),
                     ),
                   ],
                 ),

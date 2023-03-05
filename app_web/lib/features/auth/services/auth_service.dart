@@ -82,4 +82,62 @@ class AuthService {
       showSnackBar(context, e.toString());
     }
   }
+
+  void getPrprioData(
+    BuildContext context,
+  ) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      String? token = prefs.getString('jwt');
+
+      if(token == null){
+        prefs.setString('jwt', '');
+      }
+      var tokenRes = await http.post(
+        Uri.parse('$uri/jwtid'),
+        headers: <String, String>{
+            'Content-type': 'application/json; charset=UTF-8',
+            'jwt': token!
+        },
+      );
+
+      var response = jsonDecode(tokenRes.body);
+      if(response == true ){
+        http.Response userRes = await http.get(
+          Uri.parse('$uri/'),
+          headers: <String, String>{
+            'Content-type': 'application/json; charset=UTF-8',
+            'jwt': token
+          },
+        );
+
+        var userProvider = Provider.of<ProprioProvider>(context,listen: false);
+        userProvider.setProprio(userRes.body);
+      }
+
+      
+          
+          
+
+      // httpErrorHandle(
+      //     response: res,
+      //     context: context,
+      //     onSuccess: () async {
+      //       SharedPreferences prefs = await SharedPreferences.getInstance();
+      //       Provider.of<ProprioProvider>(context, listen: false)
+      //           .setProprio(res.body);
+      //       await prefs.setString("jwt", jsonDecode(res.body)['token']);
+      //       Navigator.pushAndRemoveUntil(
+      //         context,
+      //         MaterialPageRoute(
+      //           builder:(_) => const EtbScreen(),
+      //         ),
+      //         (route) => false,
+      //       );
+      //     });
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
 }

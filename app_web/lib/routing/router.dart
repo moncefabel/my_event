@@ -1,3 +1,4 @@
+import 'package:app_web/views/Connection/connectioc.view.dart';
 import 'package:app_web/views/Etablissements/etb_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_web/routing/route_names.dart';
@@ -18,7 +19,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case aboutRoute:
       return _getPageRoute(const AboutView());
     case connectionRoute:
-      return _getPageRoute(const SignInScreen());
+      return _getPageRoute(const ConnectionView());
     default:
       throw MaterialPageRoute(
         builder: (_) => Scaffold(

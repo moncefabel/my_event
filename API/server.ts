@@ -8,6 +8,7 @@ import {checkAuth, checkUser} from './middleware/authMiddleware'
 require("dotenv").config({path: "./config/.env"})
 const db = require ("./config/db")
 const app:express.Application = express()
+const model = require('./models/proprio')
 
 
 // configuration des routes
@@ -16,10 +17,12 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
 app.use(cookieParser())
 
-app.use("/jwtid",checkAuth, (req,res,next) => {
-    
-    res.status(200).send(res.locals.user.id)
+app.use("/jwtid",checkAuth)
+app.get("/", checkUser, async(req:any,res ) => {
+    const user = await model.Proprio.findById(req.user);
+    res.json({...user._doc, token:req.token})
 })
+
 app.use("/api",router)
 app.use("/apiEtb", routerEtb)
 

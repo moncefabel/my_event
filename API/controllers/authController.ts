@@ -36,8 +36,7 @@ const signIn = async(req, res) => {
                     
             if(auth){
                 const token = createToken(user._id)
-                res.cookie("jwt",token, {httpOnly: true, maxAge})
-                res.status(200).json({token, user})
+                res.status(200).json({token, ...user._doc})
             }else{
                 throw Error("Password incorrect")
             }
