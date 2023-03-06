@@ -1,3 +1,4 @@
+import 'package:app_web/Extensions/hover_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:app_web/Widgets/Navigation_Drawer/drawer_item.dart';
 import 'package:app_web/Widgets/Navigation_Drawer/navigation_drawer_header.dart';
@@ -8,15 +9,16 @@ class NavigationDrawers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Drawer(
       width: 300,
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 16)]),
-      child: Column(children: const <Widget>[
-        NavigationDrawerHeader(),
-        DrawerItem('Connection', Icons.login, connectionRoute),
-        DrawerItem('About', Icons.help, aboutRoute)
+      child: ListView(children: [
+        const NavigationDrawerHeader(),
+        const DrawerItem('Connection', Icons.login, null, connectionRoute)
+            .moveUpOnHover,
+        const DrawerItem('About', Icons.help, null, aboutRoute).moveUpOnHover,
+        const DrawerItem(
+                'Switch Mode', Icons.light_mode, Icons.dark_mode, aboutRoute)
+            .moveUpOnHover
       ]),
     );
   }

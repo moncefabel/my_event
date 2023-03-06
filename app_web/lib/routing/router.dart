@@ -1,5 +1,6 @@
-import 'package:app_web/views/Connection/connectioc.view.dart';
+import 'package:app_web/views/Connection/connection.view.dart';
 import 'package:app_web/views/Etablissements/etb_screen.dart';
+import 'package:app_web/views/Location_Reference/location_reference.dart';
 import 'package:flutter/material.dart';
 import 'package:app_web/routing/route_names.dart';
 import 'package:app_web/views/Home/home_views.dart';
@@ -20,6 +21,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(const AboutView());
     case connectionRoute:
       return _getPageRoute(const ConnectionView());
+    case refLocation: 
+      return _getPageRoute(const LocationReference());
     default:
       throw MaterialPageRoute(
         builder: (_) => Scaffold(
