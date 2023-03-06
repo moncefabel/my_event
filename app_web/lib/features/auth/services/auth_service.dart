@@ -7,6 +7,7 @@ import 'package:app_web/constants/app_colors.dart';
 import 'package:app_web/constants/utils.dart';
 import 'package:app_web/models/proprio.dart';
 import 'package:app_web/views/Etablissements/etb_screen.dart';
+import 'package:app_web/views/Location_Reference/location_reference.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -74,7 +75,7 @@ class AuthService {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder:(_) => const EtbScreen(),
+                builder:(_) => const LocationReference(),
               ),
               (route) => false,
             );
@@ -138,7 +139,7 @@ class AuthService {
       //       );
       //     });
     } catch (e) {
-      showSnackBar(context, e.toString());
+      // showSnackBar(context, e.toString());
     }
   }
 }

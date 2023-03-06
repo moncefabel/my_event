@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../constants/app_colors.dart';
+
 class LocationReference extends StatefulWidget {
   const LocationReference({super.key});
 
@@ -48,48 +50,91 @@ class _LocationReferenceState extends State<LocationReference> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      Container(
-        color: Colors.white,
-      ),
-      ListView(
-        padding: const EdgeInsets.all(50),
-        scrollDirection: Axis.vertical,
+    return Scaffold(
+      body: Center(
+        child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const Text('Nom d\'etablissement'),
-          const TextField(),
-          const Padding(padding: EdgeInsets.only(top: 30)),
-          const Text('Adresse de l\'etablissement'),
-          const TextField(),
-          const Padding(padding: EdgeInsets.only(top: 30)),
-          const Text('Ajouter des images'),
-          ElevatedButton(
-              onPressed: () {
-                _pickImage();
-              },
-              child: const Icon(Icons.add)),
-          const Padding(padding: EdgeInsets.only(top: 30)),
-          ButtonBar(
-            layoutBehavior: ButtonBarLayoutBehavior.constrained,
-            children: [
-              InkWell(
-                onTap: () {},
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5.0),
-                  child: Container(
-                    color: Colors.blue,
-                    padding: const EdgeInsets.all(10.0),
-                    child: const Text(
-                      'Round Button',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
+          SizedBox(
+            width: 1000,
+            child: Column(
+              children: 
+              [
+                Padding(padding: EdgeInsets.all(30)),
+              
+            TextFormField(
+              textInputAction: TextInputAction.next,
+              cursorColor: primaryColor,
+              decoration: const InputDecoration(
+                hintText: "Nom d'établissement",
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: Icon(Icons.home),
                 ),
-              )
-            ],
+              ),
+            ),
+
+            const Padding(padding: EdgeInsets.only(top: 30)),
+            TextFormField(
+              textInputAction: TextInputAction.next,
+              cursorColor: primaryColor,
+              decoration: const InputDecoration(
+                hintText: "Adresse d'établissement",
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: Icon(Icons.location_on),
+                ),
+              ),
+            ),          
+            const Padding(padding: EdgeInsets.only(top: 30)),
+            TextFormField(
+              textInputAction: TextInputAction.next,
+              cursorColor: primaryColor,
+              decoration: const InputDecoration(
+                hintText: "Ajouter des images",
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: Icon(Icons.image),
+                ),
+              ),
+            ),     
+            ElevatedButton(
+                onPressed: () {
+                  _pickImage();
+                },
+                child: const Icon(Icons.add)
+            ),
+
+            const Padding(padding: EdgeInsets.only(top: 30)),
+            ButtonBar(
+              layoutBehavior: ButtonBarLayoutBehavior.constrained,
+              children: [
+                InkWell(
+                  onTap: () {},
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5.0),
+                    child: Container(
+                      color: Colors.blue,
+                      padding: const EdgeInsets.all(10.0),
+                      child: const Text(
+                        'Envoyer',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                      )
+                    )
+                  )
+                )
+              ]
+            )
+            ]
+            )
           )
-        ],
+        ]
+        ),
       ),
-    ]);
-  }
+    );
+                        
+}
 }
