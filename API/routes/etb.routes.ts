@@ -4,7 +4,7 @@ const router:express.Router = express.Router()
 const etbController = require('../controllers/etbController')
 
 //Recuperer tous les établissements d'un propriétaire
-router.get("/allEtb/:id", checkAuth, etbController.getAllEtablissements)
+router.get("/allEtb",etbController.getAllEtablissements)
 
 //Ajouter un établissement 
 router.post("/add", etbController.addEtb)

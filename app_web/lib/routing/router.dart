@@ -17,8 +17,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(const AboutView());
     case connectionRoute:
       return _getPageRoute(const ConnectionView());
-    case refLocation: 
-      return _getPageRoute(const AddEtbScreen());
+    case AddEtbScreen.routeName: 
+      return MaterialPageRoute(
+        settings: settings,
+        builder: (_) => const AddEtbScreen(),
+      );
     default:
       throw MaterialPageRoute(
         builder: (_) => Scaffold(

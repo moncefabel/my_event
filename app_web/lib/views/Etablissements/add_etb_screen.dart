@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../constants/utils.dart';
 
 class AddEtbScreen extends StatefulWidget {
+  static const String routeName = '/add-etb';
   const AddEtbScreen({super.key});
 
   @override

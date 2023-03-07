@@ -18,20 +18,20 @@ class ConnectionView extends StatefulWidget {
 }
 
 class _ConnectionViewState extends State<ConnectionView> {
-  // final AuthService authService = AuthService();
+  final AuthService authService = AuthService();
 
   @override
   void initState() {
     super.initState();
-    // authService.getPrprioData(context);
+    authService.getPrprioData(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // onGenerateRoute: (settings) => generateRoute(settings),
+      onGenerateRoute: (settings) => generateRoute(settings),
       home: Provider.of<ProprioProvider>(context).proprio.token.isNotEmpty
-              ? const AddEtbScreen()
+              ? const EtbsScreen()
               : const SignInScreen()
     );
   }

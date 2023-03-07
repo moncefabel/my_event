@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:app_web/constants/error_handling.dart';
 import 'package:app_web/constants/utils.dart';
@@ -66,5 +67,41 @@ class ProprioService{
     }catch(e){
       showSnackBar(context, e.toString());
     }
+  }
+
+  Future<List<Etablissement>> fetchAllEtb (BuildContext context) async{
+    final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
+
+    List<Etablissement> etbs = [];
+
+    try{
+      http.Response res = await http.get(
+        Uri.parse('$uri/apiEtb/allEtb'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'jwt': proprioProvider.proprio.token,
+          'id': proprioProvider.proprio.id
+        },
+      );
+
+      httpErrorHandle(
+        response: res, 
+        context: context, 
+        onSuccess: () {
+          for(int i=0 ; i< jsonDecode(res.body).length; i++){
+            etbs.add(
+              Etablissement.fromJson(
+                jsonEncode(
+                  jsonDecode(res.body)[i]
+                ),
+              ),
+            );
+          }
+        }
+      );
+    }catch(e){
+      showSnackBar(context, e.toString());
+    }
+    return etbs;
   }
 }
