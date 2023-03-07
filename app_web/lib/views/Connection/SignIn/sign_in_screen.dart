@@ -32,10 +32,10 @@ class _SignInScreenState extends State<SignInScreen> {
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     SizedBox(
                       width: 450,
-                      child: const LoginForm(),
+                      child: LoginForm(),
                     ),
                   ],
                 ),

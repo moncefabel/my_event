@@ -11,21 +11,21 @@ import 'package:app_mobile/features/screens/onboarding/onboarding.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-	@override
-	Widget build(BuildContext context) {
-	return MaterialApp(
-		title: 'MyEvent',
-		debugShowCheckedModeBanner: false,
-		scrollBehavior: MyCustomScrollBehavior(),
-		theme: ThemeData(
-		primarySwatch: Colors.blue,
-		),
-    onGenerateRoute: (settings) => generateRoute(settings),
-		home: Scaffold(
-		body: SingleChildScrollView(
-			child: OnboardingScreen(),
-		),
-		),
-	);
-	}
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyEvent',
+      debugShowCheckedModeBanner: false,
+      scrollBehavior: MyCustomScrollBehavior(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      onGenerateRoute: (settings) => generateRoute(settings),
+      home: const Scaffold(
+        body: SingleChildScrollView(
+          child: OnboardingScreen(),
+        ),
+      ),
+    );
+  }
 }

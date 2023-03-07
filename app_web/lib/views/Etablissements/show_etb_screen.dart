@@ -6,21 +6,19 @@ import 'package:flutter/material.dart';
 import '../../Widgets/loader.dart';
 import '../../models/etb.dart';
 
-
-class EtbsScreen extends StatefulWidget{
-  const EtbsScreen({Key? key}) : super(key:key);
+class EtbsScreen extends StatefulWidget {
+  const EtbsScreen({Key? key}) : super(key: key);
 
   @override
   State<EtbsScreen> createState() => _EtbsScreenState();
 }
 
-class _EtbsScreenState extends State<EtbsScreen>{
-
+class _EtbsScreenState extends State<EtbsScreen> {
   List<Etablissement>? etablissements;
-  final ProprioService proprioService =  ProprioService();
+  final ProprioService proprioService = ProprioService();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     fetchAllEtbs();
   }
@@ -30,13 +28,13 @@ class _EtbsScreenState extends State<EtbsScreen>{
     setState(() {});
   }
 
-   void navigateToAddEtb() {
+  void navigateToAddEtb() {
     Navigator.pushNamed(context, AddEtbScreen.routeName);
   }
 
   @override
   Widget build(BuildContext context) {
-    return etablissements == null 
+    return etablissements == null
         ? const Loader()
         : Scaffold(
             body: GridView.builder(
@@ -76,9 +74,9 @@ class _EtbsScreenState extends State<EtbsScreen>{
               },
             ),
             floatingActionButton: FloatingActionButton(
-              child: const Icon(Icons.add),
               onPressed: navigateToAddEtb,
               tooltip: 'Add a Product',
+              child: const Icon(Icons.add),
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,

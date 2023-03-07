@@ -37,7 +37,7 @@ class LayoutTemplate extends StatelessWidget {
         body: CenteredView(
           child: Column(
             children: [
-              Expanded(
+              Flexible(
                   child: Navigator(
                 key: locator<NavigationService>().navigatorKey,
                 onGenerateRoute: generateRoute,

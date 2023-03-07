@@ -17,6 +17,7 @@ class _TranslateOnHoverState extends State<TranslateOnHover> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
+      cursor: SystemMouseCursors.click,
       onEnter: (e) => _mouseEnter(true),
       onExit: (e) => _mouseEnter(false),
       child: AnimatedContainer(

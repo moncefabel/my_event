@@ -7,19 +7,17 @@ import '../../Signup/signup_screen.dart';
 
 class LoginForm extends StatefulWidget {
   static const String routeName = '/auth-screen';
-  const LoginForm({
-    super.key
-  });
+  const LoginForm({super.key});
 
   @override
   State<LoginForm> createState() => _SignInFormState();
 }
-class _SignInFormState extends State<LoginForm>{
-final AuthService authService = AuthService();
-final _signInFormKey = GlobalKey<FormState>();
-final TextEditingController _emailController = TextEditingController();
-final TextEditingController _passwordController = TextEditingController();
 
+class _SignInFormState extends State<LoginForm> {
+  final AuthService authService = AuthService();
+  final _signInFormKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   void dispose() {
@@ -28,28 +26,29 @@ final TextEditingController _passwordController = TextEditingController();
     _passwordController.dispose();
   }
 
-  void signInUser(){
+  void signInUser() {
     authService.signInUser(
-      context: context, 
+      context: context,
       email: _emailController.text,
-      password: _passwordController.text, 
+      password: _passwordController.text,
     );
-  } 
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
       child: Column(
         children: [
           TextFormField(
-             controller: _emailController,
+            controller: _emailController,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
             onSaved: (email) {},
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: "Your email",
               prefixIcon: Padding(
-                padding: const EdgeInsets.all(defaultPadding),
+                padding: EdgeInsets.all(defaultPadding),
                 child: Icon(Icons.person),
               ),
             ),
@@ -61,10 +60,10 @@ final TextEditingController _passwordController = TextEditingController();
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: kPrimaryColor,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Your password",
                 prefixIcon: Padding(
-                  padding: const EdgeInsets.all(defaultPadding),
+                  padding: EdgeInsets.all(defaultPadding),
                   child: Icon(Icons.lock),
                 ),
               ),
@@ -75,8 +74,8 @@ final TextEditingController _passwordController = TextEditingController();
             tag: "login_btn",
             child: ElevatedButton(
               onPressed: () {
-                if(_signInFormKey.currentState!.validate()){
-                    signInUser();
+                if (_signInFormKey.currentState!.validate()) {
+                  signInUser();
                 }
               },
               child: Text(
@@ -91,7 +90,7 @@ final TextEditingController _passwordController = TextEditingController();
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return SignUpScreen();
+                    return const SignUpScreen();
                   },
                 ),
               );

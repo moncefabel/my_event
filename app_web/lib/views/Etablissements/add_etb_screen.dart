@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:app_web/Widgets/OnHoverButton.dart';
 import 'package:app_web/features/proprio/services/proprio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -39,6 +40,12 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
     }
   }
 
+  void _removeImage(int index) {
+    setState(() {
+      _imageFiles.removeAt(index);
+    });
+  }
+
   final _addEtbFormKey = GlobalKey<FormState>();
 
   @override
@@ -72,84 +79,143 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Form(
-          key: _addEtbFormKey,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Column(
-              children: [
-                SizedBox(
-                    width: 1000,
-                    child: Column(children: [
-                      Padding(
-                        padding: EdgeInsets.all(30),
-                      ),
-                      Text('Nom'),
-                      TextField(controller: nameEtbController),
-                      Padding(padding: EdgeInsets.only(top: 30)),
-                      // Text('Capacite Maximale'),
-                      // TextField(controller: capaciteMaxController,),
-                      // Text('Capacite minimale'),
-                      // TextField(controller: capaciteMinController,),
-                      // Text('Heure d\'ouverture'),
-                      // TextField(controller: heureOController,),
-                      // Text('Heure de fermeture'),
-                      // TextField(controller: heureFController,),
-                      // Text('Prix'),
-                      // TextField(controller: priceController,),
-                      // Text('Type'),
-                      // TextField(controller: typeController,),
-                      Padding(padding: EdgeInsets.only(top: 30)),
-                      Text('Ajouter des images'),
-                      Padding(padding: EdgeInsets.only(top: 30)),
-                    ])),
-                InkWell(
-                  onTap: () {
-                    _pickImage();
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5.0),
-                    child: Container(
-                        color: Colors.blue,
-                        padding: const EdgeInsets.all(10.0),
-                        child: const Icon(Icons.photo_camera)),
+      body: Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 3,
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  child: Padding(
+                    padding: EdgeInsets.all(30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          width: 600,
+                        ),
+                        Column(
+                          children: [
+                            Text('Nom du lieu'),
+                            SizedBox(
+                              width: 200,
+                              child: TextField(controller: nameEtbController),
+                            ),
+                            Padding(padding: EdgeInsets.only(top: 10)),
+                            Text('Capacite Maximale'),
+                            SizedBox(
+                              width: 200,
+                              child: TextField(
+                                controller: capaciteMaxController,
+                              ),
+                            ),
+                            Padding(padding: EdgeInsets.only(top: 10)),
+                            Text('Capacite minimale'),
+                            SizedBox(
+                              width: 200,
+                              child: TextField(
+                                controller: capaciteMinController,
+                              ),
+                            ),
+                            Padding(padding: EdgeInsets.only(top: 10)),
+                            Text('Heure d\'ouverture'),
+                            SizedBox(
+                              width: 200,
+                              child: TextField(
+                                controller: heureOController,
+                              ),
+                            ),
+                            Padding(padding: EdgeInsets.only(top: 10)),
+                            Text('Heure de fermeture'),
+                            SizedBox(
+                              width: 200,
+                              child: TextField(
+                                controller: heureFController,
+                              ),
+                            ),
+                            Padding(padding: EdgeInsets.only(top: 10)),
+                            Text('Prix'),
+                            SizedBox(
+                              width: 200,
+                              child: TextField(
+                                controller: priceController,
+                              ),
+                            ),
+                            Padding(padding: EdgeInsets.only(top: 10)),
+                            Text('Type'),
+                            SizedBox(
+                              width: 200,
+                              child: TextField(
+                                controller: typeController,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Expanded(
-                  child: Padding(
-                      padding: const EdgeInsets.all(8.9),
-                      child: GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 7),
-                          scrollDirection: Axis.vertical,
-                          padding: const EdgeInsets.only(right: 5.0),
-                          itemCount: _imageFiles.length,
-                          itemBuilder: (context, index) {
-                            return Image.network(
-                              _imageFiles[index].path,
-                              width: 20,
-                              height: 20,
-                            );
-                          })),
-                ),
-                const Padding(padding: EdgeInsets.only(right: 30)),
-                Center(
-                  child: MaterialButton(
-                      color: Colors.blue,
-                      onPressed: () {
-                        addEtb();
-                      },
-                      child: const Text(
-                        'Submit',
-                        style: TextStyle(color: Colors.white),
-                      )),
-                ),
-                const Padding(padding: EdgeInsets.only(top: 30))
-              ],
+              ),
             ),
-          ),
+            Padding(padding: EdgeInsets.only(top: 30)),
+            SizedBox(
+              height: 50.0,
+              child: InkWell(
+                onTap: () {
+                  _pickImage();
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5.0),
+                  child: Container(
+                      color: Colors.blue,
+                      padding: const EdgeInsets.all(10.0),
+                      child: const Icon(Icons.photo_camera)),
+                ),
+              ),
+            ),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 7,
+                ),
+                scrollDirection: Axis.vertical,
+                padding: const EdgeInsets.only(right: 5.0),
+                itemCount: _imageFiles.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(onTap: () {
+                    _removeImage(index);
+                  }, child: OnHoverButton((isHovered) {
+                    IconData? icon = isHovered ? Icons.remove : null;
+                    return Stack(
+                      children: [
+                        Icon(icon),
+                        Image.network(
+                          _imageFiles[index].path,
+                          width: 100,
+                          height: 100,
+                        ),
+                      ],
+                    );
+                  }));
+                },
+              ),
+            ),
+            const Padding(padding: EdgeInsets.only(right: 30)),
+            Center(
+              child: MaterialButton(
+                color: Colors.blue,
+                onPressed: () {
+                  addEtb();
+                },
+                child: const Text(
+                  'Submit',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            const Padding(padding: EdgeInsets.only(top: 30)),
+          ],
         ),
       ),
     );
