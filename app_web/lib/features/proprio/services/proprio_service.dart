@@ -1,0 +1,70 @@
+import 'dart:io';
+import 'package:app_web/constants/error_handling.dart';
+import 'package:app_web/constants/utils.dart';
+import 'package:app_web/models/etb.dart';
+import 'package:app_web/providers/proprio_provider.dart';
+import 'package:cloudinary_public/cloudinary_public.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+
+import '../../../constants/app_colors.dart';
+
+class ProprioService{
+  void addEtb({
+    required BuildContext context,
+    required type, 
+    required lieu, 
+    required heureOuverture,
+    required heureFermeture,
+    required capaciteMax,
+    required capaciteMin,
+    required List<XFile> images,
+    required nameEtb
+  }) async{
+    final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
+
+    try{
+      final cloudinary = CloudinaryPublic("doruex4vc",'rja5gjzg');
+      List<String> imageUrls = [];
+
+      for (int i = 0; i < images.length; i++) {
+        CloudinaryResponse res = await cloudinary.uploadFile(
+          CloudinaryFile.fromFile(images[i].path, folder: nameEtb),
+        );
+        imageUrls.add(res.secureUrl);
+      }
+
+      Etablissement newEtb = Etablissement(
+        userId: proprioProvider.proprio.id, 
+        id: '', 
+        type: type, 
+        lieu: lieu, 
+        heureOuverture: heureOuverture, 
+        heureFermeture: heureFermeture, 
+        capaciteMax: capaciteMax, 
+        capaciteMin: capaciteMin, 
+        nameEtb: nameEtb,
+        images: imageUrls);
+      http.Response res = await http.post(
+        Uri.parse('$uri/apiEtb/add'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'jwt': proprioProvider.proprio.token,
+        },
+        body: newEtb.toJson(),
+      );
+      
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+          showSnackBar(context, 'Etablissement ajouté avec succés');
+        });
+      
+    }catch(e){
+      showSnackBar(context, e.toString());
+    }
+  }
+}

@@ -15,22 +15,21 @@ const getAllEtablissements =  async (req,res) => {
 
 const addEtb = async(req, res) => {
 
-    checkingValidId(req,res)
+    
     try{
 
         const newEtb = await model.Etb.create({
-            nomEtablissement: req.body.nomEtablissement,
-            prix: req.body.prix,
-            lieu: req.body.lieu,
-            horaires: req.body.horaires,
-            type: req.body.type,
-            userId: req.params.id
+            nomEtablissement: req.body.nameEtb,
+            // prix: req.body.prix,
+            // lieu: req.body.lieu,
+            // horaires: req.body.horaires,
+            // type: req.body.type,
+            userId: req.body.userId,
+            images: req.body.images
         })
-        if(req.file){
-            newEtb.images = req.file.path
-        }
+        
         await newEtb.save()
-        res.status(200).send("Etablissement ajouté avec succées")
+        res.json(newEtb)
 
     }catch(error:any){
         res.status(400).send(error.message)
@@ -68,10 +67,10 @@ const deleteEtb = async(req, res) => {
 }
 
 
-function checkingValidId(req, res){
-    if(!ObjectId.isValid(req.params.id))
-        res.status(400).send("ID unknown")
-}
+// function checkingValidId(req, res){
+//     if(!ObjectId.isValid(req.params.id))
+//         res.status(400).send("ID unknown")
+// }
 
 export = {
     getAllEtablissements,

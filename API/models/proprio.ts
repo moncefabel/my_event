@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 
 const proprioSchema = new mongoose.Schema({
@@ -11,4 +11,4 @@ const proprioSchema = new mongoose.Schema({
 
 
 const proprioModel = mongoose.model("proprios",proprioSchema)
-module.exports = {Proprio: proprioModel}
+export = {Proprio: proprioModel}

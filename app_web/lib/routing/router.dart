@@ -10,11 +10,7 @@ import '../views/Connection/SignIn/sign_in_screen.dart';
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     
-    case EtbScreen.routeName:
-      return MaterialPageRoute(
-        settings: settings,
-        builder:(_) => const EtbScreen(),
-      );
+    
     case homeRoute:
       return _getPageRoute(const HomeView());
     case aboutRoute:
