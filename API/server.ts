@@ -19,8 +19,12 @@ app.use(cookieParser())
 
 app.use("/jwtid",checkAuth)
 app.get("/", checkUser, async(req:any,res ) => {
-    const user = await model.Proprio.findById(req.user);
-    res.json({...user._doc, token:req.token})
+    try{
+        const user = await model.Proprio.findById(req.user);        
+        res.json({...user._doc, token:req.token})
+    }catch(error:any){
+        res.status(400).json({msg: error.message})
+    }
 })
 
 app.use("/api",router)

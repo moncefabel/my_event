@@ -41,16 +41,15 @@ class _EtbsScreenState extends State<EtbsScreen>{
         : Scaffold(
             body: GridView.builder(
               itemCount: etablissements!.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2),
-              itemBuilder: (context, index) {
-                final etbData = etablissements![index];
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+              itemBuilder: (context, index){
+                final etbsData = etablissements![index];
                 return Column(
                   children: [
                     SizedBox(
-                      height: 140,
+                      height:140,
                       child: SingleEtb(
-                        image: etbData.images[0],
+                        image:etbsData.images[0]
                       ),
                     ),
                     Row(
@@ -58,23 +57,23 @@ class _EtbsScreenState extends State<EtbsScreen>{
                       children: [
                         Expanded(
                           child: Text(
-                            etbData.nameEtb,
+                            etbsData.nameEtb,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
-                          ),
+                        ),
                         ),
                         IconButton(
-                          onPressed: () => {},
+                          onPressed: () {},
                           icon: const Icon(
                             Icons.delete_outline,
-                          ),
-                        ),
+                          ))
                       ],
-                    ),
+                    )
                   ],
                 );
               },
             ),
+                
             floatingActionButton: FloatingActionButton(
               child: const Icon(Icons.add),
               onPressed: navigateToAddEtb,

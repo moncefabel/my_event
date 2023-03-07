@@ -58,12 +58,12 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
     if (_addEtbFormKey.currentState!.validate()) {
       proprioService.addEtb(
           context: context,
-          type: typeController.text,
-          lieu: lieuController.text,
-          heureOuverture: heureOController.text,
-          heureFermeture: heureFController.text,
-          capaciteMax: capaciteMaxController.text,
-          capaciteMin: capaciteMinController.text,
+          // type: typeController.text,
+          // lieu: lieuController.text,
+          // heureOuverture: heureOController.text,
+          // heureFermeture: heureFController.text,
+          // capaciteMax: capaciteMaxController.text,
+          // capaciteMin: capaciteMinController.text,
           images: _imageFiles,
           nameEtb: nameEtbController.text);
     }
