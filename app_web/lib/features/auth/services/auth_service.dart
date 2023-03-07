@@ -75,7 +75,7 @@ class AuthService {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder:(_) => const AddEtbScreen(),
+                builder:(_) => const EtbsScreen(),
               ),
               (route) => false,
             );
@@ -113,12 +113,11 @@ class AuthService {
             'jwt': token
           },
         );
-
         var userProvider = Provider.of<ProprioProvider>(context,listen: false);
         userProvider.setProprio(userRes.body);
       }
     } catch (e) {
-      showSnackBar(context, e.toString());
+      // showSnackBar(context, e.toString());
     }
   }
 }

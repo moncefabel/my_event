@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'package:app_web/constants/error_handling.dart';
 import 'package:app_web/constants/utils.dart';
 import 'package:app_web/models/etb.dart';
@@ -15,12 +18,12 @@ import '../../../constants/app_colors.dart';
 class ProprioService{
   void addEtb({
     required BuildContext context,
-    required type, 
-    required lieu, 
-    required heureOuverture,
-    required heureFermeture,
-    required capaciteMax,
-    required capaciteMin,
+    // required type, 
+    // required lieu, 
+    // required heureOuverture,
+    // required heureFermeture,
+    // required capaciteMax,
+    // required capaciteMin,
     required List<XFile> images,
     required nameEtb
   }) async{
@@ -40,12 +43,12 @@ class ProprioService{
       Etablissement newEtb = Etablissement(
         userId: proprioProvider.proprio.id, 
         id: '', 
-        type: type, 
-        lieu: lieu, 
-        heureOuverture: heureOuverture, 
-        heureFermeture: heureFermeture, 
-        capaciteMax: capaciteMax, 
-        capaciteMin: capaciteMin, 
+        // type: type, 
+        // lieu: lieu, 
+        // heureOuverture: heureOuverture, 
+        // heureFermeture: heureFermeture, 
+        // capaciteMax: capaciteMax, 
+        // capaciteMin: capaciteMin, 
         nameEtb: nameEtb,
         images: imageUrls);
       http.Response res = await http.post(
@@ -73,7 +76,6 @@ class ProprioService{
     final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
 
     List<Etablissement> etbs = [];
-
     try{
       http.Response res = await http.get(
         Uri.parse('$uri/apiEtb/allEtb'),
@@ -83,16 +85,17 @@ class ProprioService{
           'id': proprioProvider.proprio.id
         },
       );
-
+      
+      // ignore: use_build_context_synchronously
       httpErrorHandle(
         response: res, 
         context: context, 
         onSuccess: () {
-          for(int i=0 ; i< jsonDecode(res.body).length; i++){
+          for (int i = 0; i < jsonDecode(res.body).length; i++) {
             etbs.add(
               Etablissement.fromJson(
                 jsonEncode(
-                  jsonDecode(res.body)[i]
+                  jsonDecode(res.body)[i],
                 ),
               ),
             );
@@ -100,7 +103,7 @@ class ProprioService{
         }
       );
     }catch(e){
-      showSnackBar(context, e.toString());
+      // showSnackBar(context, e.toString());
     }
     return etbs;
   }

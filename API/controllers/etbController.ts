@@ -3,9 +3,9 @@ const model = require('../models/etb')
 const ObjectId = require('mongoose').Types.ObjectId
 
 const getAllEtablissements =  async (req,res) => {
-
     try{
         const etbs = await model.Etb.find({userId: req.headers.id})
+
         res.status(200).json(etbs)
         
     }catch(error:any){
@@ -17,7 +17,7 @@ const addEtb = async(req, res) => {
 
     
     try{
-
+        
         const newEtb = await model.Etb.create({
             nomEtablissement: req.body.nameEtb,
             // prix: req.body.prix,

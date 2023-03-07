@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 const getAllOwners =  async (req,res) => {
 
     try{
+        
         const users = await model.Proprio.find().select("-password")
         res.status(200).json(users)
     }catch(error:any){
