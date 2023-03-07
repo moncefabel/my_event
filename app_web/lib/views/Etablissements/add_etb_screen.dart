@@ -8,14 +8,14 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../constants/utils.dart';
 
-class LocationReference extends StatefulWidget {
-  const LocationReference({super.key});
+class AddEtbScreen extends StatefulWidget {
+  const AddEtbScreen({super.key});
 
   @override
-  State<LocationReference> createState() => _LocationReferenceState();
+  State<AddEtbScreen> createState() => _AddEtbScreenState();
 }
 
-class _LocationReferenceState extends State<LocationReference> {
+class _AddEtbScreenState extends State<AddEtbScreen> {
   final TextEditingController nameEtbController = TextEditingController();
   final TextEditingController typeController = TextEditingController();
   final TextEditingController priceController = TextEditingController();

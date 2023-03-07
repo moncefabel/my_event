@@ -6,8 +6,8 @@ import 'package:app_web/constants/error_handling.dart';
 import 'package:app_web/constants/app_colors.dart';
 import 'package:app_web/constants/utils.dart';
 import 'package:app_web/models/proprio.dart';
-import 'package:app_web/views/Etablissements/etb_screen.dart';
-import 'package:app_web/views/Location_Reference/location_reference.dart';
+import 'package:app_web/views/Etablissements/add_etb_screen.dart';
+import 'package:app_web/views/Etablissements/show_etb_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -75,7 +75,7 @@ class AuthService {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder:(_) => const LocationReference(),
+                builder:(_) => const AddEtbScreen(),
               ),
               (route) => false,
             );
@@ -117,29 +117,8 @@ class AuthService {
         var userProvider = Provider.of<ProprioProvider>(context,listen: false);
         userProvider.setProprio(userRes.body);
       }
-
-      
-          
-          
-
-      // httpErrorHandle(
-      //     response: res,
-      //     context: context,
-      //     onSuccess: () async {
-      //       SharedPreferences prefs = await SharedPreferences.getInstance();
-      //       Provider.of<ProprioProvider>(context, listen: false)
-      //           .setProprio(res.body);
-      //       await prefs.setString("jwt", jsonDecode(res.body)['token']);
-      //       Navigator.pushAndRemoveUntil(
-      //         context,
-      //         MaterialPageRoute(
-      //           builder:(_) => const EtbScreen(),
-      //         ),
-      //         (route) => false,
-      //       );
-      //     });
     } catch (e) {
-      // showSnackBar(context, e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 }

@@ -33,7 +33,7 @@ class LayoutTemplate extends StatelessWidget {
           ],
         ),
         drawer: sizingInformation.isMobile ? const NavigationDrawers() : null,
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.white,
         body: CenteredView(
           child: Column(
             children: [

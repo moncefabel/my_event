@@ -1,7 +1,7 @@
 import 'package:app_web/providers/proprio_provider.dart';
 import 'package:app_web/views/Connection/SignIn/sign_in_screen.dart';
-import 'package:app_web/views/Etablissements/etb_screen.dart';
-import 'package:app_web/views/Location_Reference/location_reference.dart';
+import 'package:app_web/views/Etablissements/add_etb_screen.dart';
+import 'package:app_web/views/Etablissements/show_etb_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +31,7 @@ class _ConnectionViewState extends State<ConnectionView> {
     return MaterialApp(
       // onGenerateRoute: (settings) => generateRoute(settings),
       home: Provider.of<ProprioProvider>(context).proprio.token.isNotEmpty
-              ? const LocationReference()
+              ? const AddEtbScreen()
               : const SignInScreen()
     );
   }
