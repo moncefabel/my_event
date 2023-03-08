@@ -17,15 +17,19 @@ const addEtb = async(req, res) => {
 
     
     try{
+        console.log(req.body);
         
         const newEtb = await model.Etb.create({
             nomEtablissement: req.body.nameEtb,
-            // prix: req.body.prix,
-            // lieu: req.body.lieu,
-            // horaires: req.body.horaires,
-            // type: req.body.type,
+            prix: req.body.prix,
+            lieu: req.body.lieu,
+            heureOuverture: req.body.heureOuverture,
+            heureFermeture: req.body.heureFermeture,
+            type: req.body.type,
             userId: req.body.userId,
-            images: req.body.images
+            images: req.body.images,
+            capaciteMax: req.body.capaciteMax,
+            capaciteMin: req.body.capaciteMin
         })
         
         await newEtb.save()

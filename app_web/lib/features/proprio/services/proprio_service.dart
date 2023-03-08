@@ -18,14 +18,15 @@ import '../../../constants/app_colors.dart';
 class ProprioService{
   void addEtb({
     required BuildContext context,
-    // required type, 
-    // required lieu, 
-    // required heureOuverture,
-    // required heureFermeture,
-    // required capaciteMax,
-    // required capaciteMin,
+    required type, 
+    required lieu, 
+    required heureOuverture,
+    required heureFermeture,
+    required capaciteMax,
+    required capaciteMin,
     required List<XFile> images,
-    required nameEtb
+    required nameEtb,
+    required prix
   }) async{
     final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
 
@@ -43,14 +44,15 @@ class ProprioService{
       Etablissement newEtb = Etablissement(
         userId: proprioProvider.proprio.id, 
         id: '', 
-        // type: type, 
-        // lieu: lieu, 
-        // heureOuverture: heureOuverture, 
-        // heureFermeture: heureFermeture, 
-        // capaciteMax: capaciteMax, 
-        // capaciteMin: capaciteMin, 
+        type: type, 
+        lieu: lieu, 
+        heureOuverture: heureOuverture, 
+        heureFermeture: heureFermeture, 
+        capaciteMax: capaciteMax, 
+        capaciteMin: capaciteMin, 
         nameEtb: nameEtb,
-        images: imageUrls);
+        images: imageUrls,
+        prix: prix);
       http.Response res = await http.post(
         Uri.parse('$uri/apiEtb/add'),
         headers: {
@@ -59,7 +61,7 @@ class ProprioService{
         },
         body: newEtb.toJson(),
       );
-      
+      print(res.body);
       httpErrorHandle(
         response: res,
         context: context,

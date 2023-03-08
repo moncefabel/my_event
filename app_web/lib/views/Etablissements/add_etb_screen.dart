@@ -27,6 +27,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
   final TextEditingController capaciteMinController = TextEditingController();
   final TextEditingController lieuController = TextEditingController();
 
+
   final ProprioService proprioService = ProprioService();
 
   final List<XFile> _imageFiles = [];
@@ -59,20 +60,22 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
     capaciteMaxController.dispose();
     capaciteMinController.dispose();
     lieuController.dispose();
+    priceController.dispose();
   }
 
   void addEtb() {
     if (_addEtbFormKey.currentState!.validate()) {
       proprioService.addEtb(
           context: context,
-          // type: typeController.text,
-          // lieu: lieuController.text,
-          // heureOuverture: heureOController.text,
-          // heureFermeture: heureFController.text,
-          // capaciteMax: capaciteMaxController.text,
-          // capaciteMin: capaciteMinController.text,
+          type: typeController.text,
+          lieu: lieuController.text,
+          heureOuverture: heureOController.text,
+          heureFermeture: heureFController.text,
+          capaciteMax: capaciteMaxController.text,
+          capaciteMin: capaciteMinController.text,
           images: _imageFiles,
-          nameEtb: nameEtbController.text);
+          nameEtb: nameEtbController.text,
+          prix: priceController.text);
     }
   }
 
@@ -86,73 +89,82 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
             Expanded(
               flex: 3,
               child: SingleChildScrollView(
-                child: SizedBox(
-                  child: Padding(
-                    padding: EdgeInsets.all(30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          width: 600,
-                        ),
-                        Column(
-                          children: [
-                            Text('Nom du lieu'),
-                            SizedBox(
-                              width: 200,
-                              child: TextField(controller: nameEtbController),
-                            ),
-                            Padding(padding: EdgeInsets.only(top: 10)),
-                            Text('Capacite Maximale'),
-                            SizedBox(
-                              width: 200,
-                              child: TextField(
-                                controller: capaciteMaxController,
+                child: Form(
+                  key: _addEtbFormKey,
+                  child: SizedBox(
+                    child: Padding(
+                      padding: EdgeInsets.all(30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            width: 600,
+                          ),
+                          Column(
+                            children: [
+                              Text('Nom du lieu'),
+                              SizedBox(
+                                width: 200,
+                                child: TextField(controller: nameEtbController),
                               ),
-                            ),
-                            Padding(padding: EdgeInsets.only(top: 10)),
-                            Text('Capacite minimale'),
-                            SizedBox(
-                              width: 200,
-                              child: TextField(
-                                controller: capaciteMinController,
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Lieu'),
+                              SizedBox(
+                                width: 200,
+                                child: TextField(controller: lieuController),
                               ),
-                            ),
-                            Padding(padding: EdgeInsets.only(top: 10)),
-                            Text('Heure d\'ouverture'),
-                            SizedBox(
-                              width: 200,
-                              child: TextField(
-                                controller: heureOController,
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Capacite Maximale'),
+                              SizedBox(
+                                width: 200,
+                                child: TextField(
+                                  controller: capaciteMaxController,
+                                ),
                               ),
-                            ),
-                            Padding(padding: EdgeInsets.only(top: 10)),
-                            Text('Heure de fermeture'),
-                            SizedBox(
-                              width: 200,
-                              child: TextField(
-                                controller: heureFController,
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Capacite minimale'),
+                              SizedBox(
+                                width: 200,
+                                child: TextField(
+                                  controller: capaciteMinController,
+                                ),
                               ),
-                            ),
-                            Padding(padding: EdgeInsets.only(top: 10)),
-                            Text('Prix'),
-                            SizedBox(
-                              width: 200,
-                              child: TextField(
-                                controller: priceController,
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Heure d\'ouverture'),
+                              SizedBox(
+                                width: 200,
+                                child: TextField(
+                                  controller: heureOController,
+                                ),
                               ),
-                            ),
-                            Padding(padding: EdgeInsets.only(top: 10)),
-                            Text('Type'),
-                            SizedBox(
-                              width: 200,
-                              child: TextField(
-                                controller: typeController,
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Heure de fermeture'),
+                              SizedBox(
+                                width: 200,
+                                child: TextField(
+                                  controller: heureFController,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Prix'),
+                              SizedBox(
+                                width: 200,
+                                child: TextField(
+                                  controller: priceController,
+                                ),
+                              ),
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Type'),
+                              SizedBox(
+                                width: 200,
+                                child: TextField(
+                                  controller: typeController,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
