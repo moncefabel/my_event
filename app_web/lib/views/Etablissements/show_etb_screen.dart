@@ -28,6 +28,15 @@ class _EtbsScreenState extends State<EtbsScreen> {
     setState(() {});
   }
 
+  void deleteEtb(Etablissement etb, int index){
+    proprioService.deleteEtb(
+      context: context,
+      etb: etb,
+      onSuccess: () {
+        etablissements!.removeAt(index);
+        setState(() {});
+      });
+  }
   void navigateToAddEtb() {
     Navigator.pushNamed(context, AddEtbScreen.routeName);
   }
@@ -61,7 +70,9 @@ class _EtbsScreenState extends State<EtbsScreen> {
                         ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            deleteEtb(etbsData, index);
+                          },
                           icon: const Icon(
                             Icons.delete_outline,
                           ))

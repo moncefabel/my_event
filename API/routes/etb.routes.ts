@@ -13,7 +13,7 @@ router.post("/add", etbController.addEtb)
 router.put("/update/:id", checkAuth, etbController.updateEtb)
 
 //Supprimer un établissement
-router.delete("/delete/:idEtb",checkAuth, etbController.deleteEtb)
+router.post("/delete", etbController.deleteEtb)
 
 
 export = router

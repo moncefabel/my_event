@@ -63,7 +63,8 @@ const updateEtb = async(req, res) => {
 const deleteEtb = async(req, res) => {
 
     try{ 
-        await model.Etb.deleteOne(req.params.id)
+        
+        await model.Etb.findByIdAndDelete(req.body.id)
         res.status(200).send("Etablissement supprimé")
     }catch(error:any){
         res.status(400).send(error.message)

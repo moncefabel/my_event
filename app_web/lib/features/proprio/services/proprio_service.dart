@@ -109,4 +109,34 @@ class ProprioService{
     }
     return etbs;
   }
+  void deleteEtb({
+    required BuildContext context,
+    required Etablissement etb,
+    required VoidCallback onSuccess
+  }) async {
+      final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
+
+      try{
+        http.Response res = await http.post(
+          Uri.parse('$uri/apiEtb/delete'),
+          headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'jwt': proprioProvider.proprio.token,
+        },
+        body: jsonEncode({
+          'id': etb.id
+        })
+        );
+        httpErrorHandle(
+          response: res,
+          context: context,
+          onSuccess: () {
+            onSuccess();
+          },
+        );
+      }catch(e){
+        showSnackBar(context, e.toString());
+      }
+
+  }
 }

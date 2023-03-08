@@ -3,6 +3,7 @@ const model = require("../models/proprio");
 
 export const checkAuth = async (req, res, next) => {
 
+    
     const token = req.header('jwt')
     if (!token) {
         return res.status(401).json({msg: "No token"});
