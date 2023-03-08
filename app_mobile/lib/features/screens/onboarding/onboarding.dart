@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
+// ignore: unnecessary_import
 import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:app_mobile/constants/utils.dart';
 import 'package:app_mobile/features/screens/Home/home.dart';
 

@@ -1,13 +1,9 @@
 // ignore_for_file: avoid_print, unused_field, prefer_const_constructors
 
-import 'dart:io';
-
 import 'package:app_web/Widgets/OnHoverButton.dart';
 import 'package:app_web/features/proprio/services/proprio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../constants/utils.dart';
 
 class AddEtbScreen extends StatefulWidget {
   static const String routeName = '/add-etb';
@@ -26,7 +22,6 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
   final TextEditingController capaciteMaxController = TextEditingController();
   final TextEditingController capaciteMinController = TextEditingController();
   final TextEditingController lieuController = TextEditingController();
-
 
   final ProprioService proprioService = ProprioService();
 

@@ -1,6 +1,5 @@
 import 'package:app_mobile/features/screens/SignUp/components/signup_form.dart';
 import 'package:flutter/material.dart';
-import 'package:app_mobile/constants/utils.dart';
 import 'package:app_mobile/responsive.dart';
 import 'package:app_mobile/components/background.dart';
 import 'components/sign_up_top_image.dart';

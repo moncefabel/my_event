@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
 import 'package:app_mobile/constants/utils.dart';
 
 class Scene extends StatelessWidget {
+  const Scene({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;

@@ -5,6 +5,7 @@ import 'package:app_mobile/constants/utils.dart';
 
 import 'package:app_mobile/models/user.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,6 +32,7 @@ class AuthService {
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
           });
+      // ignore: use_build_context_synchronously
       httpErrorHandle(
         response: res,
         context: context,
@@ -61,6 +63,7 @@ class AuthService {
             'Content-type': 'application/json; charset=UTF-8',
           });
           
+      // ignore: use_build_context_synchronously
       httpErrorHandle(
         response: res,
         context: context,
