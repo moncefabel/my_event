@@ -39,9 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //       color: Color(0xfffefefe),
     //     ),
         return MaterialApp(
-          home: Provider.of<CustomerProvider>(context).customer.token.isNotEmpty
-          ? NavBar()
-          : OnboardingScreen()          
+          home: NavBar()         
         );
     //   ),
     // );

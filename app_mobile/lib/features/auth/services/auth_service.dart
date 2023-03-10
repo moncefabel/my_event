@@ -129,11 +129,6 @@ class AuthService {
     try{
       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
       await sharedPreferences.setString("jwt", '');
-      print(Provider.of<CustomerProvider>(context).customer.token.isNotEmpty);
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        HomeScreen.routeName,
-        (route) => false,);
     }catch(e){
       // showSnackBar(context, e.toString());
     }
