@@ -47,6 +47,21 @@ class HeaderSection extends StatelessWidget {
                   //     },
                   //   ),
                   // ),
+                  SizedBox(
+                    // actionJgd (1:384)
+                    width: 43*fem,
+                    height: 45*fem,
+                    child: IconButton(
+                          icon: Image.asset(
+                            'assets/screens/images/action.png',
+                            width: 200,
+                            height: 200,
+                          ),
+                          onPressed: () {
+                            // show the notifications 
+                          },
+                        ),
+                  ),
                 ],
               ),
             );

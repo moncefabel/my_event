@@ -25,17 +25,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
-    double ffem = fem * 0.97;
-    return Container(
+    //double ffem = fem * 0.97;
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // homeL1j (1:360)
         padding: EdgeInsets.fromLTRB(22 * fem, 40 * fem, 23 * fem, 18 * fem),
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xfffefefe),
         ),
-        child: Scaffold(
+        child: const Scaffold(
             body: EtbDisplay(),
             bottomNavigationBar: NavBar()
           
