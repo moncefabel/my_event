@@ -13,7 +13,7 @@ router.get("/proprios/:id", ownerController.getOwnerById)
 router.post("/register", authController.addProprio)
 
 //Connexion d'un utilisateur
-router.post("/signIn",authController.signIn )
+router.post("/signIn",authController.signInProprio )
 
 //Déconnexion d'un utilisateur
 router.post("/logOut",authController.logOut)

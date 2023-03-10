@@ -5,8 +5,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myevent/constants/utils.dart';
 import 'package:myevent/features/screens/Home/home.dart';
 
-class OnboardingScreen extends StatelessWidget {
-  const OnboardingScreen({super.key});
+class OnboardingScreen extends StatefulWidget {
+  static const String routeName = '/onBoarding';
+  const OnboardingScreen({Key? key}) : super(key: key);
+
+  @override
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {

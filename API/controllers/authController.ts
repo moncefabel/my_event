@@ -48,10 +48,30 @@ const addCustomer =  async (req,res) => {
     }
 }
 
-const signIn = async(req, res) => {
+const signInProprio = async(req, res) => {
     try{
         
         const user = await Proprio.findOne({email: req.body.email})
+        if(isExists(user)){
+            const auth = await bcrypt.compare(req.body.password, user.password)    
+                    
+            if(auth){
+                const token = createToken(user._id)
+                res.status(200).json({token, ...user._doc})
+            }else{
+                throw Error("Password incorrect")
+            }
+        }else{
+            throw Error("Email introuvable")
+        }
+    }catch(error:any){
+        res.status(400).send(error.message)
+    }
+}
+const signInCustomer = async(req, res) => {
+    try{
+        
+        const user = await Customer.findOne({email: req.body.email})
         if(isExists(user)){
             const auth = await bcrypt.compare(req.body.password, user.password)    
                     
@@ -87,6 +107,7 @@ function createToken(id){
 export = {
     addProprio,
     addCustomer,
-    signIn,
-    logOut
+    signInProprio,
+    logOut,
+    signInCustomer
 }

@@ -31,7 +31,7 @@ export const checkClient = async (req, res, next) => {
     jwt.verify(token , process.env.TOKEN_SECRET, async (err, decodedToken) => {
         if(err)
             return res.status(403).json("Invalid token")
-        let user = await Proprio.findById(decodedToken.id);
+        let user = await Customer.findById(decodedToken.id);
         if(!user){
             return res.json(false)
         }

@@ -6,7 +6,7 @@ import 'package:myevent/features/auth/services/auth_service.dart';
 
 import '../../../../components/already_have_an_account_acheck.dart';
 import '../../Home/Widgets/FooterBar/navigation_bar.dart';
-import '../../Login/login_screen.dart';
+import '../../Login/components/login_screen.dart';
 
 class SignUpForm extends StatefulWidget {
   static const String routeName = '/auth-screen';

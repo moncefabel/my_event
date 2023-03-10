@@ -5,7 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myevent/constants/utils.dart';
 import 'package:myevent/features/screens/Home/Widgets/FooterBar/navigation_bar.dart';
 import 'package:myevent/features/screens/Home/Widgets/Body/etablissements_display.dart';
+import 'package:myevent/features/screens/onboarding/onboarding.dart';
+import 'package:provider/provider.dart';
 
+import '../../../provider/customer_provider.dart';
 import 'Widgets/Body/header_body.dart';
 import 'Widgets/Header/header_section.dart';
 import 'Widgets/Header/search_bar.dart';
@@ -35,8 +38,10 @@ class _HomeScreenState extends State<HomeScreen> {
     //     decoration: BoxDecoration(
     //       color: Color(0xfffefefe),
     //     ),
-        return Scaffold(
-          body: NavBar(),          
+        return MaterialApp(
+          home: Provider.of<CustomerProvider>(context).customer.token.isNotEmpty
+          ? NavBar()
+          : OnboardingScreen()          
         );
     //   ),
     // );
