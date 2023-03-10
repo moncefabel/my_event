@@ -1,46 +1,13 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 
 import 'filter_page.dart';
 
-class SearchBar extends StatelessWidget {
+class SearchBar extends StatefulWidget {
   const SearchBar({Key? key}) : super(key: key);
-
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(children: [
-      TextFormField(
-        style: const TextStyle(color: Colors.black),
-        decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            contentPadding: const EdgeInsets.only(left: 10, right: 10),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide.none,
-              ),
-            hintText: "Search",
-            prefixIcon: 
-           IconButton(
-                icon: const Icon(Icons.search),
-                onPressed: () {
-                  //get function 
-                },
-              ),
-            suffixIcon: IconButton(
-                icon: const Icon(Icons.filter_list),
-                onPressed: () {
-                 showFilterPage();
-                }
-              ),
-      ),
-           
-    )
-    ]));
-  }
+  State<SearchBar> createState() => _SearchBarState();
 }
+class _SearchBarState extends State<SearchBar> {
 final List<String> items = [   'bar','restaurent','boite de nuit ','chicha','sale des fetes'  ];
    TextEditingController searchController = TextEditingController();
      List<String> filteredItems(String query) {
@@ -52,14 +19,49 @@ final List<String> items = [   'bar','restaurent','boite de nuit ','chicha','sal
     }
     return filteredList;
   }
-  void showFilterPage() {
+void showFilterPage() {
     Navigator.push(
-      context as BuildContext,
+      context,
       MaterialPageRoute(
         builder: (context) => FilterPage(),
       ),
     );
   }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Column(children: [
+      TextFormField(
+        controller: searchController,
+        style: const TextStyle(color: Colors.black),
+        decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding: const EdgeInsets.only(left: 10, right: 10),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide.none,
+              ),
+            hintText: "Search",
+            prefixIcon: IconButton(
+                icon: const Icon(Icons.search),
+                onPressed: () {
+                 
+                },
+              ),
+             suffixIcon: IconButton(
+                icon: const Icon(Icons.filter_list),
+                onPressed: showFilterPage,
+              ),
+            ),
+            onChanged: (query) {
+              setState(() {}); // Trigger a rebuild with the filtered items.
+            },
+      )
+    
+    ]));
+  }
+}
 
 void _showFilterSheet(BuildContext context) {
   showModalBottomSheet(
@@ -80,7 +82,6 @@ void _showFilterSheet(BuildContext context) {
             leading: const Icon(Icons.filter_alt),
             title: const Text('Filter by'),
             onTap: () {
-              showFilterPage();
               // Handle filter option selection here
               Navigator.pop(context);
             },
