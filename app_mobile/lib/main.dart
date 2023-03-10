@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:myevent/constants/utils.dart';
-import 'package:myevent/features/screens/Login/components/login_form.dart';
-import 'package:myevent/features/screens/Login/login_screen.dart';
+import 'package:myevent/provider/customer_provider.dart';
 import 'package:myevent/router.dart';
-
-import 'package:myevent/features/screens/Home/home.dart';
 import 'package:myevent/features/screens/onboarding/onboarding.dart';
- import 'package:myevent/features/screens/establishment-details.dart';
- 
+import 'package:provider/provider.dart';
 
-void main() => runApp(const MyApp());
+
+void main() {
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => CustomerProvider(),
+    )
+  ], child:  MyApp()));
+} 
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

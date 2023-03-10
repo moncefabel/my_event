@@ -38,6 +38,7 @@ final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _signInFormKey,
       child: Column(
         children: [
           TextFormField(

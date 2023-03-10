@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:myevent/responsive.dart';
 
 import 'package:myevent/components/background.dart';
-import 'components/login_form.dart';
-import 'components/login_screen_top_image.dart';
+import '../../../auth/services/auth_service.dart';
+import 'login_form.dart';
+import 'login_screen_top_image.dart';
+
+
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
 
+  const LoginScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Background(

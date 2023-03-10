@@ -1,5 +1,5 @@
 import express from 'express'
-import { checkAuth, checkUser } from '../middleware/authMiddleware'
+import {checkUser } from '../middleware/authMiddleware'
 const router:express.Router = express.Router()
 const etbController = require('../controllers/etbController')
 
@@ -10,7 +10,7 @@ router.get("/allEtb",etbController.getAllEtablissements)
 router.post("/add", etbController.addEtb)
 
 //Modifier les informations d'un établissement
-router.put("/update/:id", checkAuth, etbController.updateEtb)
+router.put("/update/:id", etbController.updateEtb)
 
 //Supprimer un établissement
 router.post("/delete", etbController.deleteEtb)

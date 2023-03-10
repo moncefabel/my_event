@@ -1,5 +1,4 @@
 import express from 'express'
-import { checkAuth } from '../middleware/authMiddleware'
 const router:express.Router = express.Router()
 const ownerController = require('../controllers/ownerController')
 const authController = require('../controllers/authController')
@@ -11,21 +10,21 @@ router.get("/proprios", ownerController.getAllOwners)
 router.get("/proprios/:id", ownerController.getOwnerById)
 
 //Créer un utilisateur
-router.post("/register", authController.addUser)
+router.post("/register", authController.addProprio)
 
 //Connexion d'un utilisateur
-router.post("/signIn",authController.signIn )
+router.post("/signIn",authController.signInProprio )
 
 //Déconnexion d'un utilisateur
 router.post("/logOut",authController.logOut)
 
 //Modifier les informations d'un utilisateur
-router.put("/update/:id",checkAuth, ownerController.updateOwner)
+router.put("/update/:id", ownerController.updateOwner)
 
 //Modification du mot de passe
-router.put("/updatePassword/:id", checkAuth, ownerController.changePassword)
+router.put("/updatePassword/:id", ownerController.changePassword)
 
 //Supprimer un propriétaire
-router.delete("/delete/:id",checkAuth, ownerController.deleteOwner)
+router.delete("/delete/:id", ownerController.deleteOwner)
 
 export = router

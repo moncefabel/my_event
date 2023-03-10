@@ -97,7 +97,7 @@ class AuthService {
         prefs.setString('jwt', '');
       }
       var tokenRes = await http.post(
-        Uri.parse('$uri/jwtid'),
+        Uri.parse('$uri/proprioId'),
         headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
             'jwt': token!
