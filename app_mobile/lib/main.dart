@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     onGenerateRoute: (settings) => generateRoute(settings),
 		home: Scaffold(
 		body: SingleChildScrollView(
-			child: LoginForm(),
+			child: OnboardingScreen(),
 		),
 		),
 	);
