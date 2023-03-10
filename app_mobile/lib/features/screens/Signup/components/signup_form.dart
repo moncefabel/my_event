@@ -5,6 +5,7 @@ import 'package:myevent/constants/utils.dart';
 import 'package:myevent/features/auth/services/auth_service.dart';
 
 import '../../../../components/already_have_an_account_acheck.dart';
+import '../../Home/Widgets/FooterBar/navigation_bar.dart';
 import '../../Login/login_screen.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -46,6 +47,7 @@ final TextEditingController _phoneNumberController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _signUpFormKey,
       child: Column(
         children: [
           TextFormField(
@@ -168,7 +170,7 @@ final TextEditingController _phoneNumberController = TextEditingController();
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return LoginScreen();
+                    return NavBar();
                   },
                 ),
               );

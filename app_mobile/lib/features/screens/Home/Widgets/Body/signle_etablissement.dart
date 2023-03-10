@@ -12,12 +12,10 @@ class SingleEtb extends StatelessWidget {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return Column(
       // autogroupjfd7V1X (9zPr3Dncresfe4mcsNJfD7)
-      padding: EdgeInsets.fromLTRB(0 * fem, 20.2 * fem, 0 * fem, 0 * fem),
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             // listqMX (1:511)
@@ -191,7 +189,7 @@ class SingleEtb extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
+      );
+    
   }
 }

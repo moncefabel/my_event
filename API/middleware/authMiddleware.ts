@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
-const model = require("../models/proprio");
+const {Proprio} = require("../models/proprio");
+const {Customer} = require("../models/customer");
 
-export const checkAuth = async (req, res, next) => {
+export const checkProprio = async (req, res, next) => {
 
     
     const token = req.header('jwt')
@@ -12,7 +13,25 @@ export const checkAuth = async (req, res, next) => {
     jwt.verify(token , process.env.TOKEN_SECRET, async (err, decodedToken) => {
         if(err)
             return res.status(403).json("Invalid token")
-        let user = await model.Proprio.findById(decodedToken.id);
+        let user = await Proprio.findById(decodedToken.id);
+        if(!user){
+            return res.json(false)
+        }
+        res.json(true)
+    })
+};
+export const checkClient = async (req, res, next) => {
+
+    
+    const token = req.header('jwt')
+    if (!token) {
+        return res.status(401).json({msg: "No token"});
+    }
+
+    jwt.verify(token , process.env.TOKEN_SECRET, async (err, decodedToken) => {
+        if(err)
+            return res.status(403).json("Invalid token")
+        let user = await Proprio.findById(decodedToken.id);
         if(!user){
             return res.json(false)
         }

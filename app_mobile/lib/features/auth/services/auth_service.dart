@@ -26,7 +26,7 @@ class AuthService {
           token: '',
           phoneNumber: phoneNumber);
 
-      http.Response res = await http.post(Uri.parse('$uri/api/register'),
+      http.Response res = await http.post(Uri.parse('$uri/apiClient/register'),
           body: user.toJson(),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',

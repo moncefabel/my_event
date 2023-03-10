@@ -17,7 +17,7 @@ class HeaderBody extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(2 * fem, 0 * fem, 0 * fem, 29 * fem),
         width: 328 * fem,
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          Container(
+          SizedBox(
             // titleFDf (1:497)
             width: double.infinity,
             child: Row(
@@ -28,7 +28,7 @@ class HeaderBody extends StatelessWidget {
                   margin:
                       EdgeInsets.fromLTRB(0 * fem, 0 * fem, 145 * fem, 0 * fem),
                   child: Text(
-                    'Announcement\n',
+                    'Etablissements\n',
                     style: SafeGoogleFont(
                       'Plus Jakarta Sans',
                       fontSize: 18 * ffem,

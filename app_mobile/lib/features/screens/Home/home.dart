@@ -23,24 +23,22 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    double baseWidth = 375;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
-    double ffem = fem * 0.97;
-    return Container(
-      width: double.infinity,
-      child: Container(
-        // homeL1j (1:360)
-        padding: EdgeInsets.fromLTRB(22 * fem, 40 * fem, 23 * fem, 18 * fem),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0xfffefefe),
-        ),
-        child: Scaffold(
-            body: EtbDisplay(),
-            bottomNavigationBar: NavBar()
-          
-        ),
-      ),
-    );
+    // double baseWidth = 375;
+    // double fem = MediaQuery.of(context).size.width / baseWidth;
+    // double ffem = fem * 0.97;
+    // return Container(
+    //   width: double.infinity,
+    //   child: Container(
+    //     // homeL1j (1:360)
+    //     padding: EdgeInsets.fromLTRB(22 * fem, 40 * fem, 23 * fem, 18 * fem),
+    //     width: double.infinity,
+    //     decoration: BoxDecoration(
+    //       color: Color(0xfffefefe),
+    //     ),
+        return Scaffold(
+          body: NavBar(),          
+        );
+    //   ),
+    // );
   }
 }
