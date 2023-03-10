@@ -15,5 +15,8 @@ router.put("/update/:id", etbController.updateEtb)
 //Supprimer un établissement
 router.post("/delete", etbController.deleteEtb)
 
+router.get("/etbs", etbController.getEtbByPlace)
+
+
 
 export = router

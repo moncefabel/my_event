@@ -4,9 +4,14 @@ import 'package:myevent/features/screens/Home/Widgets/Header/header_section.dart
 import '../Header/search_bar.dart';
 import 'signle_etablissement.dart';
 
-class EtbDisplay extends StatelessWidget {
-  const EtbDisplay({super.key});
+class EtbDisplay extends StatefulWidget {
+  const EtbDisplay({Key? key}) : super(key: key);
 
+  @override
+  State<EtbDisplay> createState() => _EtbDisplayState();
+}
+
+class _EtbDisplayState extends State<EtbDisplay>{
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
@@ -16,7 +21,7 @@ class EtbDisplay extends StatelessWidget {
         // width: 328 * fem,
         // child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
+            children:  const [
               HeaderSection(),
               SizedBox(
                 width: 300,
@@ -24,7 +29,7 @@ class EtbDisplay extends StatelessWidget {
                 child: SearchBar(),
               ),
               HeaderBody(),
-              SingleEtb()
+              SingleEtb(place: 'Paris',)
             ]);
   }
 }

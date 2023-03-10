@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
-const model = require('../models/etb')
+const {Etb} = require('../models/etb')
 const ObjectId = require('mongoose').Types.ObjectId
 
 const getAllEtablissements =  async (req,res) => {
     try{
-        const etbs = await model.Etb.find({userId: req.headers.id})
+        const etbs = await Etb.find({userId: req.headers.id})
 
         res.status(200).json(etbs)
         
@@ -19,7 +19,7 @@ const addEtb = async(req, res) => {
     try{
         console.log(req.body);
         
-        const newEtb = await model.Etb.create({
+        const newEtb = await Etb.create({
             nomEtablissement: req.body.nameEtb,
             prix: req.body.prix,
             lieu: req.body.lieu,
@@ -44,7 +44,7 @@ const updateEtb = async(req, res) => {
 
     try{
 
-        const etb = await model.Etb.findById(req.params.id)
+        const etb = await Etb.findById(req.params.id)
         
         etb.nomEtablissement = req.body.nomEtablissement || etb.nomEtablissement
         etb.prix = req.body.prix || etb.prix
@@ -64,10 +64,22 @@ const deleteEtb = async(req, res) => {
 
     try{ 
         
-        await model.Etb.findByIdAndDelete(req.body.id)
+        await Etb.findByIdAndDelete(req.body.id)
         res.status(200).send("Etablissement supprimé")
     }catch(error:any){
         res.status(400).send(error.message)
+    }
+}
+
+const getEtbByPlace = async(req,res) => {
+
+    console.log(req.query.lieu);
+    
+    try{
+        const etbs = await Etb.find({lieu: req.query.lieu})
+        res.json(etbs)
+    }catch(error:any){
+        res.status(500).json({error: error.message})
     }
 }
 
@@ -81,5 +93,6 @@ export = {
     getAllEtablissements,
     addEtb,
     updateEtb,
-    deleteEtb
+    deleteEtb,
+    getEtbByPlace
 }

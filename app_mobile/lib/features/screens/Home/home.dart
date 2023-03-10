@@ -39,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //       color: Color(0xfffefefe),
     //     ),
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           home: NavBar()         
         );
     //   ),
