@@ -4,7 +4,17 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myevent/constants/utils.dart';
 
-class Scene extends StatelessWidget {
+
+class Scene extends StatefulWidget {
+  const Scene({super.key});
+  static const String routeName = '/details';
+
+  @override
+  State<Scene> createState() => _SceneState();
+}
+
+
+class _SceneState extends State<Scene> {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;

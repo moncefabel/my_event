@@ -15,7 +15,6 @@ class HomeServices {
   }) async {
     final customerProvider = Provider.of<CustomerProvider>(context, listen: false);
     List<Etablissement> etbsList = [];
-    print("hello");
     try {
       http.Response res =
           await http.get(Uri.parse('$uri/apiEtb/etbs?lieu=Paris'),
@@ -23,6 +22,7 @@ class HomeServices {
             'Content-type': 'application/json; charset=UTF-8',
             'jwt': customerProvider.customer.token
         },);
+        // ignore: use_build_context_synchronously
         httpErrorHandle(
           response: res,
           context: context,

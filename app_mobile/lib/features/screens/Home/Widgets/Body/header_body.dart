@@ -43,17 +43,7 @@ class HeaderBody extends StatelessWidget {
                   // seeall27w (1:498)
                   margin:
                       EdgeInsets.fromLTRB(0 * fem, 0.4 * fem, 0 * fem, 0 * fem),
-                  child: Icon(
-                    Icons.format_list_bulleted_rounded
-                    // style: SafeGoogleFont(
-                    //   'Plus Jakarta Sans',
-                    //   fontSize: 14 * ffem,
-                    //   fontWeight: FontWeight.w500,
-                    //   height: 1.5714285714 * ffem / fem,
-                    //   letterSpacing: 0.07 * fem,
-                    //   color: Color(0xff009b8d),
-                    // ),
-                  ),
+                  
                 ),
               ],
             ),
