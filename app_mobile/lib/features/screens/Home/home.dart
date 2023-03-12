@@ -4,12 +4,12 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myevent/constants/utils.dart';
 import 'package:myevent/features/screens/Home/Widgets/FooterBar/navigation_bar.dart';
-import 'package:myevent/features/screens/Home/Widgets/Body/etablissements_display.dart';
+import 'package:myevent/features/screens/Home/Widgets/Body/home_display.dart';
 import 'package:myevent/features/screens/onboarding/onboarding.dart';
 import 'package:provider/provider.dart';
 
 import '../../../provider/customer_provider.dart';
-import 'Widgets/Body/header_body.dart';
+import 'Widgets/Body/etablissemnt_page.dart';
 import 'Widgets/Header/header_section.dart';
 import 'Widgets/Header/search_bar.dart';
 

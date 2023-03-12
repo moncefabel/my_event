@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:myevent/constants/error_handling.dart';
 import 'package:myevent/constants/utils.dart';
-import 'package:myevent/features/screens/Home/Widgets/Body/etablissements_display.dart';
+import 'package:myevent/features/screens/Home/Widgets/Body/home_display.dart';
 import 'package:myevent/features/screens/Home/Widgets/FooterBar/navigation_bar.dart';
 import 'package:myevent/features/screens/Home/home.dart';
 import 'package:myevent/features/screens/Params/log_out_button.dart';

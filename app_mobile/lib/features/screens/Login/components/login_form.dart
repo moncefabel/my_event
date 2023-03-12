@@ -35,6 +35,7 @@ final TextEditingController _passwordController = TextEditingController();
       password: _passwordController.text, 
     );
   } 
+  bool _showPassword = false;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -52,25 +53,69 @@ final TextEditingController _passwordController = TextEditingController();
               prefixIcon: Padding(
                 padding: const EdgeInsets.all(defaultPadding),
                 child: Icon(Icons.person),
+                
               ),
+              border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(color: kPrimaryColor,
+              width: 2.0),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(color: kPrimaryColor),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(color: Colors.red),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(color: Colors.red),
+            ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-            child: TextFormField(
-              controller: _passwordController,
-              textInputAction: TextInputAction.done,
-              obscureText: true,
-              cursorColor: kPrimaryColor,
-              decoration: InputDecoration(
-                hintText: "Your password",
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(defaultPadding),
-                  child: Icon(Icons.lock),
+         Padding(
+          padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+          child: TextFormField(
+            controller: _passwordController,
+            textInputAction: TextInputAction.done,
+            obscureText: !_showPassword,
+            cursorColor: kPrimaryColor,
+            decoration: InputDecoration(
+              hintText: "Your password",
+              prefixIcon: Padding(
+                padding: const EdgeInsets.all(defaultPadding),
+                child: Icon(Icons.lock),
+              ),
+              suffixIcon: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _showPassword = !_showPassword;
+                  });
+                },
+                child: Icon(
+                  _showPassword ? Icons.visibility : Icons.visibility_off,
                 ),
               ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25),
+                
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25),
+                borderSide: BorderSide(color: kPrimaryColor),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25),
+                borderSide: BorderSide(color: Colors.red),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25),
+                borderSide: BorderSide(color: Colors.red),
+              ),
             ),
           ),
+        ),
           const SizedBox(height: defaultPadding),
           Hero(
             tag: "login_btn",
@@ -80,6 +125,15 @@ final TextEditingController _passwordController = TextEditingController();
                     signInUser();
                 }
               },
+             style: ButtonStyle(
+      fixedSize: MaterialStateProperty.all<Size>(Size(200, 50)),
+      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(40),
+          side: BorderSide(color:kPrimaryColor),
+        ),
+      ),
+    ),
               child: Text(
                 "Login".toUpperCase(),
               ),

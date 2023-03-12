@@ -44,6 +44,7 @@ final TextEditingController _phoneNumberController = TextEditingController();
       phoneNumber: _phoneNumberController.text,
     );
   }
+    bool _showPassword = false;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -62,6 +63,15 @@ final TextEditingController _phoneNumberController = TextEditingController();
                 padding: const EdgeInsets.all(defaultPadding),
                 child: Icon(Icons.person),
               ),
+              border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(color: kPrimaryColor,
+              width: 2.0),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(color: kPrimaryColor),
+            ),
             ),
           
           validator: (val){
@@ -84,7 +94,26 @@ final TextEditingController _phoneNumberController = TextEditingController();
                   padding: const EdgeInsets.all(defaultPadding),
                   child: Icon(Icons.lock),
                 ),
+                   suffixIcon: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _showPassword = !_showPassword;
+                  });
+                },
+                child: Icon(
+                  _showPassword ? Icons.visibility : Icons.visibility_off,
+                ),
               ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25),
+                
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25),
+                borderSide: BorderSide(color: kPrimaryColor),
+              ),
+              ),
+              
               validator: (val){
                 if(val == null || val.isEmpty){
                   return 'Enter your your password';
@@ -104,6 +133,15 @@ final TextEditingController _phoneNumberController = TextEditingController();
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(defaultPadding),
                 ),
+                 border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(color: kPrimaryColor,
+              width: 2.0),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(color: kPrimaryColor),
+            ),
               ),
               validator: (val){
                 if(val == null || val.isEmpty){
@@ -124,6 +162,15 @@ final TextEditingController _phoneNumberController = TextEditingController();
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(defaultPadding),
                 ),
+                 border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(color: kPrimaryColor,
+              width: 2.0),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(color: kPrimaryColor),
+            ),
               ),
               validator: (val){
                 if(val == null || val.isEmpty){
@@ -144,6 +191,15 @@ final TextEditingController _phoneNumberController = TextEditingController();
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(defaultPadding),
                 ),
+                 border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(color: kPrimaryColor,
+              width: 2.0),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(color: kPrimaryColor),
+            ),
               ),
               validator: (val){
                 if(val == null || val.isEmpty){
@@ -160,6 +216,15 @@ final TextEditingController _phoneNumberController = TextEditingController();
                 signUpUser();
               }
             },
+             style: ButtonStyle(
+      fixedSize: MaterialStateProperty.all<Size>(Size(200, 50)),
+      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(40),
+          side: BorderSide(color:kPrimaryColor),
+        ),
+      ),
+    ),
             child: Text("Sign Up".toUpperCase()),
           ),
           const SizedBox(height: defaultPadding),

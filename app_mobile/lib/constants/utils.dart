@@ -81,7 +81,7 @@ TextStyle SafeGoogleFont(
     );
   }
 }
-const kPrimaryColor = Color(0xFF6F35A5);
+const kPrimaryColor =  Color(0xff4c9fc1);
 const kPrimaryLightColor = Color(0xFFF1E6FF);
 
 const double defaultPadding = 16.0;
@@ -90,5 +90,5 @@ void showSnackBar(BuildContext context, String text){
     SnackBar(content: Text(text))
   );
 }
-String uri = 'http://192.168.1.56:5000'; 
-
+String uri = 'http://10.188.255.102:5000'; 
+const String Apikey="";
