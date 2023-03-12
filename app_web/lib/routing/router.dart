@@ -1,23 +1,22 @@
 import 'package:app_web/views/Connection/connection.view.dart';
 import 'package:app_web/views/Etablissements/add_etb_screen.dart';
-import 'package:app_web/views/Etablissements/show_etb_screen.dart';
+import 'package:app_web/views/Etablissements/modify_etd_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_web/routing/route_names.dart';
 import 'package:app_web/views/Home/home_views.dart';
 import '../views/About/about_view.dart';
-import '../views/Connection/SignIn/sign_in_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    
-    
     case homeRoute:
       return _getPageRoute(const HomeView());
     case aboutRoute:
       return _getPageRoute(const AboutView());
     case connectionRoute:
       return _getPageRoute(const ConnectionView());
-    case AddEtbScreen.routeName: 
+    case modifyEtb:
+      return _getPageRoute(const ModifyEtbScreen());
+    case AddEtbScreen.routeName:
       return MaterialPageRoute(
         settings: settings,
         builder: (_) => const AddEtbScreen(),

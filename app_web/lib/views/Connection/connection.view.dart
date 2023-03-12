@@ -1,13 +1,10 @@
 import 'package:app_web/providers/proprio_provider.dart';
 import 'package:app_web/views/Connection/SignIn/sign_in_screen.dart';
-import 'package:app_web/views/Etablissements/add_etb_screen.dart';
 import 'package:app_web/views/Etablissements/show_etb_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../Services/navigation_service.dart';
 import '../../features/auth/services/auth_service.dart';
-import '../../locator.dart';
 import '../../routing/router.dart';
 
 class ConnectionView extends StatefulWidget {
@@ -29,10 +26,9 @@ class _ConnectionViewState extends State<ConnectionView> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      onGenerateRoute: (settings) => generateRoute(settings),
-      home: Provider.of<ProprioProvider>(context).proprio.token.isNotEmpty
-              ? const EtbsScreen()
-              : const SignInScreen()
-    );
+        onGenerateRoute: (settings) => generateRoute(settings),
+        home: Provider.of<ProprioProvider>(context).proprio.token.isNotEmpty
+            ? const EtbsScreen()
+            : const SignInScreen());
   }
 }
