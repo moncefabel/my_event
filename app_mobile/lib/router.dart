@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:myevent/features/screens/Detail_page/detail_page.dart';
 import 'package:myevent/features/screens/Home/home.dart';
 import 'package:myevent/features/screens/Login/components/login_screen.dart';
-import 'package:myevent/features/screens/establishment-details.dart';
 import 'package:myevent/features/screens/onboarding/onboarding.dart';
 
 import 'features/screens/Login/components/login_form.dart';
@@ -25,11 +24,7 @@ Route<dynamic> ?generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => const OnboardingScreen()
       );
-    case Scene.routeName:
-      return MaterialPageRoute(
-        settings: routeSettings,
-
-        builder: (_) => const Scene());
+    
     
       case DetailPage.routeName:
       return MaterialPageRoute(

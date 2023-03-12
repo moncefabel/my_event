@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:myevent/features/screens/Home/Widgets/Body/etablissemnt_page.dart';
 import 'package:myevent/features/screens/Home/Widgets/Header/header_section.dart';
 import '../Header/search_bar.dart';
-import 'header_body.dart';
 import 'signle_etablissement.dart';
 import 'package:flutter/rendering.dart';
 
@@ -34,7 +33,6 @@ class _EtbDisplayState extends State<EtbDisplay> {
         height: 70,
         child: SearchBar(),
       ),
-      HeaderBody(),
       SingleEtb(
         place: 'Paris',
       )

@@ -18,7 +18,7 @@ class HomeServices {
     
     try {
       http.Response res =
-          await http.get(Uri.parse('$uri/apiEtb/etbs?lieu={$place}'),
+          await http.get(Uri.parse('$uri/apiEtb/etbs?lieu=$place'),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
             'jwt': customerProvider.customer.token
@@ -40,7 +40,8 @@ class HomeServices {
           });
 
     }catch (e) {
-      showSnackBar(context, e.toString());
+      print("hello");
+      // showSnackBar(context, e.toString());
     }
     return etbsList;
   }

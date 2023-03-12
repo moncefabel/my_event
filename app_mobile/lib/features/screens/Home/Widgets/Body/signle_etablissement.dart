@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:myevent/features/screens/Detail_page/detail_page.dart';
 
 import 'package:myevent/features/screens/Home/home_services.dart';
-import 'package:myevent/features/screens/establishment-details.dart';
 
 import '../../../../../constants/utils.dart';
 import '../../../../../models/etablissement.dart';
@@ -30,7 +29,6 @@ class _SingleEtbState extends State<SingleEtb> {
   fetchEtbsByPlace() async {
     etbs = await homeService.fetchEtbsByPlace(
         context: context, place: widget.place);
-    print(etbs![0].nameEtb);
 
     setState(() {});
   }
@@ -52,7 +50,7 @@ class _SingleEtbState extends State<SingleEtb> {
                     // margin:
                     //     EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
                     // width: double.infinity,
-                    height: 170,
+                    height: 300,
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       padding: const EdgeInsets.only(top: 15),
