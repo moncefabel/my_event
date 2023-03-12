@@ -12,8 +12,8 @@ void main() {
     ChangeNotifierProvider(
       create: (context) => CustomerProvider(),
     )
-  ], child:  MyApp()));
-} 
+  ], child:  const MyApp()));
+}     
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

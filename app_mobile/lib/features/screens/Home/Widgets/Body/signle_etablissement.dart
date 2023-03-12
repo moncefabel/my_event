@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myevent/features/screens/Detail_page/detail_page.dart';
 
 import 'package:myevent/features/screens/Home/home_services.dart';
 import 'package:myevent/features/screens/establishment-details.dart';
@@ -53,8 +54,8 @@ class _SingleEtbState extends State<SingleEtb> {
                     // width: double.infinity,
                     height: 170,
                     child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.only(left: 15),
+                      scrollDirection: Axis.vertical,
+                      padding: const EdgeInsets.only(top: 15),
                       // crossAxisAlignment: CrossAxisAlignment.center,
                       itemCount: etbs!.length,
                       itemBuilder: (context, index) {
@@ -63,7 +64,7 @@ class _SingleEtbState extends State<SingleEtb> {
                             onTap: () {
                               Navigator.pushNamed(
                                 context,
-                                Scene.routeName,
+                                DetailPage.routeName,
                               );
                             },
                             child: Column(children: [

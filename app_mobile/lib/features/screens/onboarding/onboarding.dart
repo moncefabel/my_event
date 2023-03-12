@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myevent/constants/utils.dart';
 import 'package:myevent/features/screens/Home/home.dart';
+import 'package:myevent/features/screens/Login/login_view.dart';
 
 class OnboardingScreen extends StatefulWidget {
   static const String routeName = '/onBoarding';
@@ -84,13 +85,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           fontWeight: FontWeight.w700,
                           height: 1.3333333333*ffem/fem,
                           letterSpacing: 0.12*fem,
-                          color: Color(0xff111111),
+                          color: const Color(0xff111111),
                         ),
                       ),
                     ),
                   ),
                   
-                  Container(
+                  SizedBox(
                     // action8ih (1:357)
                     width: double.infinity,
                     child: Column(
@@ -124,7 +125,101 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                         ),
                     ),
-                        Center(
+                            
+                            
+                            Center(
+                                          child: Container(
+                                            margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 4*fem, 0*fem),
+                                            child: RichText(
+                                              textAlign: TextAlign.center,
+                                              text: TextSpan(
+                                                style: SafeGoogleFont(
+                                                  'Plus Jakarta Sans',
+                                                  fontSize: 16*ffem,
+                                                  fontWeight: FontWeight.w600,
+                                                  height: 1.5*ffem/fem,
+                                                  letterSpacing: 0.08*fem,
+                                                  color: Color(0xffffffff),
+                                                ),
+                                                children: [
+                                                  TextSpan(
+                                                    text: 'Have an account? ',
+                                                    style: SafeGoogleFont(
+                                                      'Plus Jakarta Sans',
+                                                      fontSize: 16*ffem,
+                                                      fontWeight: FontWeight.w600,
+                                                      height: 1.5*ffem/fem,
+                                                      letterSpacing: 0.08*fem,
+                                                      color: Color(0xff111111),
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: 'Register',
+                                                    style: SafeGoogleFont(
+                                                      'Plus Jakarta Sans',
+                                                      fontSize: 16*ffem,
+                                                      fontWeight: FontWeight.w600,
+                                                      height: 1.5*ffem/fem,
+                                                      letterSpacing: 0.08*fem,
+                                                      decoration: TextDecoration.underline,
+                                                      color: Color(0xff4c9fc1),
+                                                    ),
+                                                    recognizer: TapGestureRecognizer()
+                                                      ..onTap = () {
+                                                        // Add your navigation logic here to navigate to the login page
+                                                     Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(builder: (context) => LoginView()),
+                                                      );
+                                                                },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                            
+                            /* Center(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(builder: (context) => LoginView()),
+                                            );
+                                          },
+                                          child: Container(
+                                            child: RichText(
+                                              text: TextSpan(
+                                                text: 'Have an account? ',
+                                                style: SafeGoogleFont (
+                                                  'Plus Jakarta Sans',
+                                                  fontSize: 16*ffem,
+                                                  fontWeight: FontWeight.w600,
+                                                  height: 1.5*ffem/fem,
+                                                  letterSpacing: 0.08*fem,
+                                                  color: const Color(0xff111111),
+                                                ),
+                                                children: [
+                                                  TextSpan(
+                                                    text: 'Login',
+                                                    style: SafeGoogleFont (
+                                                      'Plus Jakarta Sans',
+                                                      fontSize: 16*ffem,
+                                                      fontWeight: FontWeight.w600,
+                                                      height: 1.5*ffem/fem,
+                                                      letterSpacing: 0.08*fem,
+                                                      color: const Color(0xff4c9fc1),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),*/
+
+                        /*Center(
                           // donthaveanaccountregisternqB (1:358)
                           child: Container(
                             margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 4*fem, 0*fem),
@@ -166,7 +261,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               ),
                             ),
                           ),
-                        ),
+                        ),*/
                       ],
                     ),
                   ),

@@ -15,9 +15,10 @@ class HomeServices {
   }) async {
     final customerProvider = Provider.of<CustomerProvider>(context, listen: false);
     List<Etablissement> etbsList = [];
+    
     try {
       http.Response res =
-          await http.get(Uri.parse('$uri/apiEtb/etbs?lieu=Paris'),
+          await http.get(Uri.parse('$uri/apiEtb/etbs?lieu={$place}'),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
             'jwt': customerProvider.customer.token
