@@ -1,7 +1,7 @@
 import 'package:app_web/Widgets/signle_etb.dart';
 import 'package:app_web/features/proprio/services/proprio_service.dart';
 import 'package:app_web/views/Etablissements/add_etb_screen.dart';
-import 'package:app_web/views/Etablissements/modify_etd_screen.dart';
+import 'package:app_web/views/Etablissements/modify_etb_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../Widgets/loader.dart';
@@ -65,7 +65,7 @@ class _EtbsScreenState extends State<EtbsScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const ModifyEtbScreen()),
+                                        ModifyEtbScreen(etb: etbsData)),
                               );
                             },
                             child: SingleEtb(image: etbsData.images[0])),

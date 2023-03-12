@@ -17,7 +17,6 @@ const addEtb = async(req, res) => {
 
     
     try{
-        console.log(req.body);
         
         const newEtb = await Etb.create({
             nomEtablissement: req.body.nameEtb,
@@ -44,18 +43,28 @@ const updateEtb = async(req, res) => {
 
     try{
 
-        const etb = await Etb.findById(req.params.id)
+        console.log(req.body);
         
-        etb.nomEtablissement = req.body.nomEtablissement || etb.nomEtablissement
-        etb.prix = req.body.prix || etb.prix
-        etb.lieu = req.body.lieu || etb.lieu
-        etb.horaires = req.body.horaires || etb.horaires
-        etb.type = req.body.type || etb.type
+        await Etb.findOneAndUpdate({_id: req.body._id },{
+            nomEtablissement : req.body.nameEtb,
+            prix : req.body.prix,
+            lieu : req.body.lieu,
+            heureOuverture : req.body.heureOuverture,
+            heureFermeture : req.body.heureFermeture,
+            type : req.body.type,
+            capaciteMax : req.body.capaciteMax, 
+            capciteMin : req.body.capaciteMin,
+            userId : req.body.userId,
+            images: req.body.images
+        },
+        )
+
         
-        await etb.save()
         res.status(200).send("Etablissement modifié")
 
     }catch(error:any){
+        console.log(error.message);
+        
         res.status(400).send(error.message)
     }
 }
@@ -73,7 +82,6 @@ const deleteEtb = async(req, res) => {
 
 const getEtbByPlace = async(req,res) => {
 
-    console.log(req.query.lieu);
     
     try{
         const etbs = await Etb.find({lieu: req.query.lieu})

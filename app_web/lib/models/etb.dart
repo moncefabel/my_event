@@ -1,8 +1,8 @@
 import 'dart:convert';
 class Etablissement{
 
-  final String userId;
-  final String id;
+  final String? userId;
+  final String? id;
   final String type;
   final String lieu;
   final String heureOuverture;
@@ -14,8 +14,8 @@ class Etablissement{
   final String prix;
 
   Etablissement({
-    required this.userId,
-    required this.id, 
+    this.userId,
+    this.id, 
     required this.type, 
     required this.lieu, 
     required this.heureOuverture,

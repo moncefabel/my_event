@@ -1,9 +1,10 @@
 import 'package:app_web/views/Connection/connection.view.dart';
 import 'package:app_web/views/Etablissements/add_etb_screen.dart';
-import 'package:app_web/views/Etablissements/modify_etd_screen.dart';
+import 'package:app_web/views/Etablissements/modify_etb_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_web/routing/route_names.dart';
 import 'package:app_web/views/Home/home_views.dart';
+import '../models/etb.dart';
 import '../views/About/about_view.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -14,12 +15,20 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(const AboutView());
     case connectionRoute:
       return _getPageRoute(const ConnectionView());
-    case modifyEtb:
-      return _getPageRoute(const ModifyEtbScreen());
     case AddEtbScreen.routeName:
       return MaterialPageRoute(
         settings: settings,
         builder: (_) => const AddEtbScreen(),
+      );
+
+    case ModifyEtbScreen.routeName:
+      
+        var etb = settings.arguments as Etablissement;
+        return MaterialPageRoute(
+        settings: settings,
+        builder: (_) =>  ModifyEtbScreen(
+          etb: etb
+        ), 
       );
     default:
       throw MaterialPageRoute(
