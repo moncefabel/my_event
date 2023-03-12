@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt';
+
 const mongoose = require('mongoose')
 const model = require('../models/proprio')
 const ObjectId = require('mongoose').Types.ObjectId

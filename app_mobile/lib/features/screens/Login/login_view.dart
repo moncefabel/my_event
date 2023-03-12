@@ -29,6 +29,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) => generateRoute(settings),
       home: Provider.of<CustomerProvider>(context).customer.token.isNotEmpty
               ? const LogOutButton()

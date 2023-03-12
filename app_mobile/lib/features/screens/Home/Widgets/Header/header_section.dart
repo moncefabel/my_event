@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 
 import 'localisation_display.dart';
 import 'profil_image.dart';
@@ -14,7 +13,7 @@ class HeaderSection extends StatelessWidget {
     double ffem = fem * 0.97;
     return Container(
               // userCJq (1:383)
-              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 28 * fem),
+              margin: EdgeInsets.fromLTRB(20 * fem, 25 * fem, 3 * fem, 28 * fem),
               width: double.infinity,
               height: 46 * fem,
               child: Row(
@@ -49,7 +48,7 @@ class HeaderSection extends StatelessWidget {
                   // ),
                   SizedBox(
                     // actionJgd (1:384)
-                    width: 43*fem,
+                    width: 45*fem,
                     height: 45*fem,
                     child: IconButton(
                           icon: Image.asset(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'filter_clas.dart';
 import 'filter_page.dart';
 
 class SearchBar extends StatefulWidget {
@@ -20,13 +21,15 @@ final List<String> items = [   'bar','restaurent','boite de nuit ','chicha','sal
     return filteredList;
   }
 void showFilterPage() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => FilterPage(),
-      ),
-    );
-  }
+  EstablishmentFilter filter = EstablishmentFilter(); // create a filter instance
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => FilterPage(filter: filter),
+    ),
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
