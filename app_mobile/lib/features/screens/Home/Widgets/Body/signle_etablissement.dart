@@ -52,10 +52,10 @@ class _SingleEtbState extends State<SingleEtb> {
                     // margin:
                     //     EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
                     // width: double.infinity,
-                    height: 170,
+                    height: 600,
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
-                      padding: const EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.only(left :15),
                       // crossAxisAlignment: CrossAxisAlignment.center,
                       itemCount: etbs!.length,
                       itemBuilder: (context, index) {
@@ -64,7 +64,7 @@ class _SingleEtbState extends State<SingleEtb> {
                             onTap: () {
                               Navigator.pushNamed(
                                 context,
-                                DetailPage.routeName,
+                                Scene.routeName,
                               );
                             },
                             child: Column(children: [

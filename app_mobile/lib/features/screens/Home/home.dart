@@ -38,9 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
     //     decoration: BoxDecoration(
     //       color: Color(0xfffefefe),
     //     ),
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: NavBar()         
+        return Scaffold(
+         // debugShowCheckedModeBanner: false,
+          body: NavBar()         
         );
     //   ),
     // );

@@ -235,7 +235,7 @@ final TextEditingController _phoneNumberController = TextEditingController();
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return NavBar();
+                    return LoginScreen();
                   },
                 ),
               );

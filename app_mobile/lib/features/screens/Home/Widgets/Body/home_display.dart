@@ -32,7 +32,7 @@ class _EtbDisplayState extends State<EtbDisplay>{
                 height: 70,
                 child: SearchBar(),
               ),
-              SingleEtb(place: 'paris'),
+              SingleEtb(place: 'Paris'),
               //SingleEtb(place: 'Paris',)
             ]);
   }
