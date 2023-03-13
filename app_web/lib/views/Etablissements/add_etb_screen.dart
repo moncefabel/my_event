@@ -1,9 +1,15 @@
 // ignore_for_file: avoid_print, unused_field, prefer_const_constructors
 
 import 'package:app_web/Widgets/OnHoverButton.dart';
+import 'package:app_web/Widgets/location_list.dart';
 import 'package:app_web/features/proprio/services/proprio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../constants/app_colors.dart';
+import '../../features/network_service.dart';
+import '../../models/auto_complete_predictions.dart';
+import '../../models/place_auto_complete_response.dart';
 
 class AddEtbScreen extends StatefulWidget {
   static const String routeName = '/add-etb';
@@ -25,6 +31,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
 
   final ProprioService proprioService = ProprioService();
 
+  List<AutoCompletePrediction> placePredictions = [];
   final List<XFile> _imageFiles = [];
   final ImagePicker imagePicker = ImagePicker();
 
@@ -74,6 +81,22 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
     }
   }
 
+  void placeAutoComplete(String query) async {
+    Uri uri = Uri.https("maps.googleapis.com",
+        'maps/api/place/autocomplete/json', {"input": query, "key": apiKey});
+    String? response = await NetworkService.fetchUrl(uri);
+
+    if (response != null) {
+      PlaceAutocompleteResponse result =
+          PlaceAutocompleteResponse.parseAutoCompleteResult(response);
+      if (result.predictions != null) {
+        setState(() {
+          placePredictions = result.predictions!;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,10 +125,15 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Lieu'),
                               SizedBox(
-                                width: 200,
-                                child: TextField(controller: lieuController),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
+                                  width: 200,
+                                  child: TextFormField(
+                                    onChanged: (value) {
+                                      placeAutoComplete(value);
+                                    },
+                                    controller: lieuController,
+                                    textInputAction: TextInputAction.search,
+                                  )),
+                              // Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Capacite Maximale'),
                               SizedBox(
                                 width: 200,
@@ -162,6 +190,15 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                 ),
               ),
             ),
+            Expanded(
+                child: ListView.builder(
+                    itemCount: placePredictions.length,
+                    itemBuilder: (context, index) => LocationList(
+                          press: () {
+                            lieuController.text = placePredictions[index].description.toString();
+                          },
+                          location: placePredictions[index].description!,
+                        ))),
             Padding(padding: EdgeInsets.only(top: 30)),
             SizedBox(
               height: 50.0,
