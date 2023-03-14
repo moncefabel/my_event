@@ -129,65 +129,65 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
                                  ),
                               ),
                               Padding(padding: EdgeInsets.only(top: 10)),
-                          //     Text('Lieu'),
-                          //     SizedBox(
-                          //       width: 200,
-                          //       child: TextFormField(
-                          //         controller: lieuController,
+                              Text('Lieu'),
+                              SizedBox(
+                                width: 200,
+                                child: TextFormField(
+                                  controller: lieuController,
                                   
                                   
-                          //         ),
-                          //     ),
-                          //     Padding(padding: EdgeInsets.only(top: 10)),
-                          //     Text('Capacite Maximale'),
-                          //     SizedBox(
-                          //       width: 200,
-                          //       child: TextFormField(
+                                  ),
+                              ),
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Capacite Maximale'),
+                              SizedBox(
+                                width: 200,
+                                child: TextFormField(
                                   
-                          //         controller: capaciteMaxController,
+                                  controller: capaciteMaxController,
                                   
-                          //       ),
-                          //     ),
-                          //     Padding(padding: EdgeInsets.only(top: 10)),
-                          //     Text('Capacite minimale'),
-                          //     SizedBox(
-                          //       width: 200,
-                          //       child: TextFormField(
-                          //         controller: capaciteMinController,
-                          //         ),
-                          //     ),
-                          //     Padding(padding: EdgeInsets.only(top: 10)),
-                          //     Text('Heure d\'ouverture'),
-                          //     SizedBox(
-                          //       width: 200,
-                          //       child: TextFormField(
-                          //         controller: heureOController,
-                          //         ),
-                          //     ),
-                          //     Padding(padding: EdgeInsets.only(top: 10)),
-                          //     Text('Heure de fermeture'),
-                          //     SizedBox(
-                          //       width: 200,
-                          //       child: TextFormField(
-                          //         controller: heureFController,
-                          //         ),
-                          //     ),
-                          //     Padding(padding: EdgeInsets.only(top: 10)),
-                          //     Text('Prix'),
-                          //     SizedBox(
-                          //       width: 200,
-                          //       child: TextFormField(
-                          //         controller: priceController,
-                          //         ),
-                          //     ),
-                          //     Padding(padding: EdgeInsets.only(top: 10)),
-                          //     Text('Type'),
-                          //     SizedBox(
-                          //       width: 200,
-                          //       child: TextFormField(
-                          //         controller: typeController,
-                          //         ),
-                          //     ),
+                                ),
+                              ),
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Capacite minimale'),
+                              SizedBox(
+                                width: 200,
+                                child: TextFormField(
+                                  controller: capaciteMinController,
+                                  ),
+                              ),
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Heure d\'ouverture'),
+                              SizedBox(
+                                width: 200,
+                                child: TextFormField(
+                                  controller: heureOController,
+                                  ),
+                              ),
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Heure de fermeture'),
+                              SizedBox(
+                                width: 200,
+                                child: TextFormField(
+                                  controller: heureFController,
+                                  ),
+                              ),
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Prix'),
+                              SizedBox(
+                                width: 200,
+                                child: TextFormField(
+                                  controller: priceController,
+                                  ),
+                              ),
+                              Padding(padding: EdgeInsets.only(top: 10)),
+                              Text('Type'),
+                              SizedBox(
+                                width: 200,
+                                child: TextFormField(
+                                  controller: typeController,
+                                  ),
+                              ),
                             ],
                           ),
                         ],
