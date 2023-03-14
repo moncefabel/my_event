@@ -31,6 +31,8 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
 
   final ProprioService proprioService = ProprioService();
 
+  String _description = '';
+
   List<AutoCompletePrediction> placePredictions = [];
   final List<XFile> _imageFiles = [];
   final ImagePicker imagePicker = ImagePicker();
@@ -119,13 +121,13 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                             children: [
                               Text('Nom du lieu'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(controller: nameEtbController),
                               ),
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Lieu'),
                               SizedBox(
-                                  width: 200,
+                                  width: 500,
                                   child: TextFormField(
                                     onChanged: (value) {
                                       placeAutoComplete(value);
@@ -133,10 +135,10 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                                     controller: lieuController,
                                     textInputAction: TextInputAction.search,
                                   )),
-                              // Padding(padding: EdgeInsets.only(top: 10)),
+                              Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Capacite Maximale'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(
                                   controller: capaciteMaxController,
                                 ),
@@ -144,7 +146,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Capacite minimale'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(
                                   controller: capaciteMinController,
                                 ),
@@ -152,7 +154,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Heure d\'ouverture'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(
                                   controller: heureOController,
                                 ),
@@ -160,7 +162,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Heure de fermeture'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(
                                   controller: heureFController,
                                 ),
@@ -168,7 +170,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Prix'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(
                                   controller: priceController,
                                 ),
@@ -176,9 +178,31 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Type'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(
                                   controller: typeController,
+                                ),
+                              ),
+                              const Padding(padding: EdgeInsets.only(top: 10)),
+                              const Text('Description'),
+                              Container(
+                                padding: const EdgeInsets.all(8.0),
+                                width: 500,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  border: Border.all(color: Colors.grey),
+                                ),
+                                child: TextField(
+                                  decoration: const InputDecoration(
+                                    hintText: 'Type your description here',
+                                    border: InputBorder.none,
+                                  ),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _description = value;
+                                    });
+                                  },
+                                  maxLines: null,
                                 ),
                               ),
                             ],
@@ -195,7 +219,8 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                     itemCount: placePredictions.length,
                     itemBuilder: (context, index) => LocationList(
                           press: () {
-                            lieuController.text = placePredictions[index].description.toString();
+                            lieuController.text =
+                                placePredictions[index].description.toString();
                           },
                           location: placePredictions[index].description!,
                         ))),

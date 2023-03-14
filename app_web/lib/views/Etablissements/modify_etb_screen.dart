@@ -33,7 +33,6 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
   final List<String> imagesToString = [];
   final List<XFile> _imageFiles = [];
   final ImagePicker imagePicker = ImagePicker();
-  
 
   Future<void> _pickImage() async {
     final List<XFile> selectedImages = await imagePicker.pickMultiImage();
@@ -43,13 +42,11 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
     }
   }
 
-
   void _removeImage(int index) {
     setState(() {
       _imageFiles.removeAt(index);
     });
   }
-  
 
   @override
   void initState() {
@@ -69,7 +66,7 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
     lieuController.dispose();
     priceController.dispose();
   }
-  
+
   void updateEtb() {
     if (_updateEtbFormKey.currentState!.validate()) {
       proprioService.updateEtb(
@@ -88,8 +85,6 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
     }
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     nameEtbController.text = widget.etb.nameEtb;
@@ -101,6 +96,7 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
     capaciteMinController.text = widget.etb.capaciteMin;
     typeController.text = widget.etb.type;
 
+    String _description = '';
 
     return Scaffold(
       body: Padding(
@@ -114,81 +110,93 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
                   key: _updateEtbFormKey,
                   child: SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.all(30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      padding: const EdgeInsets.all(30),
+                      child: Column(
                         children: [
-                          Column(
-                            children: [
-                              Text('Nom du lieu'),
-                              SizedBox(
-                                width: 200,
-                                child: TextFormField(
-                                  controller: nameEtbController,
-                                
-                                 ),
+                          const Text('Nom du lieu'),
+                          SizedBox(
+                            width: 500,
+                            child: TextFormField(
+                              controller: nameEtbController,
+                            ),
+                          ),
+                          const Padding(padding: EdgeInsets.only(top: 10)),
+                          const Text('Lieu'),
+                          SizedBox(
+                            width: 500,
+                            child: TextFormField(
+                              controller: lieuController,
+                            ),
+                          ),
+                          const Padding(padding: EdgeInsets.only(top: 10)),
+                          const Text('Capacite Maximale'),
+                          SizedBox(
+                            width: 500,
+                            child: TextFormField(
+                              controller: capaciteMaxController,
+                            ),
+                          ),
+                          const Padding(padding: EdgeInsets.only(top: 10)),
+                          const Text('Capacite minimale'),
+                          SizedBox(
+                            width: 500,
+                            child: TextFormField(
+                              controller: capaciteMinController,
+                            ),
+                          ),
+                          const Padding(padding: EdgeInsets.only(top: 10)),
+                          const Text('Heure d\'ouverture'),
+                          SizedBox(
+                            width: 500,
+                            child: TextFormField(
+                              controller: heureOController,
+                            ),
+                          ),
+                          const Padding(padding: EdgeInsets.only(top: 10)),
+                          const Text('Heure de fermeture'),
+                          SizedBox(
+                            width: 500,
+                            child: TextFormField(
+                              controller: heureFController,
+                            ),
+                          ),
+                          const Padding(padding: EdgeInsets.only(top: 10)),
+                          const Text('Prix'),
+                          SizedBox(
+                            width: 500,
+                            child: TextFormField(
+                              controller: priceController,
+                            ),
+                          ),
+                          const Padding(padding: EdgeInsets.only(top: 10)),
+                          const Text('Type'),
+                          SizedBox(
+                            width: 500,
+                            child: TextFormField(
+                              controller: typeController,
+                            ),
+                          ),
+                          const Padding(padding: EdgeInsets.only(top: 10)),
+                          const Text('Description'),
+                          Container(
+                            padding: const EdgeInsets.all(8.0),
+                            width: 500,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              border: Border.all(color: Colors.grey),
+                            ),
+                            child: TextField(
+                              decoration: const InputDecoration(
+                                hintText: 'Type your description here',
+                                border: InputBorder.none,
                               ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Lieu'),
-                              SizedBox(
-                                width: 200,
-                                child: TextFormField(
-                                  controller: lieuController,
-                                  
-                                  
-                                  ),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Capacite Maximale'),
-                              SizedBox(
-                                width: 200,
-                                child: TextFormField(
-                                  
-                                  controller: capaciteMaxController,
-                                  
-                                ),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Capacite minimale'),
-                              SizedBox(
-                                width: 200,
-                                child: TextFormField(
-                                  controller: capaciteMinController,
-                                  ),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Heure d\'ouverture'),
-                              SizedBox(
-                                width: 200,
-                                child: TextFormField(
-                                  controller: heureOController,
-                                  ),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Heure de fermeture'),
-                              SizedBox(
-                                width: 200,
-                                child: TextFormField(
-                                  controller: heureFController,
-                                  ),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Prix'),
-                              SizedBox(
-                                width: 200,
-                                child: TextFormField(
-                                  controller: priceController,
-                                  ),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Type'),
-                              SizedBox(
-                                width: 200,
-                                child: TextFormField(
-                                  controller: typeController,
-                                  ),
-                              ),
-                            ],
+                              onChanged: (value) {
+                                setState(() {
+                                  _description = value;
+                                });
+                              },
+                              maxLines: null,
+                            ),
                           ),
                         ],
                       ),
@@ -197,7 +205,7 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
                 ),
               ),
             ),
-            Padding(padding: EdgeInsets.only(top: 30)),
+            const Padding(padding: EdgeInsets.only(top: 30)),
             SizedBox(
               height: 50.0,
               child: InkWell(
