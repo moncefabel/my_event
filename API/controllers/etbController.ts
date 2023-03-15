@@ -20,13 +20,15 @@ const addEtb = async(req, res) => {
     try{
         let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
                 params:{
-                    address: "30 Rue boucry Paris 75018",
+                    address: req.body.lieu,
                     key: "AIzaSyAcIHoIJDQJ3TEZe3v13783jsDTxLpD6Gs"
                 }
             }
         )
         let lat = response.data.results[0].geometry.location.lat;
         let long = response.data.results[0].geometry.location.lng;
+
+        
         
         const newEtb = await Etb.create({
             nomEtablissement: req.body.nameEtb,
@@ -98,6 +100,7 @@ const getEtbByPlace = async(req,res) => {
 
     
     try{
+        console.log(req.query.lng, req.query.lat);
         const etbs = await Etb.find({
             location:
             {

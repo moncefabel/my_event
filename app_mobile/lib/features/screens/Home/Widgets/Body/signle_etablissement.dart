@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:myevent/features/screens/Detail_page/detail_page.dart';
 
@@ -7,7 +9,7 @@ import '../../../../../constants/utils.dart';
 import '../../../../../models/etablissement.dart';
 
 class SingleEtb extends StatefulWidget {
-  final String place;
+  final List<double> place;
   const SingleEtb({
     Key? key,
     required this.place,
@@ -41,20 +43,13 @@ class _SingleEtbState extends State<SingleEtb> {
     return etbs == null
         ? const Text("hello")
         : Column(
-            // autogroupjfd7V1X (9zPr3Dncresfe4mcsNJfD7)
-
-            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
                 SizedBox(
-                    // listqMX (1:511)
-                    // margin:
-                    //     EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
-                    // width: double.infinity,
+                    
                     height: 300,
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       padding: const EdgeInsets.only(top: 15),
-                      // crossAxisAlignment: CrossAxisAlignment.center,
                       itemCount: etbs!.length,
                       itemBuilder: (context, index) {
                         final etb = etbs![index];
@@ -67,8 +62,6 @@ class _SingleEtbState extends State<SingleEtb> {
                             },
                             child: Column(children: [
                               SizedBox(
-                                // rectangle22469igD (1:512)
-                                // width: 86 * fem,
                                 height: 130,
                                 child: Padding(
                                   padding: const EdgeInsets.all(10),

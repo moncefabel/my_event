@@ -11,14 +11,15 @@ import 'package:provider/provider.dart';
 class HomeServices {
   Future<List<Etablissement>> fetchEtbsByPlace({
     required BuildContext context,
-    required String place
+    required List<double> place
   }) async {
     final customerProvider = Provider.of<CustomerProvider>(context, listen: false);
     List<Etablissement> etbsList = [];
-    
+    final lng = place[0];
+    final lat = place[1];
     try {
       http.Response res =
-          await http.get(Uri.parse('$uri/apiEtb/etbs?lieu=$place'),
+          await http.get(Uri.parse('$uri/apiEtb/etbs?lng=$lng&lat=$lat'),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
             'jwt': customerProvider.customer.token
@@ -40,8 +41,7 @@ class HomeServices {
           });
 
     }catch (e) {
-      print("hello");
-      // showSnackBar(context, e.toString());
+      print(e.toString());
     }
     return etbsList;
   }
