@@ -85,7 +85,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
     Uri uri = Uri.https("maps.googleapis.com",
         'maps/api/place/autocomplete/json', {"input": query, "key": apiKey});
     String? response = await NetworkService.fetchUrl(uri);
-
+    print(uri);
     if (response != null) {
       PlaceAutocompleteResponse result =
           PlaceAutocompleteResponse.parseAutoCompleteResult(response);
