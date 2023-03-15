@@ -1,14 +1,11 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myevent/models/etablissement.dart';
 
-
 class DetailPage extends StatefulWidget {
-  Etablissement ? establishment;
+  Etablissement? establishment;
   static const String routeName = '/DetailPage';
 
-  DetailPage({  this.establishment});
+  DetailPage({super.key, this.establishment});
 
   @override
   _DetailPageState createState() => _DetailPageState();
@@ -23,7 +20,7 @@ class _DetailPageState extends State<DetailPage> {
     });
 
     // Simulate submitting review to server
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     setState(() {
       _isLoading = false;
@@ -54,10 +51,10 @@ class _DetailPageState extends State<DetailPage> {
               },
             ),
           ),*/
-          _isLoading ? CircularProgressIndicator() : Container(),
+          _isLoading ? const CircularProgressIndicator() : Container(),
           ElevatedButton(
             onPressed: () => _submitReview('My review'),
-            child: Text('Submit Review'),
+            child: const Text('Submit Review'),
           ),
         ],
       ),

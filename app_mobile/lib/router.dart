@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:myevent/features/screens/Detail_page/detail_page.dart';
 import 'package:myevent/features/screens/Home/home.dart';
@@ -7,30 +6,24 @@ import 'package:myevent/features/screens/onboarding/onboarding.dart';
 
 import 'features/screens/Login/components/login_form.dart';
 
-Route<dynamic> ?generateRoute(RouteSettings routeSettings) {
+Route<dynamic>? generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
     case HomeScreen.routeName:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) => const  HomeScreen(),
+        builder: (_) => const HomeScreen(),
       );
     case LoginForm.routeName:
       return MaterialPageRoute(
-        settings: routeSettings,
-        builder: (_) => const LoginScreen()
-      );
+          settings: routeSettings, builder: (_) => const LoginScreen());
     case OnboardingScreen.routeName:
       return MaterialPageRoute(
-        settings: routeSettings,
-        builder: (_) => const OnboardingScreen()
-      );
-    
-    
-      case DetailPage.routeName:
-      return MaterialPageRoute(
-        settings: routeSettings,
-        builder: (_) => DetailPage(establishment:null)
-      );
-  }
-}
+          settings: routeSettings, builder: (_) => const OnboardingScreen());
 
+    case DetailPage.routeName:
+      return MaterialPageRoute(
+          settings: routeSettings,
+          builder: (_) => DetailPage(establishment: null));
+  }
+  return null;
+}

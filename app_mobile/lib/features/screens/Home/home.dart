@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'Widgets/FooterBar/navigation_bar.dart';
 
-
-
-
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
   const HomeScreen({Key? key}) : super(key: key);
@@ -28,9 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //     decoration: BoxDecoration(
     //       color: Color(0xfffefefe),
     //     ),
-        return Scaffold(
-          body: NavBar()         
-        );
+    return const Scaffold(body: NavBar());
     //   ),
     // );
   }
