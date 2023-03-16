@@ -10,7 +10,7 @@ router.get("/allEtb",etbController.getAllEtablissements)
 router.post("/add", etbController.addEtb)
 
 //Modifier les informations d'un établissement
-router.put("/update/:id", etbController.updateEtb)
+router.put("/update", etbController.updateEtb)
 
 //Supprimer un établissement
 router.post("/delete", etbController.deleteEtb)

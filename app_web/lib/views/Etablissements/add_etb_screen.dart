@@ -1,13 +1,15 @@
 // ignore_for_file: avoid_print, unused_field, prefer_const_constructors
 
-import 'dart:io';
-
 import 'package:app_web/Widgets/OnHoverButton.dart';
+import 'package:app_web/Widgets/location_list.dart';
 import 'package:app_web/features/proprio/services/proprio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../constants/utils.dart';
+import '../../constants/app_colors.dart';
+import '../../features/network_service.dart';
+import '../../models/auto_complete/auto_complete_predictions.dart';
+import '../../models/auto_complete/place_auto_complete_response.dart';
 
 class AddEtbScreen extends StatefulWidget {
   static const String routeName = '/add-etb';
@@ -27,9 +29,11 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
   final TextEditingController capaciteMinController = TextEditingController();
   final TextEditingController lieuController = TextEditingController();
 
-
   final ProprioService proprioService = ProprioService();
 
+  String _description = '';
+
+  List<AutoCompletePrediction> placePredictions = [];
   final List<XFile> _imageFiles = [];
   final ImagePicker imagePicker = ImagePicker();
 
@@ -79,6 +83,22 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
     }
   }
 
+  void placeAutoComplete(String query) async {
+    Uri uri = Uri.https("maps.googleapis.com",
+        'maps/api/place/autocomplete/json', {"input": query, "key": apiKey});
+    String? response = await NetworkService.fetchUrl(uri);
+    print(uri);
+    if (response != null) {
+      PlaceAutocompleteResponse result =
+          PlaceAutocompleteResponse.parseAutoCompleteResult(response);
+      if (result.predictions != null) {
+        setState(() {
+          placePredictions = result.predictions!;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,26 +117,28 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            width: 600,
-                          ),
                           Column(
                             children: [
                               Text('Nom du lieu'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(controller: nameEtbController),
                               ),
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Lieu'),
                               SizedBox(
-                                width: 200,
-                                child: TextField(controller: lieuController),
-                              ),
+                                  width: 500,
+                                  child: TextFormField(
+                                    onChanged: (value) {
+                                      placeAutoComplete(value);
+                                    },
+                                    controller: lieuController,
+                                    textInputAction: TextInputAction.search,
+                                  )),
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Capacite Maximale'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(
                                   controller: capaciteMaxController,
                                 ),
@@ -124,7 +146,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Capacite minimale'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(
                                   controller: capaciteMinController,
                                 ),
@@ -132,7 +154,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Heure d\'ouverture'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(
                                   controller: heureOController,
                                 ),
@@ -140,7 +162,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Heure de fermeture'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(
                                   controller: heureFController,
                                 ),
@@ -148,7 +170,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Prix'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(
                                   controller: priceController,
                                 ),
@@ -156,9 +178,31 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text('Type'),
                               SizedBox(
-                                width: 200,
+                                width: 500,
                                 child: TextField(
                                   controller: typeController,
+                                ),
+                              ),
+                              const Padding(padding: EdgeInsets.only(top: 10)),
+                              const Text('Description'),
+                              Container(
+                                padding: const EdgeInsets.all(8.0),
+                                width: 500,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  border: Border.all(color: Colors.grey),
+                                ),
+                                child: TextField(
+                                  decoration: const InputDecoration(
+                                    hintText: 'Type your description here',
+                                    border: InputBorder.none,
+                                  ),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _description = value;
+                                    });
+                                  },
+                                  maxLines: null,
                                 ),
                               ),
                             ],
@@ -170,6 +214,16 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                 ),
               ),
             ),
+            Expanded(
+                child: ListView.builder(
+                    itemCount: placePredictions.length,
+                    itemBuilder: (context, index) => LocationList(
+                          press: () {
+                            lieuController.text =
+                                placePredictions[index].description.toString();
+                          },
+                          location: placePredictions[index].description!,
+                        ))),
             Padding(padding: EdgeInsets.only(top: 30)),
             SizedBox(
               height: 50.0,

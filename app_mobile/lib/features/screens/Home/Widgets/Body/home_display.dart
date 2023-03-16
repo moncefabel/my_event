@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myevent/features/screens/Home/Widgets/Body/etablissemnt_page.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:myevent/features/screens/Home/Widgets/Header/header_section.dart';
 import '../Header/search_bar.dart';
 import 'signle_etablissement.dart';
@@ -16,9 +16,27 @@ class EtbDisplay extends StatefulWidget {
   State<EtbDisplay> createState() => _EtbDisplayState();
 }
 
-class _EtbDisplayState extends State<EtbDisplay>{
+class _EtbDisplayState extends State<EtbDisplay> {
+
+
+  Position? _currentPosition;
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+  }
+
+  _getCurrentLocation() async {
+      final position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      setState(() {
+        _currentPosition = position;
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     double baseWidth = 350;
     return Column(
         // margin: EdgeInsets.fromLTRB(2 * fem, 0 * fem, 0 * fem, 29 * fem),
@@ -35,5 +53,20 @@ class _EtbDisplayState extends State<EtbDisplay>{
               SingleEtb(place: 'Paris'),
               //SingleEtb(place: 'Paris',)
             ]);
+=======
+    return Scaffold(
+        body: SingleChildScrollView(
+            child: Column(children: [
+      const HeaderSection(),
+      const SizedBox(
+        width: 300,
+        height: 70,
+        child: SearchBar(),
+      ),
+      SingleEtb(
+        place:[_currentPosition!.longitude, _currentPosition!.latitude],
+      )
+    ])));
+>>>>>>> 3f1b94e99955ab3b4555978be27ce2593ed96a29
   }
 }

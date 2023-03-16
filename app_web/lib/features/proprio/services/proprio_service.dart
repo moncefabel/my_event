@@ -26,7 +26,7 @@ class ProprioService{
     required capaciteMin,
     required List<XFile> images,
     required nameEtb,
-    required prix
+    required prix,
   }) async{
     final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
 
@@ -61,7 +61,6 @@ class ProprioService{
         },
         body: newEtb.toJson(),
       );
-      print(res.body);
       httpErrorHandle(
         response: res,
         context: context,
@@ -138,5 +137,65 @@ class ProprioService{
         showSnackBar(context, e.toString());
       }
 
+  }
+
+  void updateEtb({
+    required BuildContext context,
+    required type, 
+    required lieu, 
+    required heureOuverture,
+    required heureFermeture,
+    required capaciteMax,
+    required capaciteMin,
+    required List<String> images,
+    required nameEtb,
+    required prix,
+    required id,
+    required userId
+
+  }) async{
+    final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
+
+    try{
+      final cloudinary = CloudinaryPublic("doruex4vc",'rja5gjzg');
+      List<String> imageUrls = [];
+
+      for (int i = 0; i < images.length; i++) {
+        CloudinaryResponse res = await cloudinary.uploadFile(
+          CloudinaryFile.fromFile(images[i], folder: nameEtb),
+        );
+        imageUrls.add(res.secureUrl);
+      }
+      
+      Etablissement newEtb = Etablissement(
+        id: id,
+        type: type, 
+        lieu: lieu, 
+        heureOuverture: heureOuverture, 
+        heureFermeture: heureFermeture, 
+        capaciteMax: capaciteMax, 
+        capaciteMin: capaciteMin, 
+        nameEtb: nameEtb,
+        images: imageUrls,
+        prix: prix,
+        userId: userId);
+      http.Response res = await http.put(
+        Uri.parse('$uri/apiEtb/update'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'jwt': proprioProvider.proprio.token,
+        },
+        body: newEtb.toJson(),
+      );
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+          showSnackBar(context, 'Etablissement modifié avec succés');
+        });
+      
+    }catch(e){
+      showSnackBar(context, e.toString());
+    }
   }
 }

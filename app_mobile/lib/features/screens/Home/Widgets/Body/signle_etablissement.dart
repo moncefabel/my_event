@@ -1,14 +1,15 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:myevent/features/screens/Detail_page/detail_page.dart';
 
 import 'package:myevent/features/screens/Home/home_services.dart';
-import 'package:myevent/features/screens/establishment-details.dart';
 
 import '../../../../../constants/utils.dart';
 import '../../../../../models/etablissement.dart';
 
 class SingleEtb extends StatefulWidget {
-  final String place;
+  final List<double> place;
   const SingleEtb({
     Key? key,
     required this.place,
@@ -30,7 +31,6 @@ class _SingleEtbState extends State<SingleEtb> {
   fetchEtbsByPlace() async {
     etbs = await homeService.fetchEtbsByPlace(
         context: context, place: widget.place);
-    print(etbs![0].nameEtb);
 
     setState(() {});
   }
@@ -43,11 +43,9 @@ class _SingleEtbState extends State<SingleEtb> {
     return etbs == null
         ? const Text("hello")
         : Column(
-            // autogroupjfd7V1X (9zPr3Dncresfe4mcsNJfD7)
-
-            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
                 SizedBox(
+<<<<<<< HEAD
                     // listqMX (1:511)
                     // margin:
                     //     EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
@@ -57,6 +55,13 @@ class _SingleEtbState extends State<SingleEtb> {
                       scrollDirection: Axis.vertical,
                       padding: const EdgeInsets.only(left :15),
                       // crossAxisAlignment: CrossAxisAlignment.center,
+=======
+                    
+                    height: 300,
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      padding: const EdgeInsets.only(top: 15),
+>>>>>>> 3f1b94e99955ab3b4555978be27ce2593ed96a29
                       itemCount: etbs!.length,
                       itemBuilder: (context, index) {
                         final etb = etbs![index];
@@ -70,8 +75,6 @@ class _SingleEtbState extends State<SingleEtb> {
                             },
                             child: Column(children: [
                               SizedBox(
-                                // rectangle22469igD (1:512)
-                                // width: 86 * fem,
                                 height: 130,
                                 child: Padding(
                                   padding: const EdgeInsets.all(10),

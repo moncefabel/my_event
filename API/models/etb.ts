@@ -10,9 +10,14 @@ const etbSchema = new mongooseEtb.Schema({
     images: [{type: String}],
     capaciteMax: {type:String},
     capaciteMin: {type:String},
+    location: {
+        type: {type: String},
+        coordinates: []
+    }
 
 })
 
 
+etbSchema.index({location:"2dsphere"})
 const etbModel = mongooseEtb.model("etablissements",etbSchema)
 module.exports = {Etb: etbModel}

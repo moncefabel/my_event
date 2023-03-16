@@ -7,11 +7,13 @@ import 'Widgets/Navigation_Drawer/navigation_drawer.dart';
 
 void main(List<String> args) {
   setupLocator();
-  runApp(MultiProvider (providers: [
-    ChangeNotifierProvider(create: (context) => ProprioProvider(),
-    ),
-  ],
-  child: const MyApp(),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => ProprioProvider(),
+      ),
+    ],
+    child: const MyApp(),
   ));
 }
 

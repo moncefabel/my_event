@@ -43,6 +43,9 @@ dependencies:
   image_picker: ^0.8.6+4
   cloudinary_public: ^0.20.0
   file_picker: ^5.2.5
+  type_ahead_text_field: ^0.0.2
+  flutter_typeahead: ^4.3.7
+  google_fonts: ^4.0.3
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../Services/navigation_service.dart';
 import '../../locator.dart';
@@ -17,9 +18,13 @@ class NavBarLogo extends StatelessWidget {
         locator<NavigationService>().navigateTo(navigationPath);
       },
       child: SizedBox(
-        height: 80,
-        width: 150,
-        child: Image.asset('assets/logo.png'),
+        
+        child: Text(
+          "MyEventPro",
+          style: GoogleFonts.lobster(
+            fontSize: 30.0,
+            color: Colors.white
+          )),
       ),
     );
   }

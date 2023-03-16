@@ -1,6 +1,7 @@
 import 'package:app_web/Widgets/signle_etb.dart';
 import 'package:app_web/features/proprio/services/proprio_service.dart';
 import 'package:app_web/views/Etablissements/add_etb_screen.dart';
+import 'package:app_web/views/Etablissements/modify_etb_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../Widgets/loader.dart';
@@ -28,15 +29,16 @@ class _EtbsScreenState extends State<EtbsScreen> {
     setState(() {});
   }
 
-  void deleteEtb(Etablissement etb, int index){
+  void deleteEtb(Etablissement etb, int index) {
     proprioService.deleteEtb(
-      context: context,
-      etb: etb,
-      onSuccess: () {
-        etablissements!.removeAt(index);
-        setState(() {});
-      });
+        context: context,
+        etb: etb,
+        onSuccess: () {
+          etablissements!.removeAt(index);
+          setState(() {});
+        });
   }
+
   void navigateToAddEtb() {
     Navigator.pushNamed(context, AddEtbScreen.routeName);
   }
@@ -46,43 +48,52 @@ class _EtbsScreenState extends State<EtbsScreen> {
     return etablissements == null
         ? const Loader()
         : Scaffold(
-            body: GridView.builder(
-              itemCount: etablissements!.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              itemBuilder: (context, index){
-                final etbsData = etablissements![index];
-                return Column(
-                  children: [
-                    SizedBox(
-                      height:140,
-                      child: SingleEtb(
-                        image:etbsData.images[0]
+            body: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: ListView.builder(
+                itemCount: etablissements!.length,
+                itemBuilder: (context, index) {
+                  final etbsData = etablissements![index];
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 200,
+                        width: 300,
+                        child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ModifyEtbScreen(etb: etbsData)),
+                              );
+                            },
+                            child: SingleEtb(image: etbsData.images[0])),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            etbsData.nameEtb,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                        ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            deleteEtb(etbsData, index);
-                          },
-                          icon: const Icon(
-                            Icons.delete_outline,
-                          ))
-                      ],
-                    )
-                  ],
-                );
-              },
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              etbsData.nameEtb,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                deleteEtb(etbsData, index);
+                              },
+                              icon: const Icon(
+                                Icons.delete_outline,
+                              ))
+                        ],
+                      )
+                    ],
+                  );
+                },
+              ),
             ),
-                
             floatingActionButton: FloatingActionButton(
               onPressed: navigateToAddEtb,
               tooltip: 'Add a Product',

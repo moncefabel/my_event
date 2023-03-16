@@ -1,17 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:myevent/constants/utils.dart';
-import 'package:myevent/features/screens/Home/Widgets/FooterBar/navigation_bar.dart';
-import 'package:myevent/features/screens/Home/Widgets/Body/home_display.dart';
-import 'package:myevent/features/screens/onboarding/onboarding.dart';
-import 'package:provider/provider.dart';
 
-import '../../../provider/customer_provider.dart';
-import 'Widgets/Body/etablissemnt_page.dart';
-import 'Widgets/Header/header_section.dart';
-import 'Widgets/Header/search_bar.dart';
+import 'Widgets/FooterBar/navigation_bar.dart';
+
 
 
 
@@ -39,7 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
     //       color: Color(0xfffefefe),
     //     ),
         return Scaffold(
+<<<<<<< HEAD
          // debugShowCheckedModeBanner: false,
+=======
+>>>>>>> 3f1b94e99955ab3b4555978be27ce2593ed96a29
           body: NavBar()         
         );
     //   ),
