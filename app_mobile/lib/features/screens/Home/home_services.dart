@@ -19,11 +19,7 @@ class HomeServices {
     final lat = place[1];
     try {
       http.Response res =
-<<<<<<< HEAD
-          await http.get(Uri.parse('$uri/apiEtb/etbs?lieu=$place'),
-=======
           await http.get(Uri.parse('$uri/apiEtb/etbs?lng=$lng&lat=$lat'),
->>>>>>> 3f1b94e99955ab3b4555978be27ce2593ed96a29
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
             'jwt': customerProvider.customer.token

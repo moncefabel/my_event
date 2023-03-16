@@ -45,23 +45,11 @@ class _SingleEtbState extends State<SingleEtb> {
         : Column(
             children: [
                 SizedBox(
-<<<<<<< HEAD
-                    // listqMX (1:511)
-                    // margin:
-                    //     EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
-                    // width: double.infinity,
-                    height: 600,
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      padding: const EdgeInsets.only(left :15),
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-=======
                     
                     height: 300,
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       padding: const EdgeInsets.only(top: 15),
->>>>>>> 3f1b94e99955ab3b4555978be27ce2593ed96a29
                       itemCount: etbs!.length,
                       itemBuilder: (context, index) {
                         final etb = etbs![index];

@@ -36,24 +36,6 @@ class _EtbDisplayState extends State<EtbDisplay> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    double baseWidth = 350;
-    return Column(
-        // margin: EdgeInsets.fromLTRB(2 * fem, 0 * fem, 0 * fem, 29 * fem),
-        // width: 328 * fem,
-        // child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children:  const [
-              HeaderSection(),
-              SizedBox(
-                width: 350,
-                height: 70,
-                child: SearchBar(),
-              ),
-              SingleEtb(place: 'Paris'),
-              //SingleEtb(place: 'Paris',)
-            ]);
-=======
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(children: [
@@ -67,6 +49,5 @@ class _EtbDisplayState extends State<EtbDisplay> {
         place:[_currentPosition!.longitude, _currentPosition!.latitude],
       )
     ])));
->>>>>>> 3f1b94e99955ab3b4555978be27ce2593ed96a29
   }
 }

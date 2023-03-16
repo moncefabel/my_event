@@ -29,10 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
     //       color: Color(0xfffefefe),
     //     ),
         return Scaffold(
-<<<<<<< HEAD
-         // debugShowCheckedModeBanner: false,
-=======
->>>>>>> 3f1b94e99955ab3b4555978be27ce2593ed96a29
           body: NavBar()         
         );
     //   ),
