@@ -8,8 +8,8 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../constants/app_colors.dart';
 import '../../features/network_service.dart';
-import '../../models/auto_complete_predictions.dart';
-import '../../models/place_auto_complete_response.dart';
+import '../../models/auto_complete/auto_complete_predictions.dart';
+import '../../models/auto_complete/place_auto_complete_response.dart';
 
 class AddEtbScreen extends StatefulWidget {
   static const String routeName = '/add-etb';
@@ -87,7 +87,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
     Uri uri = Uri.https("maps.googleapis.com",
         'maps/api/place/autocomplete/json', {"input": query, "key": apiKey});
     String? response = await NetworkService.fetchUrl(uri);
-
+    print(uri);
     if (response != null) {
       PlaceAutocompleteResponse result =
           PlaceAutocompleteResponse.parseAutoCompleteResult(response);

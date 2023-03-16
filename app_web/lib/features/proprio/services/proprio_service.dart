@@ -26,7 +26,7 @@ class ProprioService{
     required capaciteMin,
     required List<XFile> images,
     required nameEtb,
-    required prix
+    required prix,
   }) async{
     final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
 

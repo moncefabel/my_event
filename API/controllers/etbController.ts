@@ -1,6 +1,7 @@
+import axios from "axios"
+
 const mongoose = require('mongoose')
 const {Etb} = require('../models/etb')
-const ObjectId = require('mongoose').Types.ObjectId
 
 const getAllEtablissements =  async (req,res) => {
     try{
@@ -13,10 +14,21 @@ const getAllEtablissements =  async (req,res) => {
     }   
 }
 
-const addEtb = async(req, res) => {
 
-    
+const addEtb = async(req, res) => {
+ 
     try{
+        let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+                params:{
+                    address: req.body.lieu,
+                    key: "AIzaSyAcIHoIJDQJ3TEZe3v13783jsDTxLpD6Gs"
+                }
+            }
+        )
+        let lat = response.data.results[0].geometry.location.lat;
+        let long = response.data.results[0].geometry.location.lng;
+
+        
         
         const newEtb = await Etb.create({
             nomEtablissement: req.body.nameEtb,
@@ -28,7 +40,11 @@ const addEtb = async(req, res) => {
             userId: req.body.userId,
             images: req.body.images,
             capaciteMax: req.body.capaciteMax,
-            capaciteMin: req.body.capaciteMin
+            capaciteMin: req.body.capaciteMin,
+            location: {
+                type:"Point",
+                coordinates:[long,lat]
+            }
         })
         
         await newEtb.save()
@@ -84,7 +100,18 @@ const getEtbByPlace = async(req,res) => {
 
     
     try{
-        const etbs = await Etb.find({lieu: req.query.lieu})
+        console.log(req.query.lng, req.query.lat);
+        const etbs = await Etb.find({
+            location:
+            {
+                $near:
+                {
+                    $geometry: {type: "Point", coordinates: [req.query.lng, req.query.lat]},
+                    $maxDistance: 5000,
+
+                },
+            },
+        })
         res.json(etbs)
     }catch(error:any){
         res.status(500).json({error: error.message})
@@ -92,10 +119,6 @@ const getEtbByPlace = async(req,res) => {
 }
 
 
-// function checkingValidId(req, res){
-//     if(!ObjectId.isValid(req.params.id))
-//         res.status(400).send("ID unknown")
-// }
 
 export = {
     getAllEtablissements,

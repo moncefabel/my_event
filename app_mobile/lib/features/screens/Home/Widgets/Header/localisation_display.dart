@@ -35,7 +35,7 @@ class _LocalisationDisplayState extends State<LocalisationDisplay> {
     try {
       List<Placemark> placemarks = await placemarkFromCoordinates(
           _currentPosition!.latitude, _currentPosition!.longitude);
-      if (placemarks != null && placemarks.isNotEmpty) {
+      if (placemarks!=null && placemarks.isNotEmpty) {
         Placemark placemark = placemarks[0];
         setState(() {
           _currentAddress =
@@ -43,7 +43,7 @@ class _LocalisationDisplayState extends State<LocalisationDisplay> {
         });
       }
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 

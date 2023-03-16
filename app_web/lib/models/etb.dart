@@ -24,7 +24,7 @@ class Etablissement{
     required this.capaciteMin,
     required this.nameEtb,
     required this.images,
-    required this.prix
+    required this.prix,
   });
 
   Map<String, dynamic> toMap() {
@@ -40,7 +40,7 @@ class Etablissement{
         'capaciteMin': capaciteMin,
         'nameEtb': nameEtb,
         'images': images,
-        'prix': prix
+        'prix': prix,
       };
     }
   factory Etablissement.fromMap(Map<String, dynamic> map){
