@@ -10,7 +10,7 @@ import 'features/screens/Login/components/login_form.dart';
 import 'features/screens/establishment-details.dart';
 
 Route<dynamic> ?generateRoute(RouteSettings routeSettings) {
-  
+ 
   switch (routeSettings.name) {
     case HomeScreen.routeName:
       return MaterialPageRoute(
@@ -27,12 +27,14 @@ Route<dynamic> ?generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => const OnboardingScreen()
       );
-    
-      /*case DetailPage.routeName:
+        
+      case DetailPage.routeName:
+       var etb=routeSettings.arguments as Etablissement;
       return MaterialPageRoute(
+        
         settings: routeSettings,
-        builder: (_) => DetailPage(establishment:null)
-      );*/
+        builder: (_) => DetailPage(establishment:etb)
+      );
     case Scene.routeName:
         return MaterialPageRoute(
         settings: routeSettings,

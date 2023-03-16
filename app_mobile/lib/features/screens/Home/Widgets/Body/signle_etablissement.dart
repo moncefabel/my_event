@@ -64,7 +64,8 @@ class _SingleEtbState extends State<SingleEtb> {
                             onTap: () {
                               Navigator.pushNamed(
                                 context,
-                                Scene.routeName,
+                                DetailPage.routeName,
+                                arguments: etb,
                               );
                             },
                             child: Column(children: [

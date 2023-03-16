@@ -90,5 +90,5 @@ void showSnackBar(BuildContext context, String text){
     SnackBar(content: Text(text))
   );
 }
-String uri = 'http://10.188.255.102:5000'; 
+String uri = 'http://10.10.30.200:5000'; 
 const String Apikey="";
