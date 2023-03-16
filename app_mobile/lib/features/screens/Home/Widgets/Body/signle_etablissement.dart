@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:myevent/features/screens/Detail_page/detail_page.dart';
@@ -9,7 +8,7 @@ import '../../../../../constants/utils.dart';
 import '../../../../../models/etablissement.dart';
 
 class SingleEtb extends StatefulWidget {
-  final List<double> place;
+  final List<double>? place;
   const SingleEtb({
     Key? key,
     required this.place,
@@ -30,7 +29,7 @@ class _SingleEtbState extends State<SingleEtb> {
 
   fetchEtbsByPlace() async {
     etbs = await homeService.fetchEtbsByPlace(
-        context: context, place: widget.place);
+        context: context, place: widget.place!);
 
     setState(() {});
   }
@@ -41,7 +40,7 @@ class _SingleEtbState extends State<SingleEtb> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return etbs == null
-        ? const Text("hello")
+        ? const Text("No establishments near to your lcoation")
         : Column(
             children: [
                 SizedBox(

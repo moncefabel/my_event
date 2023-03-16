@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:myevent/features/screens/Home/Widgets/Header/header_section.dart';
+import 'package:myevent/features/screens/Home/Widgets/Header/localisation_display.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../Header/search_bar.dart';
 import 'signle_etablissement.dart';
 import 'package:flutter/rendering.dart';
@@ -27,11 +30,14 @@ class _EtbDisplayState extends State<EtbDisplay> {
   }
 
   _getCurrentLocation() async {
+    var permissionStatus = await Permission.locationWhenInUse.request();
+    if (permissionStatus == PermissionStatus.granted) {
       final position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
       setState(() {
         _currentPosition = position;
       });
+    }
   }
 
   @override
@@ -39,15 +45,26 @@ class _EtbDisplayState extends State<EtbDisplay> {
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(children: [
-      const HeaderSection(),
+      _currentPosition == null 
+      ?  
+        Text("Welcome",
+              style: GoogleFonts.lobster(
+            fontSize: 30.0,
+            color: Colors.black
+          ))
+            
+      : HeaderSection(currentPosition: _currentPosition!,),
       const SizedBox(
         width: 300,
         height: 70,
         child: SearchBar(),
       ),
-      SingleEtb(
+      _currentPosition == null 
+      ? const CircularProgressIndicator()
+      : SingleEtb(
         place:[_currentPosition!.longitude, _currentPosition!.latitude],
       )
+     
     ])));
   }
 }

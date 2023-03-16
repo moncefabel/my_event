@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator_platform_interface/src/models/position.dart';
 
 
 import 'localisation_display.dart';
 import 'profil_image.dart';
-class HeaderSection extends StatelessWidget {
-  const HeaderSection({super.key});
+
+class HeaderSection extends StatefulWidget {
+  const HeaderSection({super.key, required this.currentPosition});
+  final Position currentPosition;
+  @override
+  State<HeaderSection> createState() => _HeaderSectionState();
+}
+
+class _HeaderSectionState extends State<HeaderSection>  {
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +36,10 @@ class HeaderSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const ProfilImage(),
-                        LocalisationDisplay()
+                        LocalisationDisplay(currentPosition: widget.currentPosition)
                       ],
                     ),
                   ),
-                  // ******* Widget notification ***********
-                  // Container(
-                  //   // actionJgd (1:384)
-                  //   width: 46 * fem,
-                  //   height: 46 * fem,
-                  //   child: IconButton(
-                  //     icon: const Icon(
-                  //       Icons.notification_add
-                  //     ),
-                  //     onPressed: () {
-                  //       // Handle button press
-                  //     },
-                  //   ),
-                  // ),
                   SizedBox(
                     // actionJgd (1:384)
                     width: 45*fem,
