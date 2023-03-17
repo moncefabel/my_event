@@ -4,6 +4,7 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/heroicons_solid.dart';
 import 'package:iconify_flutter/icons/ri.dart';
 import 'package:the_basics/color_palette.dart';
+import 'package:the_basics/screens/item_details.dart';
 
 import 'models/location_item.dart';
 import 'widgets/search_bar.dart';
@@ -329,7 +330,10 @@ class _DashboardPageState extends State<DashboardPage> {
     return Padding(
       padding: EdgeInsets.only(left: 10.0, right: 10.0),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => ItemDetails(lItem: lItem)));
+        },
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
