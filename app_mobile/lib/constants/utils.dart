@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
@@ -81,14 +80,14 @@ TextStyle SafeGoogleFont(
     );
   }
 }
-const kPrimaryColor =  Color(0xff4c9fc1);
+
+const kPrimaryColor = Color(0xff4c9fc1);
 const kPrimaryLightColor = Color(0xFFF1E6FF);
 
 const double defaultPadding = 16.0;
-void showSnackBar(BuildContext context, String text){
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text(text))
-  );
+void showSnackBar(BuildContext context, String text) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
 }
-String uri = 'http://192.168.1.56:5000'; 
-const String Apikey="";
+
+String uri = 'http://172.27.240.1:5000';
+const String Apikey = "";
