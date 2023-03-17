@@ -34,14 +34,11 @@ class _SingleEtbState extends State<SingleEtb> {
 
   @override
   Widget build(BuildContext context) {
-    double baseWidth = 375;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
-    double ffem = fem * 0.97;
     return etbs == null
         ? const Text("No establishments near to your lcoation")
         : Column(children: [
             SizedBox(
-                height: 300,
+                height: 800,
                 child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,

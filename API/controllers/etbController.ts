@@ -100,7 +100,6 @@ const getEtbByPlace = async(req,res) => {
 
     
     try{
-        console.log(req.query.lng, req.query.lat);
         const etbs = await Etb.find({
             location:
             {
