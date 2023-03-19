@@ -4,6 +4,7 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/heroicons_solid.dart';
 import 'package:iconify_flutter/icons/ri.dart';
 import 'package:the_basics/color_palette.dart';
+import 'package:the_basics/screens/historic_buy_page.dart';
 import 'package:the_basics/screens/item_details.dart';
 
 import 'models/location_item.dart';
@@ -290,11 +291,17 @@ class _DashboardPageState extends State<DashboardPage> {
               color: Color(0xFFD17742),
             ),
           ),
-          Container(
-              child: Iconify(
-            Ri.handbag_fill,
-            color: Color(0xFF4E4F53),
-          )),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => HistoricBuyPage()));
+            },
+            child: Container(
+                child: Iconify(
+              Ri.handbag_fill,
+              color: Color(0xFF4E4F53),
+            )),
+          ),
           Container(
             child: Iconify(
               Ri.heart_2_fill,
