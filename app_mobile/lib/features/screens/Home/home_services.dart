@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:myevent/constants/error_handling.dart';
 import 'package:myevent/constants/utils.dart';
 import 'package:myevent/models/etablissement.dart';
@@ -11,12 +12,12 @@ import 'package:provider/provider.dart';
 class HomeServices {
   Future<List<Etablissement>> fetchEtbsByPlace({
     required BuildContext context,
-    required List<double> place
+    required Position place
   }) async {
     final customerProvider = Provider.of<CustomerProvider>(context, listen: false);
     List<Etablissement> etbsList = [];
-    final lng = place[0];
-    final lat = place[1];
+    final lng = place.longitude;
+    final lat = place.latitude;
     try {
       http.Response res =
           await http.get(Uri.parse('$uri/apiEtb/etbs?lng=$lng&lat=$lat'),

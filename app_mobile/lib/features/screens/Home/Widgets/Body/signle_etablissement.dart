@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:myevent/features/screens/Detail_page/detail_page.dart';
 
 import 'package:myevent/features/screens/Home/home_services.dart';
@@ -6,7 +7,7 @@ import 'package:myevent/features/screens/Home/home_services.dart';
 import '../../../../../models/etablissement.dart';
 
 class SingleEtb extends StatefulWidget {
-  final List<double>? place;
+  final Position place;
   const SingleEtb({
     Key? key,
     required this.place,
@@ -27,7 +28,7 @@ class _SingleEtbState extends State<SingleEtb> {
 
   fetchEtbsByPlace() async {
     etbs = await homeService.fetchEtbsByPlace(
-        context: context, place: widget.place!);
+        context: context, place: widget.place);
 
     setState(() {});
   }
