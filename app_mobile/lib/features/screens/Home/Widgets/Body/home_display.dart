@@ -62,7 +62,7 @@ class _EtbDisplayState extends State<EtbDisplay> {
       _currentPosition == null 
       ? const CircularProgressIndicator()
       : SingleEtb(
-        place:[_currentPosition!.longitude, _currentPosition!.latitude],
+        place: _currentPosition!
       )
      
     ])));
