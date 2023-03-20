@@ -4,6 +4,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/heroicons_solid.dart';
 import 'package:iconify_flutter/icons/ri.dart';
+import 'package:myevent/features/screens/Login/login_view.dart';
+import 'package:myevent/provider/customer_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Historic/historic_buy_page.dart';
 
@@ -28,7 +31,7 @@ class BottomBar extends StatelessWidget {
          GestureDetector(
             onTap: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => HistoricBuyPage()));
+                  MaterialPageRoute(builder: (context) => const LoginView()));
             },
             child: Container(
                 child: Iconify(

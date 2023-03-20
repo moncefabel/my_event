@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:myevent/features/screens/Params/log_out_button.dart';
+
+import '../../auth/services/auth_service.dart';
+
 class HistoricBuyPage extends StatefulWidget {
   const HistoricBuyPage({super.key});
 
@@ -46,7 +50,14 @@ class _HistoricBuyPageState extends State<HistoricBuyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Buy History'),
+        title: const Text('Buy History'),
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                AuthService().logOut(context);
+              },
+              icon: const Icon(Icons.logout))
+        ],
       ),
       body: buildHistoricBuyList(),
     );
