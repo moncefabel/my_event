@@ -4,15 +4,12 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../../../constants/color_palette.dart';
 import '../../../models/etablissement.dart';
-import 'Widgets/FooterBar/navigation_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/heroicons_solid.dart';
 import 'package:iconify_flutter/icons/ri.dart';
 
 import 'home_services.dart';
-
-
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -23,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-    final List<String> locationTypes = [
+  final List<String> locationTypes = [
     'Appartment',
     'Bar',
     'Restaurant',
@@ -55,15 +52,15 @@ class _HomeScreenState extends State<HomeScreen> {
       fetchEtbsByPlace();
     }
   }
+
   fetchEtbsByPlace() async {
-    if(_currentPosition != null){
+    if (_currentPosition != null) {
       etbs = await homeService.fetchEtbsByPlace(
           context: context, place: _currentPosition!);
     }
 
     setState(() {});
   }
-  
 
   String selectedItem = 'Appartment';
   int counter = -1;
@@ -78,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 5.0),
+              padding: const EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 5.0),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -87,14 +84,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         //todo
                       },
                       child: Container(
-                        padding: EdgeInsets.all(7.0),
+                        padding: const EdgeInsets.all(7.0),
                         height: 42.0,
                         width: 42.0,
                         decoration: BoxDecoration(
-                          color: Color(0xFF1F242C),
+                          color: const Color(0xFF1F242C),
                           borderRadius: BorderRadius.circular(12.0),
                         ),
-                        child: Iconify(HeroiconsSolid.view_grid,
+                        child: const Iconify(HeroiconsSolid.view_grid,
                             size: 12.0, color: Color(0xFF4D4F52)),
                       ),
                     ),
@@ -103,11 +100,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         //todo
                       },
                       child: Container(
-                        padding: EdgeInsets.all(7.0),
+                        padding: const EdgeInsets.all(7.0),
                         height: 42.0,
                         width: 42.0,
                         decoration: BoxDecoration(
-                          image: DecorationImage(
+                          image: const DecorationImage(
                               image: AssetImage('assets/images/1.jfif'),
                               fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(12.0),
@@ -117,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ]),
             ),
             Container(
-              padding: EdgeInsets.only(left: 15.0, top: 15.0),
+              padding: const EdgeInsets.only(left: 15.0, top: 15.0),
               width: (MediaQuery.of(context).size.width / 3) * 2 + 25.0,
               child: Text(
                 'Find the perfect spot for you',
@@ -127,15 +124,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 40.0),
               ),
             ),
-            SizedBox(height: 20.0),
-            SizedBox(
+            const SizedBox(height: 20.0),
+            const SizedBox(
               height: 20.0,
             ),
             Padding(
-              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
+              padding:
+                  const EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
               child: ShaderMask(
                 shaderCallback: ((Rect bounds) {
-                  return LinearGradient(
+                  return const LinearGradient(
                           begin: Alignment(0.7, -1.0),
                           end: Alignment(1.0, -1.0),
                           colors: <Color>[Colors.black, Colors.transparent])
@@ -143,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 }),
                 blendMode: BlendMode.dstATop,
                 child: Container(
-                  color: Color(0xFF0D0F14),
+                  color: const Color(0xFF0D0F14),
                   width: MediaQuery.of(context).size.width - 20.0,
                   height: 40.0,
                   child: ListView(
@@ -163,33 +161,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               height: (MediaQuery.of(context).size.height / 2) - 50.0,
               width: MediaQuery.of(context).size.width,
               child: ListView(
-                padding: EdgeInsets.only(top: 5.0),
+                padding: const EdgeInsets.only(top: 5.0),
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                     child: Container(
-                      color: Color(0xFF0D0F14),
+                      color: const Color(0xFF0D0F14),
                       width: MediaQuery.of(context).size.width - 10.0,
                       height: 255.0,
                       child: etbs == null
-                        ? const CircularProgressIndicator()
-                        : ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          ...etbs!.map((e) {
-                            return _buildLocationItem(e);
-                          }).toList()
-                        ],
-                      ),
+                          ? const CircularProgressIndicator()
+                          : ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                ...etbs!.map((e) {
+                                  return _buildLocationItem(e);
+                                }).toList()
+                              ],
+                            ),
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0),
+                    padding: const EdgeInsets.only(
+                        left: 15.0, right: 15.0, top: 10.0),
                     child: Text(
                       'Locations you must try',
                       style: GoogleFonts.sourceSansPro(
@@ -199,10 +197,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0),
+                    padding: const EdgeInsets.only(
+                        left: 15.0, right: 15.0, top: 10.0),
                     child: Container(
-                      padding: EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(10.0),
                       height: 125.0,
                       width: MediaQuery.of(context).size.width - 20.0,
                       decoration: BoxDecoration(
@@ -222,15 +220,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 125.0,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                     image: AssetImage('assets/images/4.jfif'),
                                     fit: BoxFit.cover)),
                           ),
-                          Container(
+                          SizedBox(
                             height: 115.0,
                             child: Column(
                               children: [
-                                Container(
+                                SizedBox(
                                   height: 100.0,
                                   width:
                                       MediaQuery.of(context).size.width - 185.0,
@@ -259,11 +257,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildTypes(location, counter) {
     return Padding(
       padding: counter != 0
-          ? EdgeInsets.only(left: 25.0)
-          : EdgeInsets.only(left: 7.0),
+          ? const EdgeInsets.only(left: 25.0)
+          : const EdgeInsets.only(left: 7.0),
       child: Container(
         height: 50.0,
-        color: Color(0xFF0D0F14),
+        color: const Color(0xFF0D0F14),
         child: Column(
           children: [
             GestureDetector(
@@ -282,7 +280,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 17.0),
               ),
             ),
-            SizedBox(height: 4.0),
+            const SizedBox(height: 4.0),
             Container(
               height: 8.0,
               width: 8.0,
@@ -300,25 +298,25 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildBottomBar() {
     return Container(
-      padding: EdgeInsets.only(left: 25.0, right: 25.0),
+      padding: const EdgeInsets.only(left: 25.0, right: 25.0),
       height: 50.0,
-      decoration: BoxDecoration(color: Color(0xFF1A1819)),
+      decoration: const BoxDecoration(color: Color(0xFF1A1819)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            child: Iconify(
+            child: const Iconify(
               Ri.home_fill,
               color: Color(0xFFD17742),
             ),
           ),
           Container(
-              child: Iconify(
+              child: const Iconify(
             Ri.handbag_fill,
             color: Color(0xFF4E4F53),
           )),
           Container(
-            child: Iconify(
+            child: const Iconify(
               Ri.heart_2_fill,
               color: Color(0xFF4E4F53),
             ),
@@ -326,7 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             child: Stack(
               children: [
-                Iconify(
+                const Iconify(
                   HeroiconsSolid.bell,
                   color: Color(0xFF4E4F53),
                 ),
@@ -350,7 +348,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildLocationItem(Etablissement lItem) {
     return Padding(
-      padding: EdgeInsets.only(left: 10.0, right: 10.0),
+      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
       child: GestureDetector(
         onTap: () {
           // Navigator.of(context).push(MaterialPageRoute(
@@ -371,7 +369,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 height: 140.0,
                 width: 150.0,
                 child: Stack(
@@ -381,14 +379,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       left: 10.0,
                       child: Hero(
                         tag: lItem.images[0].toString(),
-                        child: Container(
+                        child: SizedBox(
                           height: 120.0,
                           width: 130.0,
                           child: Image.network(
-                                lItem.images[0],
-                                fit: BoxFit.cover,
-                              ),
-                              
+                            lItem.images[0],
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
@@ -399,8 +396,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 25.0,
                         width: 45.0,
                         decoration: BoxDecoration(
-                            color: Color(0xFF342520).withOpacity(0.7),
-                            borderRadius: BorderRadius.only(
+                            color: const Color(0xFF342520).withOpacity(0.7),
+                            borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(15.0),
                               bottomLeft: Radius.circular(15.0),
                             )),
@@ -427,7 +424,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10.0),
+                padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
                   lItem.nameEtb,
                   style: GoogleFonts.sourceSansPro(
@@ -435,7 +432,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10.0, bottom: 5.0),
+                padding: const EdgeInsets.only(left: 10.0, bottom: 5.0),
                 child: Text(
                   lItem.lieu,
                   style: GoogleFonts.sourceSansPro(
@@ -445,11 +442,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         height: 40.0,
                         width: 60.0,
                         child: Row(
@@ -477,7 +474,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           decoration: BoxDecoration(
                               color: ColorPalette().lcoationSelected,
                               borderRadius: BorderRadius.circular(10.0)),
-                          child: Center(
+                          child: const Center(
                             child: Icon(
                               Icons.add,
                               size: 11.0,
@@ -495,4 +492,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

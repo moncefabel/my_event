@@ -2,9 +2,6 @@ import 'dart:convert';
 
 import 'package:myevent/constants/error_handling.dart';
 import 'package:myevent/constants/utils.dart';
-import 'package:myevent/features/screens/Home/Widgets/Body/home_display.dart';
-import 'package:myevent/features/screens/Home/Widgets/FooterBar/navigation_bar.dart';
-import 'package:myevent/features/screens/Home/home.dart';
 import 'package:myevent/features/screens/Params/log_out_button.dart';
 
 import 'package:myevent/models/customer.dart';
@@ -13,8 +10,6 @@ import 'package:http/http.dart' as http;
 import 'package:myevent/provider/customer_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../screens/onboarding/onboarding.dart';
 
 class AuthService {
   void signUpUser(
@@ -51,39 +46,32 @@ class AuthService {
     }
   }
 
-  void signInUser(
-      {required BuildContext context,
-      required String email,
-      required String password,
-      }) async {
+  void signInUser({
+    required BuildContext context,
+    required String email,
+    required String password,
+  }) async {
     try {
-
       http.Response res = await http.post(Uri.parse('$uri/apiClient/signIn'),
-          body: jsonEncode(
-            {
-              'email': email,
-              'password': password
-            }
-          ),
+          body: jsonEncode({'email': email, 'password': password}),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
           });
-          
+
       httpErrorHandle(
-        response: res,
-        context: context,
-        onSuccess: () async {
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setString("jwt", jsonDecode(res.body)['token']);
-          Navigator.pushAndRemoveUntil(
+          response: res,
+          context: context,
+          onSuccess: () async {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.setString("jwt", jsonDecode(res.body)['token']);
+            Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder:(_) => LogOutButton(),
+                builder: (_) => const LogOutButton(),
               ),
               (route) => false,
             );
-        }
-      );
+          });
     } catch (e) {
       showSnackBar(context, e.toString());
     }
@@ -97,19 +85,19 @@ class AuthService {
 
       String? token = prefs.getString('jwt');
 
-      if(token == null){
+      if (token == null) {
         prefs.setString('jwt', '');
       }
       var tokenRes = await http.post(
         Uri.parse('$uri/clientId'),
         headers: <String, String>{
-            'Content-type': 'application/json; charset=UTF-8',
-            'jwt': token!
+          'Content-type': 'application/json; charset=UTF-8',
+          'jwt': token!
         },
       );
 
       var response = jsonDecode(tokenRes.body);
-      if(response == true ){
+      if (response == true) {
         http.Response userRes = await http.get(
           Uri.parse('$uri/'),
           headers: <String, String>{
@@ -117,7 +105,8 @@ class AuthService {
             'jwt': token
           },
         );
-        var userProvider = Provider.of<CustomerProvider>(context,listen: false);
+        var userProvider =
+            Provider.of<CustomerProvider>(context, listen: false);
         userProvider.setCustomer(userRes.body);
       }
     } catch (e) {
@@ -126,10 +115,11 @@ class AuthService {
   }
 
   void logOut(BuildContext context) async {
-    try{
-      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
       await sharedPreferences.setString("jwt", '');
-    }catch(e){
+    } catch (e) {
       // showSnackBar(context, e.toString());
     }
   }
