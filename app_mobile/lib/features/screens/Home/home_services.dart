@@ -18,6 +18,7 @@ class HomeServices {
     List<Etablissement> etbsList = [];
     final lng = place.longitude;
     final lat = place.latitude;
+    print('$uri/apiEtb/etbs?lng=$lng&lat=$lat');
     try {
       http.Response res =
           await http.get(Uri.parse('$uri/apiEtb/etbs?lng=$lng&lat=$lat'),
@@ -25,6 +26,7 @@ class HomeServices {
             'Content-type': 'application/json; charset=UTF-8',
             'jwt': customerProvider.customer.token
         },);
+        
         // ignore: use_build_context_synchronously
         httpErrorHandle(
           response: res,
