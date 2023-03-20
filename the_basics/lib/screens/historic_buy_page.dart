@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:the_basics/color_palette.dart';
 
 class HistoricBuyPage extends StatefulWidget {
   const HistoricBuyPage({super.key});
@@ -34,11 +36,48 @@ class _HistoricBuyPageState extends State<HistoricBuyPage> {
         Map<String, dynamic> data = historicBuyData[index];
         String formattedDate = DateFormat.yMMMd().format(data['date']);
         String formattedPrice = '\$${data['price'].toStringAsFixed(2)}';
-        return ListTile(
-          leading: Icon(Icons.shopping_bag),
-          title: Text(data['item']),
-          subtitle: Text('$formattedDate - $formattedPrice'),
-        );
+        return Padding(
+            padding: EdgeInsets.only(
+                left: 25.0, right: 25.0, top: 10.0, bottom: 10.0),
+            child: GestureDetector(
+              onTap: () {},
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: <Color>[
+                          ColorPalette().gradientTopLeft,
+                          Colors.black54
+                        ])),
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: Icon(
+                        Icons.shopping_bag,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        data['item'],
+                        style: GoogleFonts.sourceSansPro(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.white),
+                      ),
+                      subtitle: Text(
+                        '$formattedDate - $formattedPrice',
+                        style: GoogleFonts.sourceSansPro(
+                            fontSize: 14, color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    )
+                  ],
+                ),
+              ),
+            ));
       },
     );
   }
@@ -46,8 +85,10 @@ class _HistoricBuyPageState extends State<HistoricBuyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorPalette().scaffoldBg,
       appBar: AppBar(
-        title: Text('Buy History'),
+        backgroundColor: ColorPalette().scaffoldBg,
+        title: Text('History'),
       ),
       body: buildHistoricBuyList(),
     );
