@@ -5,11 +5,8 @@ import 'package:myevent/features/screens/Home/Widgets/Header/search_bar.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../constants/color_palette.dart';
-import '../Historic/historic_buy_page.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/heroicons_solid.dart';
-import 'package:iconify_flutter/icons/ri.dart';
 
 import 'Widgets/Filters_category/filter_category.dart';
 import 'Widgets/FooterBar/navigation_bar.dart';
@@ -52,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 5.0),
+              padding: const EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 5.0),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -61,14 +58,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         //todo
                       },
                       child: Container(
-                        padding: EdgeInsets.all(7.0),
+                        padding: const EdgeInsets.all(7.0),
                         height: 42.0,
                         width: 42.0,
                         decoration: BoxDecoration(
-                          color: Color(0xFF1F242C),
+                          color: const Color(0xFF1F242C),
                           borderRadius: BorderRadius.circular(12.0),
                         ),
-                        child: Iconify(HeroiconsSolid.view_grid,
+                        child: const Iconify(HeroiconsSolid.view_grid,
                             size: 12.0, color: Color(0xFF4D4F52)),
                       ),
                     ),
@@ -77,11 +74,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         //todo
                       },
                       child: Container(
-                        padding: EdgeInsets.all(7.0),
+                        padding: const EdgeInsets.all(7.0),
                         height: 42.0,
                         width: 42.0,
                         decoration: BoxDecoration(
-                          image: DecorationImage(
+                          image: const DecorationImage(
                               image: AssetImage('assets/images/1.jfif'),
                               fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(12.0),
