@@ -51,6 +51,7 @@ dependencies:
   location: ^4.4.0
   google_nav_bar: ^5.0.6
   iconify_flutter: ^0.0.5
+  intl: ^0.18.0
   
 
 dev_dependencies:
@@ -89,6 +90,7 @@ flutter:
     - assets/images/6.jfif
     - assets/images/logo.png 
     - assets/icons/
+    - assets/images/
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

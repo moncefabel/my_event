@@ -1,11 +1,14 @@
 
 import 'package:flutter/material.dart';
+import 'package:myevent/features/screens/Historic/historic_buy_page.dart';
 import 'package:myevent/features/screens/Params/log_out_button.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../provider/customer_provider.dart';
 import '../../../router.dart';
 import '../../auth/services/auth_service.dart';
+import '../Home/home.dart';
 import 'components/login_screen.dart';
 
 
@@ -25,6 +28,7 @@ class _LoginViewState extends State<LoginView> {
     super.initState();
     authService.getCustomerData(context);
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,7 @@ class _LoginViewState extends State<LoginView> {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) => generateRoute(settings),
       home: Provider.of<CustomerProvider>(context).customer.token.isNotEmpty
-              ? const LogOutButton()
+              ? const HistoricBuyPage()
               : const LoginScreen()
     );
   }

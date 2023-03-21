@@ -19,4 +19,15 @@ class CustomerProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void clearValue(){
+    _customer = Customer(
+      id: '',
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      email: '',
+      password: '',
+      token: '');;
+  }
+
 }
