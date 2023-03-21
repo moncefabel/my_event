@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../constants/color_palette.dart';
+import '../../../../../models/etablissement.dart';
+import '../../home_services.dart';
 
 class FilterCategory extends StatefulWidget {
-  const FilterCategory({super.key});
+  final Position place;
+  const FilterCategory({
+    Key? key,
+    required this.place,
+  }) : super(key: key);
 
   @override
   State<FilterCategory> createState() => _FilterCategoryState();
@@ -14,10 +21,13 @@ class FilterCategory extends StatefulWidget {
 
 
 class _FilterCategoryState extends State<FilterCategory> {
-  String selectedItem = 'Appartment';
+  String selectedItem = 'All';
   int counter = -1;
+  List<Etablissement>? etbs;
+  final HomeServices homeService = HomeServices();
+
   final List<String> locationTypes = [
-    'Appartment',
+    'All',
     'Bar',
     'Restaurant',
     'Air BNB',
@@ -27,13 +37,19 @@ class _FilterCategoryState extends State<FilterCategory> {
     'Mansion',
     'Complex'
   ];
+
+  fetchEtbsByType() async {
+    etbs = await homeService.fetchEtbsByType(
+        context: context, place: widget.place, category:selectedItem);
+    setState(() {});
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
               padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
               child: ShaderMask(
                 shaderCallback: ((Rect bounds) {
-                  return LinearGradient(
+                  return const LinearGradient(
                           begin: Alignment(0.7, -1.0),
                           end: Alignment(1.0, -1.0),
                           colors: <Color>[Colors.black, Colors.transparent])
@@ -78,6 +94,7 @@ class _FilterCategoryState extends State<FilterCategory> {
                 setState(() {
                   selectedItem = location;
                 });
+                fetchEtbsByType();
               },
               child: Text(
                 location,

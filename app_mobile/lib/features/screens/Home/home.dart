@@ -90,7 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 20.0),
             const SizedBox(width: 400, height: 60, child: SearchBar(),),
             const SizedBox(height: 20.0),
-            const FilterCategory(),
+            _currentPosition == null
+            ? const Text("Categories loading...")
+            : FilterCategory(place: _currentPosition!),
             _currentPosition == null
                 ? const CircularProgressIndicator()
                 : SingleEtb(place: _currentPosition!)
