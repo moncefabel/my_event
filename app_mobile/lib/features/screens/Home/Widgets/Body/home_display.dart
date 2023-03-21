@@ -59,9 +59,6 @@ class _EtbDisplayState extends State<EtbDisplay> {
         child: SearchBar(),
       ),
       _currentPosition == null
-          ? const Text("Categories loading...")
-          : FilterCategory(place: _currentPosition!),
-      _currentPosition == null
           ? const CircularProgressIndicator()
           : SingleEtb(place: _currentPosition!)
     ])));
