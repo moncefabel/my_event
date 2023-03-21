@@ -61,14 +61,14 @@ class _NavBarState extends State<NavBar> {
                   icon: Icons.home,
                   text: 'Home',
                 ),
-                /*GButton(
-                  icon: Icons.favorite_border,
-                  text: 'Likes',
-                ),
-                GButton(
-                  icon: Icons.search,
-                  text: 'Search',
-                ),*/
+                // GButton(
+                //   icon: Icons.favorite_border,
+                //   text: 'Likes',
+                // ),
+                // GButton(
+                //   icon: Icons.search,
+                //   text: 'Search',
+                // ),
                 GButton(
                   icon: Icons.person_rounded,
                   text: 'Profile',

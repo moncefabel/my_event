@@ -51,7 +51,7 @@ class _SingleEtbState extends State<SingleEtb> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: (MediaQuery.of(context).size.height / 2) - 50.0,
+      height: (MediaQuery.of(context).size.height / 2),
       width: MediaQuery.of(context).size.width,
       child: ListView(
         padding: EdgeInsets.only(top: 5.0),

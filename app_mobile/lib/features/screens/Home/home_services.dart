@@ -20,7 +20,6 @@ class HomeServices {
     final lng = place.longitude;
     final lat = place.latitude;
     final cat = category;
-    print('$uri/apiEtb/etbs?lng=$lng&lat=$lat');
     try {
       http.Response res =
           await http.get(Uri.parse('$uri/apiEtb/etbs?lng=$lng&lat=$lat&category=$cat'),

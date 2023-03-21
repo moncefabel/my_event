@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:myevent/features/auth/services/auth_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../constants/utils.dart';
@@ -16,12 +17,13 @@ class LocalisationDisplay extends StatefulWidget {
 
 class LocalisationDisplayState extends State<LocalisationDisplay> {
   String _currentAddress = '';
-
+  AuthService authService = AuthService();
 
   @override
   void initState()  {
     super.initState();
     _getAddress();
+    authService.getCustomerData(context);
   }
 
 
@@ -33,7 +35,7 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
         Placemark placemark = placemarks[0];
         setState(() {
           _currentAddress =
-              ' ${placemark.administrativeArea}, ${placemark.country}';
+              ' ${placemark.locality}, ${placemark.country}';
         });
       }
     } catch (e) {
