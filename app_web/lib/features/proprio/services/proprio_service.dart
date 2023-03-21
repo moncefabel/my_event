@@ -1,8 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
-import 'dart:io';
-import 'dart:math';
 import 'package:app_web/constants/error_handling.dart';
 import 'package:app_web/constants/utils.dart';
 import 'package:app_web/models/etb.dart';
@@ -15,11 +13,11 @@ import 'package:http/http.dart' as http;
 
 import '../../../constants/app_colors.dart';
 
-class ProprioService{
+class ProprioService {
   void addEtb({
     required BuildContext context,
-    required type, 
-    required lieu, 
+    required type,
+    required lieu,
     required heureOuverture,
     required heureFermeture,
     required capaciteMax,
@@ -27,11 +25,12 @@ class ProprioService{
     required List<XFile> images,
     required nameEtb,
     required prix,
-  }) async{
-    final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
+  }) async {
+    final proprioProvider =
+        Provider.of<ProprioProvider>(context, listen: false);
 
-    try{
-      final cloudinary = CloudinaryPublic("doruex4vc",'rja5gjzg');
+    try {
+      final cloudinary = CloudinaryPublic("doruex4vc", 'rja5gjzg');
       List<String> imageUrls = [];
 
       for (int i = 0; i < images.length; i++) {
@@ -42,17 +41,17 @@ class ProprioService{
       }
 
       Etablissement newEtb = Etablissement(
-        userId: proprioProvider.proprio.id, 
-        id: '', 
-        type: type, 
-        lieu: lieu, 
-        heureOuverture: heureOuverture, 
-        heureFermeture: heureFermeture, 
-        capaciteMax: capaciteMax, 
-        capaciteMin: capaciteMin, 
-        nameEtb: nameEtb,
-        images: imageUrls,
-        prix: prix);
+          userId: proprioProvider.proprio.id,
+          id: '',
+          type: type,
+          lieu: lieu,
+          heureOuverture: heureOuverture,
+          heureFermeture: heureFermeture,
+          capaciteMax: capaciteMax,
+          capaciteMin: capaciteMin,
+          nameEtb: nameEtb,
+          images: imageUrls,
+          prix: prix);
       http.Response res = await http.post(
         Uri.parse('$uri/apiEtb/add'),
         headers: {
@@ -62,22 +61,22 @@ class ProprioService{
         body: newEtb.toJson(),
       );
       httpErrorHandle(
-        response: res,
-        context: context,
-        onSuccess: () {
-          showSnackBar(context, 'Etablissement ajouté avec succés');
-        });
-      
-    }catch(e){
+          response: res,
+          context: context,
+          onSuccess: () {
+            showSnackBar(context, 'Etablissement ajouté avec succés');
+          });
+    } catch (e) {
       showSnackBar(context, e.toString());
     }
   }
 
-  Future<List<Etablissement>> fetchAllEtb (BuildContext context) async{
-    final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
+  Future<List<Etablissement>> fetchAllEtb(BuildContext context) async {
+    final proprioProvider =
+        Provider.of<ProprioProvider>(context, listen: false);
 
     List<Etablissement> etbs = [];
-    try{
+    try {
       http.Response res = await http.get(
         Uri.parse('$uri/apiEtb/allEtb'),
         headers: {
@@ -86,78 +85,72 @@ class ProprioService{
           'id': proprioProvider.proprio.id
         },
       );
-      
+
       // ignore: use_build_context_synchronously
       httpErrorHandle(
-        response: res, 
-        context: context, 
-        onSuccess: () {
-          for (int i = 0; i < jsonDecode(res.body).length; i++) {
-            etbs.add(
-              Etablissement.fromJson(
-                jsonEncode(
-                  jsonDecode(res.body)[i],
+          response: res,
+          context: context,
+          onSuccess: () {
+            for (int i = 0; i < jsonDecode(res.body).length; i++) {
+              etbs.add(
+                Etablissement.fromJson(
+                  jsonEncode(
+                    jsonDecode(res.body)[i],
+                  ),
                 ),
-              ),
-            );
-          }
-        }
-      );
-    }catch(e){
+              );
+            }
+          });
+    } catch (e) {
       // showSnackBar(context, e.toString());
     }
     return etbs;
   }
-  void deleteEtb({
-    required BuildContext context,
-    required Etablissement etb,
-    required VoidCallback onSuccess
-  }) async {
-      final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
 
-      try{
-        http.Response res = await http.post(
-          Uri.parse('$uri/apiEtb/delete'),
+  void deleteEtb(
+      {required BuildContext context,
+      required Etablissement etb,
+      required VoidCallback onSuccess}) async {
+    final proprioProvider =
+        Provider.of<ProprioProvider>(context, listen: false);
+
+    try {
+      http.Response res = await http.post(Uri.parse('$uri/apiEtb/delete'),
           headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'jwt': proprioProvider.proprio.token,
-        },
-        body: jsonEncode({
-          'id': etb.id
-        })
-        );
-        httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: () {
-            onSuccess();
+            'Content-Type': 'application/json; charset=UTF-8',
+            'jwt': proprioProvider.proprio.token,
           },
-        );
-      }catch(e){
-        showSnackBar(context, e.toString());
-      }
-
+          body: jsonEncode({'id': etb.id}));
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+          onSuccess();
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
   }
 
-  void updateEtb({
-    required BuildContext context,
-    required type, 
-    required lieu, 
-    required heureOuverture,
-    required heureFermeture,
-    required capaciteMax,
-    required capaciteMin,
-    required List<String> images,
-    required nameEtb,
-    required prix,
-    required id,
-    required userId
+  void updateEtb(
+      {required BuildContext context,
+      required type,
+      required lieu,
+      required heureOuverture,
+      required heureFermeture,
+      required capaciteMax,
+      required capaciteMin,
+      required List<String> images,
+      required nameEtb,
+      required prix,
+      required id,
+      required userId}) async {
+    final proprioProvider =
+        Provider.of<ProprioProvider>(context, listen: false);
 
-  }) async{
-    final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
-
-    try{
-      final cloudinary = CloudinaryPublic("doruex4vc",'rja5gjzg');
+    try {
+      final cloudinary = CloudinaryPublic("doruex4vc", 'rja5gjzg');
       List<String> imageUrls = [];
 
       for (int i = 0; i < images.length; i++) {
@@ -166,19 +159,19 @@ class ProprioService{
         );
         imageUrls.add(res.secureUrl);
       }
-      
+
       Etablissement newEtb = Etablissement(
-        id: id,
-        type: type, 
-        lieu: lieu, 
-        heureOuverture: heureOuverture, 
-        heureFermeture: heureFermeture, 
-        capaciteMax: capaciteMax, 
-        capaciteMin: capaciteMin, 
-        nameEtb: nameEtb,
-        images: imageUrls,
-        prix: prix,
-        userId: userId);
+          id: id,
+          type: type,
+          lieu: lieu,
+          heureOuverture: heureOuverture,
+          heureFermeture: heureFermeture,
+          capaciteMax: capaciteMax,
+          capaciteMin: capaciteMin,
+          nameEtb: nameEtb,
+          images: imageUrls,
+          prix: prix,
+          userId: userId);
       http.Response res = await http.put(
         Uri.parse('$uri/apiEtb/update'),
         headers: {
@@ -188,13 +181,12 @@ class ProprioService{
         body: newEtb.toJson(),
       );
       httpErrorHandle(
-        response: res,
-        context: context,
-        onSuccess: () {
-          showSnackBar(context, 'Etablissement modifié avec succés');
-        });
-      
-    }catch(e){
+          response: res,
+          context: context,
+          onSuccess: () {
+            showSnackBar(context, 'Etablissement modifié avec succés');
+          });
+    } catch (e) {
       showSnackBar(context, e.toString());
     }
   }

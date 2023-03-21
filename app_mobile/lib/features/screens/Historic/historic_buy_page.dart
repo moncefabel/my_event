@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:myevent/features/screens/Params/log_out_button.dart';
 
 import '../../auth/services/auth_service.dart';
 
@@ -38,7 +37,7 @@ class _HistoricBuyPageState extends State<HistoricBuyPage> {
         String formattedDate = DateFormat.yMMMd().format(data['date']);
         String formattedPrice = '\$${data['price'].toStringAsFixed(2)}';
         return ListTile(
-          leading: Icon(Icons.shopping_bag),
+          leading: const Icon(Icons.shopping_bag),
           title: Text(data['item']),
           subtitle: Text('$formattedDate - $formattedPrice'),
         );

@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../screens/Home/Widgets/Body/home_display.dart';
-import '../../screens/Home/home.dart';
 
 class AuthService {
   void signUpUser(
@@ -124,7 +123,10 @@ class AuthService {
           await SharedPreferences.getInstance();
       await sharedPreferences.setString("jwt", '');
       Provider.of<CustomerProvider>(context, listen: false).clearValue();
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const EtbDisplay()), (route) => false);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (_) => const EtbDisplay()),
+          (route) => false);
     } catch (e) {
       print(e.toString());
     }

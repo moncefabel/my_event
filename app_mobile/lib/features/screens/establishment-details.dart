@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
 import 'package:myevent/constants/utils.dart';
 
 class Scene extends StatefulWidget {
