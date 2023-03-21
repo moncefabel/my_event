@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'package:myevent/constants/error_handling.dart';
 import 'package:myevent/constants/utils.dart';
+import 'package:myevent/features/screens/Historic/historic_buy_page.dart';
 import 'package:myevent/models/customer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -10,6 +11,7 @@ import 'package:myevent/provider/customer_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../screens/Home/Widgets/Body/home_display.dart';
 import '../../screens/Home/home.dart';
 
 class AuthService {
@@ -68,7 +70,7 @@ class AuthService {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (_) => const HomeScreen(),
+                builder: (_) => const HistoricBuyPage(),
               ),
               (route) => false,
             );
@@ -122,7 +124,7 @@ class AuthService {
           await SharedPreferences.getInstance();
       await sharedPreferences.setString("jwt", '');
       Provider.of<CustomerProvider>(context, listen: false).clearValue();
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const HomeScreen()), (route) => false);
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const EtbDisplay()), (route) => false);
     } catch (e) {
       print(e.toString());
     }

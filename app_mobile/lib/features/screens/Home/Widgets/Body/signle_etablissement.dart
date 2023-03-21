@@ -46,7 +46,7 @@ class _SingleEtbState extends State<SingleEtb> {
           Padding(
             padding: EdgeInsets.only(left: 15.0, right: 15.0),
             child: Container(
-              color: Color(0xFF0D0F14),
+              color: Colors.white,
               width: MediaQuery.of(context).size.width - 10.0,
               height: 255.0,
               child: etbs == null
@@ -82,7 +82,7 @@ class _SingleEtbState extends State<SingleEtb> {
                   end: Alignment.bottomRight,
                   colors: <Color>[
                     ColorPalette().gradientTopLeft,
-                    Colors.black
+                    Color.fromARGB(246, 69, 160, 104)
                   ])),
           height: 200.0,
           width: 150.0,
@@ -184,25 +184,6 @@ class _SingleEtbState extends State<SingleEtb> {
                           ],
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          //toDo
-                        },
-                        child: Container(
-                          height: 30.0,
-                          width: 30.0,
-                          decoration: BoxDecoration(
-                              color: ColorPalette().lcoationSelected,
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: Center(
-                            child: Icon(
-                              Icons.add,
-                              size: 11.0,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      )
                     ]),
               )
             ],

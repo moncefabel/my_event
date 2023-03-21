@@ -89,5 +89,5 @@ void showSnackBar(BuildContext context, String text) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
 }
 
-String uri = 'http://10.10.12.242:5000';
+String uri = 'http://192.168.1.56:5000';
 const String Apikey = "";

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myevent/features/screens/Home/Widgets/FooterBar/navigation_bar.dart';
 import 'package:myevent/features/screens/Home/Widgets/Header/header_section.dart';
 import 'package:myevent/features/screens/Home/Widgets/Header/localisation_display.dart';
 import 'package:permission_handler/permission_handler.dart';
+import '../Filters_category/filter_category.dart';
 import '../Header/search_bar.dart';
 import 'signle_etablissement.dart';
 import 'package:flutter/rendering.dart';
@@ -13,6 +15,8 @@ void showLayoutGuidelines() {
 }
 
 class EtbDisplay extends StatefulWidget {
+    static const String routeName = '/home';
+
   const EtbDisplay({Key? key}) : super(key: key);
 
   @override
@@ -20,8 +24,6 @@ class EtbDisplay extends StatefulWidget {
 }
 
 class _EtbDisplayState extends State<EtbDisplay> {
-
-
   Position? _currentPosition;
   @override
   void initState() {
@@ -45,26 +47,23 @@ class _EtbDisplayState extends State<EtbDisplay> {
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(children: [
-      _currentPosition == null 
-      ?  
-        Text("Welcome",
-              style: GoogleFonts.lobster(
-            fontSize: 30.0,
-            color: Colors.black
-          ))
-            
-      : HeaderSection(currentPosition: _currentPosition!,),
+      _currentPosition == null
+          ? Text("Welcome",
+              style: GoogleFonts.lobster(fontSize: 30.0, color: Colors.black))
+          : HeaderSection(
+              currentPosition: _currentPosition!,
+            ),
       const SizedBox(
         width: 300,
         height: 70,
         child: SearchBar(),
       ),
-      _currentPosition == null 
-      ? const CircularProgressIndicator()
-      : SingleEtb(
-        place: _currentPosition!
-      )
-     
+      _currentPosition == null
+          ? const Text("Categories loading...")
+          : FilterCategory(place: _currentPosition!),
+      _currentPosition == null
+          ? const CircularProgressIndicator()
+          : SingleEtb(place: _currentPosition!)
     ])));
   }
 }

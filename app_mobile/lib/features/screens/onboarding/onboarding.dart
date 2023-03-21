@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myevent/constants/utils.dart';
+import 'package:myevent/features/screens/Home/Widgets/Body/home_display.dart';
 import 'package:myevent/features/screens/Home/home.dart';
 import 'package:myevent/features/screens/Login/login_view.dart';
 

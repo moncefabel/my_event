@@ -6,6 +6,7 @@ import 'package:myevent/features/screens/Login/components/login_screen.dart';
 import 'package:myevent/features/screens/onboarding/onboarding.dart';
 import 'package:myevent/models/etablissement.dart';
 
+import 'features/screens/Home/Widgets/Body/home_display.dart';
 import 'features/screens/Login/components/login_form.dart';
 import 'features/screens/establishment-details.dart';
 

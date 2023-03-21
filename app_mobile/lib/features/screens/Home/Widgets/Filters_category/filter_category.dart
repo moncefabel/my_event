@@ -52,12 +52,12 @@ class _FilterCategoryState extends State<FilterCategory> {
                   return const LinearGradient(
                           begin: Alignment(0.7, -1.0),
                           end: Alignment(1.0, -1.0),
-                          colors: <Color>[Colors.black, Colors.transparent])
+                          colors: <Color>[Colors.white, Colors.transparent])
                       .createShader(bounds);
                 }),
                 blendMode: BlendMode.dstATop,
                 child: Container(
-                  color: Color(0xFF0D0F14),
+                  color: Colors.white,
                   width: MediaQuery.of(context).size.width - 20.0,
                   height: 40.0,
                   child: ListView(
@@ -86,7 +86,7 @@ class _FilterCategoryState extends State<FilterCategory> {
           : EdgeInsets.only(left: 7.0),
       child: Container(
         height: 50.0,
-        color: Color(0xFF0D0F14),
+        color: Colors.white,
         child: Column(
           children: [
             GestureDetector(
