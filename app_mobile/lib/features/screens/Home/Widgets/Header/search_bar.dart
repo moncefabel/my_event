@@ -43,7 +43,7 @@ class _SearchBarState extends State<SearchBar> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(children: [
-      TextFormField(
+      TextField(
         controller: searchController,
         style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
