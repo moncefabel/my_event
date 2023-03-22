@@ -13,7 +13,7 @@ class CallToAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
-      mobile: CallToActionMobile(title, AddEtbScreen.routeName),
+      mobile: CallToActionMobile(title, connectionRoute),
       tablet: CallToActionTabletDesktop(title, connectionRoute),
     ).showCursorOnHover.moveUpOnHover;
   }
