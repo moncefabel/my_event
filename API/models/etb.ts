@@ -1,6 +1,6 @@
 const mongooseEtb = require('mongoose')
 const etbSchema = new mongooseEtb.Schema({
-    nomEtablissement: {type:String, required:true },
+    nomEtablissement: {type:String, required:true, unique:true },
     prix: {type:String, required:true},
     lieu: {type:String, required:true},
     heureOuverture: {type:String, required:true},

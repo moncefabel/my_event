@@ -77,7 +77,6 @@ const deleteOwner = async(req, res) => {
     }
 }
 
-
 export = {
     getAllOwners,
     getOwnerById,

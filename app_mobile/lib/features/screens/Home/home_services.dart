@@ -27,7 +27,7 @@ class HomeServices {
             'Content-type': 'application/json; charset=UTF-8',
             'jwt': customerProvider.customer.token
         },);
-        
+        print(res.body);
         // ignore: use_build_context_synchronously
         httpErrorHandle(
           response: res,

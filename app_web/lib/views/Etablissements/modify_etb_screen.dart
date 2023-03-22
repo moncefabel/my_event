@@ -89,7 +89,7 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
   Widget build(BuildContext context) {
     nameEtbController.text = widget.etb.nameEtb;
     lieuController.text = widget.etb.lieu;
-    priceController.text = widget.etb.prix;
+    priceController.text = widget.etb.prix.toString();
     heureFController.text = widget.etb.heureFermeture;
     heureOController.text = widget.etb.heureOuverture;
     capaciteMaxController.text = widget.etb.capaciteMax;

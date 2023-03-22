@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:ffi';
+
 class Etablissement{
 
   final String? userId;
@@ -11,7 +13,7 @@ class Etablissement{
   final String capaciteMin;
   final String nameEtb;
   final List<String> images;
-  final String prix;
+  final Float prix;
 
   Etablissement({
     this.userId,

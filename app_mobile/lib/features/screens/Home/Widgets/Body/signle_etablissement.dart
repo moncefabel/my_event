@@ -154,37 +154,6 @@ class _SingleEtbState extends State<SingleEtb> {
                         ),
                       ),
                     ),
-                    Positioned(
-                      right: 10.0,
-                      top: 10.0,
-                      child: Container(
-                        height: 25.0,
-                        width: 45.0,
-                        decoration: BoxDecoration(
-                            color: Color(0xFF342520).withOpacity(0.7),
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(15.0),
-                              bottomLeft: Radius.circular(15.0),
-                            )),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(Icons.star,
-                                  color: ColorPalette().lcoationSelected,
-                                  size: 15.0),
-                              Text(
-                                etb.capaciteMax.toString(),
-                                style: GoogleFonts.sourceSansPro(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontSize: 13.0),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),

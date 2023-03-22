@@ -100,6 +100,7 @@ const getEtbByPlace = async(req,res) => {
 
     
     try{
+        
         if(req.query.category == 'All'){
             const etbs = await Etb.find({
                 location:
@@ -112,6 +113,8 @@ const getEtbByPlace = async(req,res) => {
                     },
                 },
             })
+            console.log(etbs);
+            
             res.json(etbs)
         }
         else{

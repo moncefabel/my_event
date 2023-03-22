@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import router from './routes/owner.routes'
 import routerEtb from './routes/etb.routes'
 import routerClient from './routes/customer.routes'
+import routerBooking from './routes/booking.routes'
 import {checkClient, checkProprio, checkUser} from './middleware/authMiddleware'
 require("dotenv").config({path: "./config/.env"})
 const db = require ("./config/db")
@@ -39,6 +40,7 @@ app.get("/", checkUser, async(req:any,res ) => {
 app.use("/api",router)
 app.use("/apiEtb", routerEtb)
 app.use("/apiClient", routerClient)
+app.use("/apiBooking", routerBooking)
 
 
 db.connect()
