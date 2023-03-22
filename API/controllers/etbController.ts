@@ -44,7 +44,8 @@ const addEtb = async(req, res) => {
             location: {
                 type:"Point",
                 coordinates:[long,lat]
-            }
+            },
+            description: req.body.description
         })
         
         await newEtb.save()
@@ -71,7 +72,8 @@ const updateEtb = async(req, res) => {
             capaciteMax : req.body.capaciteMax, 
             capciteMin : req.body.capaciteMin,
             userId : req.body.userId,
-            images: req.body.images
+            images: req.body.images,
+            description: req.body.description
         },
         )
 

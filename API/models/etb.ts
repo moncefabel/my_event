@@ -13,7 +13,8 @@ const etbSchema = new mongooseEtb.Schema({
     location: {
         type: {type: String},
         coordinates: []
-    }
+    },
+    description: {type: String}
 
 })
 

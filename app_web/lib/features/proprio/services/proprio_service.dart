@@ -27,6 +27,7 @@ class ProprioService{
     required List<XFile> images,
     required nameEtb,
     required prix,
+    required description
   }) async{
     final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
 
@@ -52,7 +53,8 @@ class ProprioService{
         capaciteMin: capaciteMin, 
         nameEtb: nameEtb,
         images: imageUrls,
-        prix: prix);
+        prix: prix,
+        description: description);
       http.Response res = await http.post(
         Uri.parse('$uri/apiEtb/add'),
         headers: {
@@ -151,7 +153,8 @@ class ProprioService{
     required nameEtb,
     required prix,
     required id,
-    required userId
+    required userId,
+    required description
 
   }) async{
     final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
@@ -178,7 +181,8 @@ class ProprioService{
         nameEtb: nameEtb,
         images: imageUrls,
         prix: prix,
-        userId: userId);
+        userId: userId,
+        description: description);
       http.Response res = await http.put(
         Uri.parse('$uri/apiEtb/update'),
         headers: {
