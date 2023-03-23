@@ -33,7 +33,6 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
 
   final ProprioService proprioService = ProprioService();
 
-  String _description = '';
 
   final _categories = ['Restaurant', 'Bar', 'Karaoké', 'Café'];
   String? _selectedVal = "Restaurant";

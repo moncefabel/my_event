@@ -15,7 +15,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void initState() {
     super.initState();
-    authService.getPrprioData(context);
+    authService.getProprioData(context);
   }
 
   @override

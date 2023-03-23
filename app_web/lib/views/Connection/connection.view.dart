@@ -20,7 +20,7 @@ class _ConnectionViewState extends State<ConnectionView> {
   @override
   void initState() {
     super.initState();
-    authService.getPrprioData(context);
+    authService.getProprioData(context);
   }
 
   @override

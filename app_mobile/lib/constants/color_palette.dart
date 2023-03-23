@@ -5,5 +5,5 @@ class ColorPalette {
   final Color searchBarFill = const Color(0xFF141921);
   final Color lcoationSelected = Color.fromARGB(255, 86, 184, 230);
   final Color locationUnselected = const Color(0xFF525559);
-  final Color gradientTopLeft = Color.fromARGB(255, 187, 185, 185);
+  final Color gradientTopLeft = Color.fromARGB(255, 233, 214, 214);
 }

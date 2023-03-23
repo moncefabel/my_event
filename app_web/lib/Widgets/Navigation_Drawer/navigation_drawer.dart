@@ -15,7 +15,7 @@ class NavigationDrawers extends StatelessWidget {
         const NavigationDrawerHeader(),
         const DrawerItem('Connection', Icons.login, null, connectionRoute)
             .moveUpOnHover,
-        const DrawerItem('About', Icons.help, null, aboutRoute).moveUpOnHover,
+        const DrawerItem('Reservations', Icons.list, null, aboutRoute).moveUpOnHover,
       ]),
     );
   }

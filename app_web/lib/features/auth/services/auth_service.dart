@@ -85,7 +85,7 @@ class AuthService {
     }
   }
 
-  void getPrprioData(
+  void getProprioData(
     BuildContext context,
   ) async {
     try {

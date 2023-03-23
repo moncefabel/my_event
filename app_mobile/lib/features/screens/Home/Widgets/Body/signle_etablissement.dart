@@ -19,7 +19,7 @@ class SingleEtb extends StatefulWidget {
 }
 
 class _SingleEtbState extends State<SingleEtb> {
-   String selectedItem = 'All';
+  String selectedItem = 'All';
   int counter = -1;
   List<Etablissement>? etbs;
   final HomeServices homeService = HomeServices();
@@ -41,59 +41,59 @@ class _SingleEtbState extends State<SingleEtb> {
     fetchEtbs();
   }
 
-  
   fetchEtbs() async {
     etbs = await homeService.fetchEtbs(
-        context: context, place: widget.place, category:selectedItem);
+        context: context, place: widget.place, category: selectedItem);
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: (MediaQuery.of(context).size.height / 2),
+      height: (MediaQuery.of(context).size.height),
       width: MediaQuery.of(context).size.width,
       child: ListView(
         padding: EdgeInsets.only(top: 5.0),
         children: [
           Padding(
-              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
-              child: ShaderMask(
-                shaderCallback: ((Rect bounds) {
-                  return const LinearGradient(
-                          begin: Alignment(0.7, -1.0),
-                          end: Alignment(1.0, -1.0),
-                          colors: <Color>[Colors.white, Colors.transparent])
-                      .createShader(bounds);
-                }),
-                blendMode: BlendMode.dstATop,
-                child: Container(
-                  color: Colors.white,
-                  width: MediaQuery.of(context).size.width - 20.0,
-                  height: 40.0,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      ...locationTypes.map((e) {
-                        counter++;
-                        if (counter <= 8)
-                          return _buildTypes(e, counter);
-                        else {
-                          counter = 0;
-                          return _buildTypes(e, counter);
-                        }
-                      }).toList()
-                    ],
-                  ),
+            padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
+            child: ShaderMask(
+              shaderCallback: ((Rect bounds) {
+                return const LinearGradient(
+                        begin: Alignment(0.7, -1.0),
+                        end: Alignment(1.0, -1.0),
+                        colors: <Color>[Colors.white, Colors.transparent])
+                    .createShader(bounds);
+              }),
+              blendMode: BlendMode.dstATop,
+              child: Container(
+                color: Colors.white,
+                width: MediaQuery.of(context).size.width - 20.0,
+                height: 40.0,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    ...locationTypes.map((e) {
+                      counter++;
+                      if (counter <= 8)
+                        return _buildTypes(e, counter);
+                      else {
+                        counter = 0;
+                        return _buildTypes(e, counter);
+                      }
+                    }).toList()
+                  ],
                 ),
               ),
             ),
+          ),
+          const SizedBox(height: 10),
           Padding(
             padding: EdgeInsets.only(left: 15.0, right: 15.0),
             child: Container(
               color: Colors.white,
               width: MediaQuery.of(context).size.width - 10.0,
-              height: 255.0,
+              height: 300.0,
               child: etbs == null
                   ? const CircularProgressIndicator()
                   : ListView(
@@ -127,7 +127,7 @@ class _SingleEtbState extends State<SingleEtb> {
                   end: Alignment.bottomRight,
                   colors: <Color>[
                     ColorPalette().gradientTopLeft,
-                    Color.fromARGB(246, 69, 160, 104)
+                    Color(0xff4c9fc1)
                   ])),
           height: 200.0,
           width: 150.0,
@@ -185,21 +185,74 @@ class _SingleEtbState extends State<SingleEtb> {
                         width: 60.0,
                         child: Row(
                           children: [
-                            Text('\$',
-                                style: GoogleFonts.sourceSansPro(
-                                    fontWeight: FontWeight.bold,
-                                    color: ColorPalette().lcoationSelected,
-                                    fontSize: 20.0)),
                             Text(etb.prix,
                                 style: GoogleFonts.sourceSansPro(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
-                                    fontSize: 20.0))
+                                    fontSize: 20.0)),
+                            Text(' €',
+                                style: GoogleFonts.sourceSansPro(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 20.0)),
                           ],
                         ),
                       ),
                     ]),
-              )
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 20.0,
+                        width: 90.0,
+                        child: Row(
+                          children: [
+                            Text('Cap Minimale: ',
+                                style: GoogleFonts.sourceSansPro(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 11.0)),
+                            Text(etb.capaciteMin,
+                                style: GoogleFonts.sourceSansPro(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 11.0)),
+                            
+                          ],
+                        ),
+                      ),
+                    ]),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 20.0,
+                        width: 90.0,
+                        child: Row(
+                          children: [
+                            Text('Cap Maximale: ',
+                                style: GoogleFonts.sourceSansPro(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 11.0)),
+                            Text(etb.capaciteMax,
+                                style: GoogleFonts.sourceSansPro(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 11.0)),
+                            
+                          ],
+                        ),
+                      ),
+                    ]),
+              ),
+              
             ],
           ),
         ),
