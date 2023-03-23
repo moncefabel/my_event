@@ -42,25 +42,34 @@ class _EtbDisplayState extends State<EtbDisplay> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
-            child: Column(children: [
-      _currentPosition == null
-          ? Text("Welcome",
-              style: GoogleFonts.lobster(fontSize: 30.0, color: Colors.black))
-          : HeaderSection(
-              currentPosition: _currentPosition!,
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: Center(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _currentPosition == null
+                ? Text(
+                    "Welcome",
+                    style:
+                        GoogleFonts.lobster(fontSize: 30.0, color: Colors.black),
+                  )
+                : HeaderSection(
+                    currentPosition: _currentPosition!,
+                  ),
+            const SizedBox(
+              width: 300,
+              height: 70,
+              child: SearchBar(),
             ),
-      const SizedBox(
-        width: 300,
-        height: 70,
-        child: SearchBar(),
+            _currentPosition == null
+                ? const CircularProgressIndicator()
+                : SingleEtb(place: _currentPosition!)
+          ],
+        ),
       ),
-      _currentPosition == null
-          ? const CircularProgressIndicator()
-          : SingleEtb(place: _currentPosition!)
-    ])));
-  }
+    ),
+  );
+}
 }
