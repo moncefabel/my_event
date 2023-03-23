@@ -52,6 +52,7 @@ dependencies:
   google_nav_bar: ^5.0.6
   iconify_flutter: ^0.0.5
   intl: ^0.18.0
+  glassmorphism_ui: ^0.3.0
   
 
 dev_dependencies:

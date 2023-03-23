@@ -116,8 +116,8 @@ class _SingleEtbState extends State<SingleEtb> {
       padding: EdgeInsets.only(left: 10.0, right: 10.0),
       child: GestureDetector(
         onTap: () {
-          // Navigator.of(context).push(MaterialPageRoute(
-          //     builder: (context) => ItemDetails(lItem: lItem)));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => EtbDetails(etb: etb)));
         },
         child: Container(
           decoration: BoxDecoration(
