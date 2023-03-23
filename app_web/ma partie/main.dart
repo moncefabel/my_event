@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'friend_request_view.dart';
+import '../lib/friend_request_view.dart';
 
 void main() {
   runApp(const MyApp());

@@ -19,7 +19,7 @@ class _FriendRequestViewState extends State<FriendRequestView> {
           Container(
             margin: const EdgeInsets.only(top: 10.0),
             child: const Text(
-              'Friend Request',
+              'Rent Request',
               style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
@@ -65,44 +65,24 @@ class _FriendRequestViewState extends State<FriendRequestView> {
               color: Colors.grey.shade300,
             )
           ]),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                'Total Notifications',
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'OpenSans'),
-              ),
-              Text(
-                '206',
-                style: TextStyle(
-                    fontSize: 40,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'OpenSans'),
-              ),
-            ],
+      child: Column(
+        children: const [
+          Text(
+            'Total Notifications',
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'OpenSans'),
           ),
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: const Color(0xFF4530B3).withOpacity(.1),
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: const Text(
-              'View Detail',
-              style: TextStyle(
-                  color: Color(0xFF4530B3),
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'OpenSans'),
-            ),
-          )
+          Text(
+            '206', //add number of total notification
+            style: TextStyle(
+                fontSize: 40,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'OpenSans'),
+          ),
         ],
       ),
     );
@@ -111,109 +91,38 @@ class _FriendRequestViewState extends State<FriendRequestView> {
   Widget viewNotificationRequest() {
     return Container(
       padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text(
-            'Friend Request',
-            style: TextStyle(
-                color: Colors.grey,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'OpenSans',
-                fontSize: 12),
-          ),
-          Text(
-            'View All',
-            style: TextStyle(
-                color: Color(0xFF4530B3),
-                fontWeight: FontWeight.bold,
-                fontFamily: 'OpenSans',
-                fontSize: 12),
-          ),
-        ],
+      child: const Text(
+        'Friend Request',
+        style: TextStyle(
+            color: Colors.grey,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'OpenSans',
+            fontSize: 12),
       ),
     );
   }
 
   Widget gridView() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      physics: const ScrollPhysics(),
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: GridView.count(
-          crossAxisCount: 3,
-          childAspectRatio: .9,
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
-          primary: true,
-          crossAxisSpacing: 4,
-          mainAxisSpacing: 4,
-          shrinkWrap: true,
-          children: [
-            gridViewItem(
-                name: 'Macyl',
-                description: 'Working Backend',
-                status: 'Responded',
-                image: 'assets/logo.png'),
-            gridViewItem(
-                name: 'Truc',
-                description: 'Working FrontEnd',
-                status: 'Not Responded',
-                image: 'assets/17.jpg'),
-            gridViewItem(
-                name: 'Macyl',
-                description: 'Working Backend',
-                status: 'Responded',
-                image: 'assets/logo.png'),
-            gridViewItem(
-                name: 'Truc',
-                description: 'Working FrontEnd',
-                status: 'Not Responded',
-                image: 'assets/17.jpg'),
-            gridViewItem(
-                name: 'Macyl',
-                description: 'Working Backend',
-                status: 'Responded',
-                image: 'assets/logo.png'),
-            gridViewItem(
-                name: 'Truc',
-                description: 'Working FrontEnd',
-                status: 'Not Responded',
-                image: 'assets/17.jpg'),
-            gridViewItem(
-                name: 'Macyl',
-                description: 'Working Backend',
-                status: 'Responded',
-                image: 'assets/logo.png'),
-            gridViewItem(
-                name: 'Truc',
-                description: 'Working FrontEnd',
-                status: 'Not Responded',
-                image: 'assets/17.jpg'),
-            gridViewItem(
-                name: 'Macyl',
-                description: 'Working Backend',
-                status: 'Responded',
-                image: 'assets/logo.png'),
-            gridViewItem(
-                name: 'Truc',
-                description: 'Working FrontEnd',
-                status: 'Not Responded',
-                image: 'assets/17.jpg'),
-            gridViewItem(
-                name: 'Macyl',
-                description: 'Working Backend',
-                status: 'Responded',
-                image: 'assets/logo.png'),
-            gridViewItem(
-                name: 'Truc',
-                description: 'Working FrontEnd',
-                status: 'Not Responded',
-                image: 'assets/17.jpg'),
-          ],
-        ),
+    return GridView.builder(
+      itemCount: 4, // replace with the actual number of items you have
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        childAspectRatio: .9,
+        crossAxisSpacing: 4,
+        mainAxisSpacing: 4,
       ),
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
+      shrinkWrap: true,
+      itemBuilder: (BuildContext context, int index) {
+        return gridViewItem(
+          name: 'Macyl', // replace with the actual name for this item
+          description:
+              'Working Backend', // replace with the actual description for this item
+          status: 'Responded', // replace with the actual status for this item
+          image:
+              'assets/logo.png', // replace with the actual image for this item
+        );
+      },
     );
   }
 
@@ -311,6 +220,48 @@ class _FriendRequestViewState extends State<FriendRequestView> {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 5.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.green)),
+                    onPressed: () {},
+                    child: const Text(
+                      'Accept',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w200,
+                          fontSize: 12.0),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 5.0,
+                  width: 1.0,
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.red)),
+                    onPressed: () {},
+                    child: const Text(
+                      'Deny',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w200,
+                          fontSize: 12.0),
+                    ),
+                  ),
+                )
+              ],
+            )
           ],
         ),
       ),
