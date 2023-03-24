@@ -12,7 +12,6 @@ class _FriendRequestViewState extends State<FriendRequestView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: appBar(),
       body: SingleChildScrollView(
           child: Column(
         children: [
@@ -201,25 +200,7 @@ class _FriendRequestViewState extends State<FriendRequestView> {
                 fontSize: 10,
               ),
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 5),
-              decoration: const BoxDecoration(
-                color: Color(0xFF4530B3),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(4),
-                  bottomRight: Radius.circular(4),
-                ),
-              ),
-              child: const Center(
-                child: Text(
-                  'Response',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'OpenSans',
-                  ),
-                ),
-              ),
-            ),
+            
             const SizedBox(
               height: 5.0,
             ),

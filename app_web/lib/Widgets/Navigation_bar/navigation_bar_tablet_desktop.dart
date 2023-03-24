@@ -21,7 +21,7 @@ class NavigationBarTabletDesktop extends StatelessWidget {
                   SizedBox(
                     width: 60,
                   ),
-                  NavBarItem('About', aboutRoute),
+                  NavBarItem('Reservations', aboutRoute),
                 ],
               )
             ]));
