@@ -49,6 +49,7 @@ void showFilterPage() {
             prefixIcon: IconButton(
                 icon: const Icon(Icons.search),
                 onPressed: () {
+                  // a rajouter la fonctionalité par macyl
                  // _showFilterSheet(context);
                 },
               ),

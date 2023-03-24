@@ -46,7 +46,7 @@ class _BookingPageState extends State<BookingPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
       title: Text('Booking Information for ${widget.etb.nameEtb}'),
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xff4c9fc1),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () {
@@ -128,7 +128,7 @@ class _BookingPageState extends State<BookingPage> {
         
             SizedBox(height: 16.0),
             Text(
-              'Time:',
+              'Arrival Time:',
               style: TextStyle(fontSize: 16.0),
             ),
             SizedBox(height: 8.0),
@@ -165,7 +165,7 @@ class _BookingPageState extends State<BookingPage> {
                           Center(
                           child: ElevatedButton(
                           onPressed: () {
-                          // Function to handle submitting the booking information
+                          // Function to handle submitting the booking information to do by macyl 
                           },
                           style: ElevatedButton.styleFrom(primary: Color(0xff4c9fc1)),
                           child: Padding(

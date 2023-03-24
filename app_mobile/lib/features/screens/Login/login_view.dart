@@ -37,7 +37,7 @@ class _LoginViewState extends State<LoginView> {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) => generateRoute(settings),
       home: Provider.of<CustomerProvider>(context).customer.token.isNotEmpty
-              ? const HistoricBuyPage()
+              ? const MylogoutPage()
               : const LoginScreen()
     );
   }

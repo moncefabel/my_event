@@ -3,6 +3,7 @@ import 'package:myevent/features/screens/Params/log_out_button.dart';
 import 'package:myevent/features/screens/Home/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../constants/utils.dart';
 import '../../auth/services/auth_service.dart';
 import '../Home/Widgets/Body/home_display.dart';
 
@@ -16,14 +17,7 @@ class MylogoutPage extends StatefulWidget {
 class _MylogoutPageState extends State<MylogoutPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('MyEvent'),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      drawer: Drawer(
+    return  Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
@@ -49,10 +43,7 @@ class _MylogoutPageState extends State<MylogoutPage> {
                 title: const Text('Home'),
                 leading: const Icon(Icons.home),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const EtbDisplay()),
-                  );
+                  Navigator.pushReplacementNamed(context, HomeScreen.routeName);
                 },
               ),
             ),
@@ -68,7 +59,7 @@ class _MylogoutPageState extends State<MylogoutPage> {
             ),
           ],
         ),
-      ),
-    );
+      );
+    
   }
 }
