@@ -6,7 +6,7 @@ import 'package:myevent/router.dart';
 import 'package:myevent/features/screens/onboarding/onboarding.dart';
 import 'package:provider/provider.dart';
 
-
+/*
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
@@ -35,4 +35,4 @@ class MyApp extends StatelessWidget {
 		),
 	);
 	}
-}
+}*/
