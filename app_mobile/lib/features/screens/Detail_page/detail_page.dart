@@ -212,7 +212,7 @@ class _EtbDetailsState extends State<EtbDetails> {
                             style: GoogleFonts.sourceSansPro(
                                 color: Colors.white, fontSize: 17.0)),
                       ),
-                      SizedBox(height: 40.0),
+                      SizedBox(height: 120.0),
                       Container(
                         width: screenWidth - 30.0,
                         child: Row(

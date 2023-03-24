@@ -49,13 +49,13 @@ void showFilterPage() {
             prefixIcon: IconButton(
                 icon: const Icon(Icons.search),
                 onPressed: () {
-                  _showFilterSheet(context);
+                 // _showFilterSheet(context);
                 },
               ),
-             suffixIcon: IconButton(
+             /*suffixIcon: IconButton(
                 icon: const Icon(Icons.filter_list),
                 onPressed: showFilterPage,
-              ),
+              ),*/
             ),
             onChanged: (query) {
               setState(() {}); // Trigger a rebuild with the filtered items.

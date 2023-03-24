@@ -9,6 +9,7 @@ import '../../../provider/customer_provider.dart';
 import '../../../router.dart';
 import '../../auth/services/auth_service.dart';
 import '../Home/home.dart';
+import '../Log_out_page/log_out_page.dart';
 import 'components/login_screen.dart';
 
 

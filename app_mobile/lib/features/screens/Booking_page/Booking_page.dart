@@ -146,40 +146,40 @@ class _BookingPageState extends State<BookingPage> {
                         border:  Border.all(color: Colors.grey),
                          ),
                     child: Row(
-mainAxisAlignment: MainAxisAlignment.center,
-children: [
-Icon(Icons.access_time),
-SizedBox(width: 8.0),
-Text(
-'${selectedTime.hour}:${selectedTime.minute}',
-style: TextStyle(fontSize: 16.0),
-),
-],
-),
-),
-),
-),
-],
-),
-SizedBox(height: 32.0),
-Center(
-child: ElevatedButton(
-onPressed: () {
-// Function to handle submitting the booking information
-},
-style: ElevatedButton.styleFrom(primary: Color(0xff4c9fc1)),
-child: Padding(
-padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-child: Text(
-'Submit',
-style: TextStyle(fontSize: 18.0),
-),
-),
-),
-),
-],
-),
-),
-);
-}
-}
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                          Icon(Icons.access_time),
+                          SizedBox(width: 8.0),
+                          Text(
+                          '${selectedTime.hour}:${selectedTime.minute}',
+                          style: TextStyle(fontSize: 16.0),
+                          ),
+                          ],
+                          ),
+                          ),
+                          ),
+                          ),
+                          ],
+                          ),
+                          SizedBox(height: 200.0),
+                          Center(
+                          child: ElevatedButton(
+                          onPressed: () {
+                          // Function to handle submitting the booking information
+                          },
+                          style: ElevatedButton.styleFrom(primary: Color(0xff4c9fc1)),
+                          child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+                          child: Text(
+                          'Submit',
+                          style: TextStyle(fontSize: 18.0),
+                          ),
+                          ),
+                          ),
+                          ),
+                          ],
+                          ),
+                          ),
+                          );
+                          }
+          }
