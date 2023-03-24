@@ -5,6 +5,7 @@ import '../../../constants/color_palette.dart';
 
 import '../../../constants/color_palette.dart';
 import '../../../models/etablissement.dart';
+import '../Booking_page/Booking_page.dart';
 
 class EtbDetails extends StatefulWidget {
   final Etablissement etb;
@@ -250,12 +251,17 @@ class _EtbDetailsState extends State<EtbDetails> {
                               ),
                             ),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                               Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => BookingPage(etb: widget.etb)),
+                                );
+                              },
                               child: Container(
                                 height: 50.0,
                                 width: (screenWidth / 2) + 50.0,
                                 decoration: BoxDecoration(
-                                    color: ColorPalette().lcoationSelected,
+                                    color: const  Color(0xff4c9fc1),
                                     borderRadius: BorderRadius.circular(20.0)),
                                 child: Center(
                                   child: Text('Book Now',

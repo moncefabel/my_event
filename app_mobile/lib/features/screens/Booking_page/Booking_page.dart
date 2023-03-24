@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import '../../../models/etablissement.dart';
 
 class BookingPage extends StatefulWidget {
+  final Etablissement etb;
+
+  const BookingPage({Key? key, required this.etb}) : super(key: key);
+
+   //static const String routeName = '/Booking';
   @override
   _BookingPageState createState() => _BookingPageState();
 }
@@ -39,7 +45,7 @@ class _BookingPageState extends State<BookingPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Booking Information'),
+      title: Text('Booking Information for ${widget.etb.nameEtb}'),
         backgroundColor: Colors.blue,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
