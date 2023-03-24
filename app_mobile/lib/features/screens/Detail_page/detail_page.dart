@@ -33,11 +33,19 @@ class _EtbDetailsState extends State<EtbDetails> {
               child: Container(
                 height: (screenHeight / 2) + 70.0,
                 width: screenWidth,
-                child: Image.network(
-                  widget.etb.images[0],
-                  fit: BoxFit.cover,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: widget.etb.images.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Image.network(
+                      widget.etb.images[index],
+                      fit: BoxFit.cover,
+                    );
+                  },
                 ),
-              )),
+              ),
+            ),
+
           Positioned(
             top: 35.0,
             left: 10.0,
@@ -250,7 +258,7 @@ class _EtbDetailsState extends State<EtbDetails> {
                                     color: ColorPalette().lcoationSelected,
                                     borderRadius: BorderRadius.circular(20.0)),
                                 child: Center(
-                                  child: Text('Buy Now',
+                                  child: Text('Book Now',
                                       style: GoogleFonts.sourceSansPro(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
