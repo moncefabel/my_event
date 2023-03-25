@@ -25,13 +25,16 @@ class _NavigationBarTabletDesktopState extends State<NavigationBarTabletDesktop>
               //const NavBarLogo('Main', homeRoute),
               Row(
                 mainAxisSize: MainAxisSize.min,
-                children:  <Widget>[
-                  const NavBarItem('Connection', connectionRoute),
-                  const SizedBox(
+                children:  const <Widget>[
+                  NavBarItem('Connection', connectionRoute),
+                  SizedBox(
                     width: 60,
                   ),
-                  const NavBarItem('Reservations', aboutRoute), 
-                  
+                  NavBarItem('Reservations', aboutRoute), 
+                  SizedBox(
+                    width: 30,
+                  ),
+                  NavBarItem('Parametres', paramsRoute)
                 ],
                 
               )

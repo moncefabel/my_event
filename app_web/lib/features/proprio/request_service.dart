@@ -6,16 +6,17 @@ import 'package:provider/provider.dart';
 
 import '../../constants/app_colors.dart';
 import '../../constants/error_handling.dart';
+import '../../constants/utils.dart';
 import '../../models/booking.dart';
 import '../../providers/proprio_provider.dart';
 
-class RequestServices{
-
-  Future<List<Booking>> fetchAllRequests (BuildContext context) async{
-    final proprioProvider = Provider.of<ProprioProvider>(context, listen: false);
+class RequestServices {
+  Future<List<Booking>> fetchAllRequests(BuildContext context) async {
+    final proprioProvider =
+        Provider.of<ProprioProvider>(context, listen: false);
 
     List<Booking> requests = [];
-    try{
+    try {
       http.Response res = await http.get(
         Uri.parse('$uri/apiBooking/bookings'),
         headers: {
@@ -24,26 +25,74 @@ class RequestServices{
           'id': proprioProvider.proprio.id
         },
       );
-      
+
       // ignore: use_build_context_synchronously
       httpErrorHandle(
-        response: res, 
-        context: context, 
-        onSuccess: () {
-          for (int i = 0; i < jsonDecode(res.body).length; i++) {
-            requests.add(
-              Booking.fromJson(
-                jsonEncode(
-                  jsonDecode(res.body)[i],
+          response: res,
+          context: context,
+          onSuccess: () {
+            for (int i = 0; i < jsonDecode(res.body).length; i++) {
+              requests.add(
+                Booking.fromJson(
+                  jsonEncode(
+                    jsonDecode(res.body)[i],
+                  ),
                 ),
-              ),
-            );
-          }
-        }
-      );
-    }catch(e){
+              );
+            }
+          });
+    } catch (e) {
       // showSnackBar(context, e.toString());
     }
     return requests;
+  }
+
+  void confirmRequest(
+      {required BuildContext context, required String requestId}) async {
+    final proprioProvider =
+        Provider.of<ProprioProvider>(context, listen: false);
+    try {
+      http.Response res = await http.put(Uri.parse('$uri/apiBooking/confirm'),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'jwt': proprioProvider.proprio.token,
+          },
+          body: jsonEncode({'id': requestId}));
+
+      // ignore: use_build_context_synchronously
+      httpErrorHandle(
+          response: res,
+          context: context,
+          onSuccess: () {
+            showSnackBar(context, 'Réservation confirmée');
+          });
+    } catch (error) {
+      print(error.toString());
+    }
+    
+  }
+  void denyRequest(
+      {required BuildContext context, required String requestId}) async {
+    final proprioProvider =
+        Provider.of<ProprioProvider>(context, listen: false);
+    try {
+      http.Response res = await http.put(Uri.parse('$uri/apiBooking/decline'),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'jwt': proprioProvider.proprio.token,
+          },
+          body: jsonEncode({'id': requestId}));
+
+      // ignore: use_build_context_synchronously
+      httpErrorHandle(
+          response: res,
+          context: context,
+          onSuccess: () {
+            showSnackBar(context, 'Réservation refusée');
+          });
+    } catch (error) {
+      print(error.toString());
+    }
+    
   }
 }

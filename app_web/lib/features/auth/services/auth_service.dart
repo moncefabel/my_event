@@ -6,6 +6,7 @@ import 'package:app_web/constants/error_handling.dart';
 import 'package:app_web/constants/app_colors.dart';
 import 'package:app_web/constants/utils.dart';
 import 'package:app_web/models/proprio.dart';
+import 'package:app_web/views/Connection/connection.view.dart';
 import 'package:app_web/views/Etablissements/add_etb_screen.dart';
 import 'package:app_web/views/Etablissements/show_etb_screen.dart';
 import 'package:app_web/views/Layout_Template/layout_template.dart';
@@ -127,7 +128,7 @@ class AuthService {
           await SharedPreferences.getInstance();
       await sharedPreferences.setString("jwt", '');
       Provider.of<ProprioProvider>(context, listen: false).clearValue();
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const LayoutTemplate()), (route) => false);
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const ConnectionView()), (route) => false);
     } catch (e) {
       print(e.toString());
     }

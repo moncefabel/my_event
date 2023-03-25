@@ -1,6 +1,7 @@
 import 'package:app_web/views/Connection/connection.view.dart';
 import 'package:app_web/views/Etablissements/add_etb_screen.dart';
 import 'package:app_web/views/Etablissements/modify_etb_screen.dart';
+import 'package:app_web/views/Params/parametres_proprio.dart';
 import 'package:flutter/material.dart';
 import 'package:app_web/routing/route_names.dart';
 import 'package:app_web/views/Home/home_views.dart';
@@ -15,6 +16,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(const FriendRequestView());
     case connectionRoute:
       return _getPageRoute(const ConnectionView());
+      case paramsRoute:
+      return _getPageRoute(const Params());
     case AddEtbScreen.routeName:
       return MaterialPageRoute(
         settings: settings,

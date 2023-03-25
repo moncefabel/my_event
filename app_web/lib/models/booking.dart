@@ -10,6 +10,7 @@ class Booking{
   // final int people;
   final String time;
   final String date;
+  final String id;
 
   Booking({
     required this.userId,
@@ -19,6 +20,7 @@ class Booking{
     required this.ownerId,
     // required this.people,
     required this.time,
+    required this.id
   });
 
   Map<String, dynamic> toMap() {
@@ -31,6 +33,7 @@ class Booking{
         'date': date,
         // 'people': people,
         'time': time,
+        '_id': id
         
       };
     }
@@ -43,6 +46,7 @@ class Booking{
       date: map['date'] ?? '',
       time: map['time'] ?? '',
       state: map['state'] ?? '',
+      id: map['_id'] ?? ''
 
     );
   }
