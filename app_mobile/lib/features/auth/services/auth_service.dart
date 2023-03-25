@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../screens/Home/Widgets/Body/home_display.dart';
-import '../../screens/Home/home.dart';
 
 class AuthService {
   void signUpUser(

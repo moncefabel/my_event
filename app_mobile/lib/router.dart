@@ -8,7 +8,6 @@ import 'package:myevent/models/etablissement.dart';
 
 import 'features/screens/Home/Widgets/Body/home_display.dart';
 import 'features/screens/Login/components/login_form.dart';
-import 'features/screens/establishment-details.dart';
 
 Route<dynamic> ?generateRoute(RouteSettings routeSettings) {
  
@@ -29,12 +28,7 @@ Route<dynamic> ?generateRoute(RouteSettings routeSettings) {
         builder: (_) => const OnboardingScreen()
       );
       
-    case Scene.routeName:
-        return MaterialPageRoute(
-        settings: routeSettings,
-
-        builder: (_) => const Scene()
-        );
+    
    
   }
 }

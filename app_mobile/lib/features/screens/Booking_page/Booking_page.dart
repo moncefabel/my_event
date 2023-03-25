@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:myevent/provider/customer_provider.dart';
+import 'package:provider/provider.dart';
 import '../../../models/etablissement.dart';
+import 'booking_service.dart';
 
 class BookingPage extends StatefulWidget {
   final Etablissement etb;
 
   const BookingPage({Key? key, required this.etb}) : super(key: key);
 
-   //static const String routeName = '/Booking';
+  //static const String routeName = '/Booking';
   @override
   _BookingPageState createState() => _BookingPageState();
 }
@@ -16,7 +20,8 @@ class _BookingPageState extends State<BookingPage> {
   int numPeople = 1;
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
-
+  final newFormat = DateFormat("yy-MM-dd");
+  final BookingService bookingService = BookingService();
   // Function to show date picker
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -40,12 +45,24 @@ class _BookingPageState extends State<BookingPage> {
       });
   }
 
+  void sendRequestForBooking(){
+    bookingService.requestForBooking(
+      context: context,
+      userId: Provider.of<CustomerProvider>(context, listen:false).customer.id,
+      ownerId: widget.etb.userId,
+      etbId: widget.etb.id,
+      state: "En attente",
+      date: newFormat.format(selectedDate).toString(),
+      time: selectedTime.hour.toString(),
+      // people: numPeople);
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-      title: Text('Booking Information for ${widget.etb.nameEtb}'),
+        title: Text('Booking ${widget.etb.nameEtb}'),
         backgroundColor: Color(0xff4c9fc1),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
@@ -125,7 +142,6 @@ class _BookingPageState extends State<BookingPage> {
                 ),
               ],
             ),
-        
             SizedBox(height: 16.0),
             Text(
               'Arrival Time:',
@@ -143,43 +159,44 @@ class _BookingPageState extends State<BookingPage> {
                       padding: EdgeInsets.symmetric(vertical: 8.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
-                        border:  Border.all(color: Colors.grey),
-                         ),
-                    child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
                           Icon(Icons.access_time),
                           SizedBox(width: 8.0),
                           Text(
-                          '${selectedTime.hour}:${selectedTime.minute}',
-                          style: TextStyle(fontSize: 16.0),
+                            '${selectedTime.hour}:${selectedTime.minute}',
+                            style: TextStyle(fontSize: 16.0),
                           ),
-                          ],
-                          ),
-                          ),
-                          ),
-                          ),
-                          ],
-                          ),
-                          SizedBox(height: 200.0),
-                          Center(
-                          child: ElevatedButton(
-                          onPressed: () {
-                          // Function to handle submitting the booking information to do by macyl 
-                          },
-                          style: ElevatedButton.styleFrom(primary: Color(0xff4c9fc1)),
-                          child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-                          child: Text(
-                          'Submit',
-                          style: TextStyle(fontSize: 18.0),
-                          ),
-                          ),
-                          ),
-                          ),
-                          ],
-                          ),
-                          ),
-                          );
-                          }
-          }
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 200.0),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  sendRequestForBooking();
+                },
+                style: ElevatedButton.styleFrom(primary: Color(0xff4c9fc1)),
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

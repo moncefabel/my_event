@@ -15,6 +15,7 @@ class HomeServices {
     required Position place,
     required String category
   }) async {
+  
     final customerProvider = Provider.of<CustomerProvider>(context, listen: false);
     List<Etablissement> etbsList = [];
     final lng = place.longitude;

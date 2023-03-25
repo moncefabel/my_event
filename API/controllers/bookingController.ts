@@ -3,6 +3,8 @@ const {Booking} = require('../models/booking');
 
 const addBooking = async (req, res) => {
 
+    console.log(req.body.date);
+    
     try{const newBooking = await Booking.create({
         userId: req.body.userId,
         etbId: req.body.etbId,
