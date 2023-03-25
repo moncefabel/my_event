@@ -14,6 +14,14 @@ const getAllEtablissements =  async (req,res) => {
     }   
 }
 
+const getEtbById = async(req,res) => {
+    try{
+        const etb = await Etb.find({_id : req.headers.id})
+        res.status(200).json(etb)
+    }catch(error:any){
+        res.status(400).send(error.message)
+    }  
+}
 
 const addEtb = async(req, res) => {
  
@@ -124,5 +132,6 @@ export = {
     addEtb,
     updateEtb,
     deleteEtb,
-    getEtbByPlace
+    getEtbByPlace,
+    getEtbById
 }

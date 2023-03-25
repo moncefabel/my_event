@@ -8,6 +8,7 @@ import 'package:app_web/constants/utils.dart';
 import 'package:app_web/models/proprio.dart';
 import 'package:app_web/views/Etablissements/add_etb_screen.dart';
 import 'package:app_web/views/Etablissements/show_etb_screen.dart';
+import 'package:app_web/views/Layout_Template/layout_template.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -118,6 +119,17 @@ class AuthService {
       }
     } catch (e) {
       // showSnackBar(context, e.toString());
+    }
+  }
+  void logOut(BuildContext context) async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      await sharedPreferences.setString("jwt", '');
+      Provider.of<ProprioProvider>(context, listen: false).clearValue();
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const LayoutTemplate()), (route) => false);
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

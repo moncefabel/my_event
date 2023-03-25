@@ -6,6 +6,7 @@ const etbController = require('../controllers/etbController')
 //Recuperer tous les établissements d'un propriétaire
 router.get("/allEtb",etbController.getAllEtablissements)
 
+router.get("/etb",etbController.getEtbById)
 //Ajouter un établissement 
 router.post("/add", etbController.addEtb)
 

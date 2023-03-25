@@ -1,4 +1,11 @@
+import 'package:app_web/providers/proprio_provider.dart';
+import 'package:app_web/views/Connection/SignIn/login_form.dart';
+import 'package:app_web/views/Connection/SignIn/sign_in_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../features/proprio/request_service.dart';
+import '../../models/booking.dart';
 
 class FriendRequestView extends StatefulWidget {
   const FriendRequestView({super.key});
@@ -8,9 +15,30 @@ class FriendRequestView extends StatefulWidget {
 }
 
 class _FriendRequestViewState extends State<FriendRequestView> {
+
+  RequestServices requestService = RequestServices();
+  List<Booking>? requests;
+
+  @override
+  void initState() {
+    super.initState();
+    getAllRequests();
+  }
+
+  getAllRequests() async{
+    requests = await requestService.fetchAllRequests(context);
+    getAllEtbsRequested();
+    setState((){});
+  }
+
+  getAllEtbsRequested() async{
+
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     return Provider.of<ProprioProvider>(context).proprio.token.isEmpty
+    ? const SignInScreen()
+    : Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
           child: Column(
@@ -65,8 +93,8 @@ class _FriendRequestViewState extends State<FriendRequestView> {
             )
           ]),
       child: Column(
-        children: const [
-          Text(
+        children:  [
+          const Text(
             'Total Notifications',
             style: TextStyle(
                 fontSize: 14,
@@ -74,9 +102,11 @@ class _FriendRequestViewState extends State<FriendRequestView> {
                 fontWeight: FontWeight.bold,
                 fontFamily: 'OpenSans'),
           ),
-          Text(
-            '206', //add number of total notification
-            style: TextStyle(
+          requests == null
+          ? const CircularProgressIndicator()
+          : Text(
+            requests!.length.toString(),
+            style: const TextStyle(
                 fontSize: 40,
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
@@ -91,7 +121,7 @@ class _FriendRequestViewState extends State<FriendRequestView> {
     return Container(
       padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
       child: const Text(
-        'Friend Request',
+        'Booking Request',
         style: TextStyle(
             color: Colors.grey,
             fontWeight: FontWeight.bold,
@@ -103,7 +133,7 @@ class _FriendRequestViewState extends State<FriendRequestView> {
 
   Widget gridView() {
     return GridView.builder(
-      itemCount: 4, // replace with the actual number of items you have
+      itemCount: requests!.length, // replace with the actual number of items you have
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         childAspectRatio: .9,
@@ -113,11 +143,12 @@ class _FriendRequestViewState extends State<FriendRequestView> {
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
+        final request = requests![index];
         return gridViewItem(
           name: 'Macyl', // replace with the actual name for this item
           description:
               'Working Backend', // replace with the actual description for this item
-          status: 'Responded', // replace with the actual status for this item
+          status: request.state, // replace with the actual status for this item
           image:
               'assets/logo.png', // replace with the actual image for this item
         );
