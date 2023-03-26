@@ -51,9 +51,7 @@ const confirmBooking = async(req, res) => {
 const declineBooking = async(req, res) => {
 
     try{
-        await Booking.findOneAndUpdate({_id: req.body.id},{
-            state: "Refusé"
-        })
+        await Booking.deleteOne({_id: req.body.id})
         res.status(200).send("Réservation refusé");
     }catch(error:any){
         res.status(400).send(error.message);
