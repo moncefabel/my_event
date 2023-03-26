@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 class Booking{
@@ -11,7 +12,6 @@ class Booking{
   final String time;
   final String date;
   final String token;
-  final String id;
 
   Booking({
     required this.userId,
@@ -21,8 +21,7 @@ class Booking{
     required this.ownerId,
     // required this.people,
     required this.time,
-    required this.token,
-    required this.id
+    required this.token
   });
 
   Map<String, dynamic> toMap() {
@@ -35,8 +34,7 @@ class Booking{
         'date': date,
         // 'people': people,
         'time': time,
-        'tokenDevice': token,
-        '_id': id
+        'tokenDevice': token
         
       };
     }
@@ -49,8 +47,7 @@ class Booking{
       date: map['date'] ?? '',
       time: map['time'] ?? '',
       state: map['state'] ?? '',
-      token: map['tokenDevice'] ?? '',
-      id: map['_id']
+      token: map['tokenDevice'] ?? ''
 
     );
   }

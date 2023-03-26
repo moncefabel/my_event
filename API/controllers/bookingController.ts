@@ -3,7 +3,6 @@ const {Booking} = require('../models/booking');
 
 const addBooking = async (req, res) => {
 
-    console.log(req.body.date);
     
     try{const newBooking = await Booking.create({
         userId: req.body.userId,
@@ -12,7 +11,8 @@ const addBooking = async (req, res) => {
         state: "En attente",
         people: req.body.people,
         date: req.body.date,
-        time: req.body.time
+        time: req.body.time,
+        tokenDevice: req.body.tokenDevice
     });
 
     await newBooking.save();

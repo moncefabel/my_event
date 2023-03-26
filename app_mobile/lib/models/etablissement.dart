@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 class Etablissement{
 
   final String userId;
@@ -12,6 +13,7 @@ class Etablissement{
   final String nameEtb;
   final List<String> images;
   final String prix;
+  final String description;
 
   Etablissement({
     required this.userId,
@@ -24,7 +26,8 @@ class Etablissement{
     required this.capaciteMin,
     required this.nameEtb,
     required this.images,
-    required this.prix
+    required this.prix,
+    required this.description
   });
 
   Map<String, dynamic> toMap() {
@@ -40,7 +43,8 @@ class Etablissement{
         'capaciteMin': capaciteMin,
         'nameEtb': nameEtb,
         'images': images,
-        'prix': prix
+        'prix': prix,
+        'description': description
       };
     }
   factory Etablissement.fromMap(Map<String, dynamic> map){
@@ -56,6 +60,7 @@ class Etablissement{
       nameEtb: map['nomEtablissement'] ?? '',
       images: List<String>.from(map['images']),
       prix: map['prix'] ?? '',
+      description: map['description'] ?? ''
     );
   }
 

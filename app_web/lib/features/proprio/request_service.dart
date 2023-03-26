@@ -8,6 +8,7 @@ import '../../constants/app_colors.dart';
 import '../../constants/error_handling.dart';
 import '../../constants/utils.dart';
 import '../../models/booking.dart';
+import '../../models/etb.dart';
 import '../../providers/proprio_provider.dart';
 
 class RequestServices {
@@ -94,5 +95,41 @@ class RequestServices {
       print(error.toString());
     }
     
+  }
+
+  void sendPushNotificationsConfirmation({
+    required BuildContext context,
+    required Etablissement etb,
+    required Booking req
+  }) async{
+    try{
+      await http.post(
+        Uri.parse('https://fcm.googleapis.com/fcm/send'),
+        headers: <String,String>{
+          'Content-type': 'application/json',
+          'Authorization': 'key=AAAA6SxAdso:APA91bGq5CFwl8pNBN2fW7A_QeTd16xXDbhDWa-pqH9Xi1W4xRaPogNHYo4bFQN5ytI2MuzB9A0vW2Sr5HIzCT1j4kIviK8eL-xKzOwoP7WwIrgLTzw1CrNOit5vPuQX_0ItuwhOIXH9'
+        },
+        body: jsonEncode(
+          <String, dynamic>{
+            'priority':'high',
+            'data': <String, dynamic>{
+              'click_action':'FLUTTER_NOTIFICATION_CLICK',
+              'status':'done',
+              'body': 'Votre réservation au ${etb.nameEtb} à été confirmé',
+              'title': 'MyEvent'
+            },
+
+            "notification": <String, dynamic>{
+              "title":"MyEvent",
+              "body":'Votre réservation au ${etb.nameEtb} à été confirmé',
+              "android_channel_id":"dbevent"
+            },
+            "to": req.token
+          },
+        ),
+      );
+    }catch(error){
+      print(error.toString());
+    }
   }
 }

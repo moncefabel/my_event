@@ -19,36 +19,82 @@ class SingleEtb extends StatefulWidget {
 }
 
 class _SingleEtbState extends State<SingleEtb> {
+  String selectedItem = 'All';
+  int counter = -1;
   List<Etablissement>? etbs;
   final HomeServices homeService = HomeServices();
 
+  final List<String> locationTypes = [
+    'All',
+    'Bar',
+    'Restaurant',
+    'Air BNB',
+    'Pool',
+    'Rooftop',
+    'Underground',
+    'Mansion',
+    'Complex'
+  ];
   @override
   void initState() {
     super.initState();
-    fetchEtbsByPlace();
+    fetchEtbs();
   }
 
-  fetchEtbsByPlace() async {
-    etbs = await homeService.fetchEtbsByPlace(
-        context: context, place: widget.place);
-
+  fetchEtbs() async {
+    etbs = await homeService.fetchEtbs(
+        context: context, place: widget.place, category: selectedItem);
+    print(etbs!.length);
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: (MediaQuery.of(context).size.height / 2) - 50.0,
+      height: (MediaQuery.of(context).size.height),
       width: MediaQuery.of(context).size.width,
       child: ListView(
         padding: EdgeInsets.only(top: 5.0),
         children: [
           Padding(
+            padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
+            child: ShaderMask(
+              shaderCallback: ((Rect bounds) {
+                return const LinearGradient(
+                        begin: Alignment(0.7, -1.0),
+                        end: Alignment(1.0, -1.0),
+                        colors: <Color>[Colors.white, Colors.transparent])
+                    .createShader(bounds);
+              }),
+              blendMode: BlendMode.dstATop,
+              child: Container(
+                color: Colors.white,
+                width: MediaQuery.of(context).size.width - 20.0,
+                height: 40.0,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    ...locationTypes.map((e) {
+                      counter++;
+                      if (counter <= 8)
+                        return _buildTypes(e, counter);
+                      else {
+                        counter = 0;
+                        return _buildTypes(e, counter);
+                      }
+                    }).toList()
+                  ],
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Padding(
             padding: EdgeInsets.only(left: 15.0, right: 15.0),
             child: Container(
-              color: Color(0xFF0D0F14),
+              color: Colors.white,
               width: MediaQuery.of(context).size.width - 10.0,
-              height: 255.0,
+              height: 300.0,
               child: etbs == null
                   ? const CircularProgressIndicator()
                   : ListView(
@@ -71,8 +117,8 @@ class _SingleEtbState extends State<SingleEtb> {
       padding: EdgeInsets.only(left: 10.0, right: 10.0),
       child: GestureDetector(
         onTap: () {
-          // Navigator.of(context).push(MaterialPageRoute(
-          //     builder: (context) => ItemDetails(lItem: lItem)));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => EtbDetails(etb: etb)));
         },
         child: Container(
           decoration: BoxDecoration(
@@ -82,7 +128,7 @@ class _SingleEtbState extends State<SingleEtb> {
                   end: Alignment.bottomRight,
                   colors: <Color>[
                     ColorPalette().gradientTopLeft,
-                    Colors.black
+                    Color(0xff4c9fc1)
                   ])),
           height: 200.0,
           width: 150.0,
@@ -109,37 +155,6 @@ class _SingleEtbState extends State<SingleEtb> {
                         ),
                       ),
                     ),
-                    Positioned(
-                      right: 10.0,
-                      top: 10.0,
-                      child: Container(
-                        height: 25.0,
-                        width: 45.0,
-                        decoration: BoxDecoration(
-                            color: Color(0xFF342520).withOpacity(0.7),
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(15.0),
-                              bottomLeft: Radius.circular(15.0),
-                            )),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(Icons.star,
-                                  color: ColorPalette().lcoationSelected,
-                                  size: 15.0),
-                              Text(
-                                etb.capaciteMax.toString(),
-                                style: GoogleFonts.sourceSansPro(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontSize: 13.0),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),
@@ -171,42 +186,119 @@ class _SingleEtbState extends State<SingleEtb> {
                         width: 60.0,
                         child: Row(
                           children: [
-                            Text('\$',
-                                style: GoogleFonts.sourceSansPro(
-                                    fontWeight: FontWeight.bold,
-                                    color: ColorPalette().lcoationSelected,
-                                    fontSize: 20.0)),
                             Text(etb.prix,
                                 style: GoogleFonts.sourceSansPro(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
-                                    fontSize: 20.0))
+                                    fontSize: 20.0)),
+                            Text(' €',
+                                style: GoogleFonts.sourceSansPro(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 20.0)),
                           ],
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          //toDo
-                        },
-                        child: Container(
-                          height: 30.0,
-                          width: 30.0,
-                          decoration: BoxDecoration(
-                              color: ColorPalette().lcoationSelected,
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: Center(
-                            child: Icon(
-                              Icons.add,
-                              size: 11.0,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      )
                     ]),
-              )
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 20.0,
+                        width: 90.0,
+                        child: Row(
+                          children: [
+                            Text('Cap Minimale: ',
+                                style: GoogleFonts.sourceSansPro(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 11.0)),
+                            Text(etb.capaciteMin,
+                                style: GoogleFonts.sourceSansPro(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 11.0)),
+                            
+                          ],
+                        ),
+                      ),
+                    ]),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 20.0,
+                        width: 90.0,
+                        child: Row(
+                          children: [
+                            Text('Cap Maximale: ',
+                                style: GoogleFonts.sourceSansPro(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 11.0)),
+                            Text(etb.capaciteMax,
+                                style: GoogleFonts.sourceSansPro(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 11.0)),
+                            
+                          ],
+                        ),
+                      ),
+                    ]),
+              ),
+              
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTypes(location, counter) {
+    return Padding(
+      padding: counter != 0
+          ? EdgeInsets.only(left: 25.0)
+          : EdgeInsets.only(left: 7.0),
+      child: Container(
+        height: 50.0,
+        color: Colors.white,
+        child: Column(
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedItem = location;
+                });
+                fetchEtbs();
+              },
+              child: Text(
+                location,
+                style: GoogleFonts.sourceSansPro(
+                    fontWeight: FontWeight.bold,
+                    color: location == selectedItem
+                        ? ColorPalette().lcoationSelected
+                        : ColorPalette().locationUnselected,
+                    fontSize: 17.0),
+              ),
+            ),
+            SizedBox(height: 4.0),
+            Container(
+              height: 8.0,
+              width: 8.0,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4.0),
+                  color: location == selectedItem
+                      ? ColorPalette().lcoationSelected
+                      : Colors.transparent),
+            )
+          ],
         ),
       ),
     );

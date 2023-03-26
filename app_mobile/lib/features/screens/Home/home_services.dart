@@ -10,23 +10,25 @@ import 'package:myevent/provider/customer_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomeServices {
-  Future<List<Etablissement>> fetchEtbsByPlace({
+  Future<List<Etablissement>> fetchEtbs({
     required BuildContext context,
-    required Position place
+    required Position place,
+    required String category
   }) async {
+  
     final customerProvider = Provider.of<CustomerProvider>(context, listen: false);
     List<Etablissement> etbsList = [];
     final lng = place.longitude;
     final lat = place.latitude;
-    print('$uri/apiEtb/etbs?lng=$lng&lat=$lat');
+    final cat = category;
     try {
       http.Response res =
-          await http.get(Uri.parse('$uri/apiEtb/etbs?lng=$lng&lat=$lat'),
+          await http.get(Uri.parse('$uri/apiEtb/etbs?lng=$lng&lat=$lat&category=$cat'),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
             'jwt': customerProvider.customer.token
         },);
-        
+        print(res.body);
         // ignore: use_build_context_synchronously
         httpErrorHandle(
           response: res,
@@ -48,4 +50,6 @@ class HomeServices {
     }
     return etbsList;
   }
+
+  
 }

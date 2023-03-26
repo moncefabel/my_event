@@ -46,7 +46,13 @@ class _FriendRequestViewState extends State<FriendRequestView> {
 
   void confirmRequest(String requestId) {
     requestService.confirmRequest(context: context, requestId: requestId);
+
   }
+
+  void sendPushNotifications(Etablissement etb, Booking req){
+    requestService.sendPushNotificationsConfirmation(context: context, etb: etb, req:req);
+  }
+
   void denyRequest(String requestId) {
     requestService.denyRequest(context: context, requestId: requestId);
   }
@@ -150,27 +156,28 @@ class _FriendRequestViewState extends State<FriendRequestView> {
 
   Widget gridView() {
     return requests == null
-    ? const CircularProgressIndicator()
-    : GridView.builder(
-      itemCount:
-          requests!.length, // replace with the actual number of items you have
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        childAspectRatio: .9,
-        crossAxisSpacing: 4,
-        mainAxisSpacing: 4,
-      ),
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
-      shrinkWrap: true,
-      itemBuilder: (BuildContext context, int index) {
-        final request = requests![index];
-        final etablissement = findEtbInTheList(request.etbId);  
-        return gridViewItem(
-          etb: etablissement!, // replace with the actual name for this item
-          req: request, // replace with the actual status for this item
-        );
-      },
-    );
+        ? const CircularProgressIndicator()
+        : GridView.builder(
+            itemCount: requests!
+                .length, // replace with the actual number of items you have
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              childAspectRatio: .9,
+              crossAxisSpacing: 4,
+              mainAxisSpacing: 4,
+            ),
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
+            shrinkWrap: true,
+            itemBuilder: (BuildContext context, int index) {
+              final request = requests![index];
+              final etablissement = findEtbInTheList(request.etbId);
+              return gridViewItem(
+                etb:
+                    etablissement!, // replace with the actual name for this item
+                req: request, // replace with the actual status for this item
+              );
+            },
+          );
   }
 
   Widget gridViewItem({
@@ -252,23 +259,23 @@ class _FriendRequestViewState extends State<FriendRequestView> {
               height: 5.0,
             ),
             req.state != "En attente"
-                ?  SizedBox(
-                        height: 30,
-                        width: 80,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(Colors.red)),
-                          onPressed: () {},
-                          child: const Text(
-                            'Annuler',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w200,
-                                fontSize: 12.0),
-                          ),
-                        ),
-                      )
+                ? SizedBox(
+                    height: 30,
+                    width: 80,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.red)),
+                      onPressed: () {},
+                      child: const Text(
+                        'Annuler',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w200,
+                            fontSize: 12.0),
+                      ),
+                    ),
+                  )
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -279,6 +286,7 @@ class _FriendRequestViewState extends State<FriendRequestView> {
                                   Colors.green)),
                           onPressed: () {
                             confirmRequest(req.id);
+                            sendPushNotifications(etb, req);
                           },
                           child: const Text(
                             'Accept',

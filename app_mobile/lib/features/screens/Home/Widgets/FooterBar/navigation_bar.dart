@@ -1,75 +1,85 @@
- import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/heroicons_solid.dart';
-import 'package:iconify_flutter/icons/ri.dart';
+import 'package:flutter/material.dart';
+import 'package:myevent/constants/utils.dart';
+
+import 'package:myevent/features/screens/Home/Widgets/Body/home_display.dart';
+
 import 'package:myevent/features/screens/Login/login_view.dart';
-import 'package:myevent/provider/customer_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
-import '../../../Historic/historic_buy_page.dart';
+class NavBar extends StatefulWidget {
+  const NavBar({Key? key}) : super(key: key);
 
-class BottomBar extends StatelessWidget {
-  const BottomBar({super.key});
+  @override
+  State<NavBar> createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
+  int _page = 0;
+
+  List<Widget> pages = [const EtbDisplay(), const LoginView()];
+
+  void updatePage(int page) {
+    setState(() {
+      _page = page;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 25.0, right: 25.0),
-      height: 50.0,
-      decoration: BoxDecoration(color: Color(0xFF1A1819)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-            Container(
-                child: Iconify(
-              Ri.home_fill,
-              color: Color(0xFFD17742),
-            )),
-          
-         GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const LoginView()));
-            },
-            child: Container(
-                child: Iconify(
-              Ri.handbag_fill,
-              color: Color(0xFF4E4F53),
-            )),
-          ),
-          Container(
-            child: Iconify(
-              Ri.heart_2_fill,
-              color: Color(0xFF4E4F53),
-            ),
-          ),
-          Container(
-            child: Stack(
-              children: [
-                Iconify(
-                  HeroiconsSolid.bell,
-                  color: Color(0xFF4E4F53),
+    double baseWidth = 375;
+    double fem = MediaQuery.of(context).size.width / baseWidth;
+    double ffem = fem * 0.97;
+
+    return Scaffold(
+      body: pages[_page],
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 20,
+              color: Colors.white.withOpacity(.1),
+            )
+          ],
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 14),
+            child: GNav(
+              rippleColor: Colors.grey[300]!,
+              hoverColor: Colors.grey[100]!,
+              gap: 8,
+              activeColor: Colors.white,
+              iconSize: 24,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: const Duration(milliseconds: 400),
+              tabBackgroundColor: kPrimaryColor,
+              color: Colors.grey,
+              tabs: const [
+                GButton(
+                  icon: Icons.home,
+                  text: 'Home',
                 ),
-                Positioned(
-                    top: 2.0,
-                    left: 15.0,
-                    child: Container(
-                      height: 7.0,
-                      width: 7.0,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3.5),
-                          color: Colors.red),
-                    ))
+                // GButton(
+                //   icon: Icons.favorite_border,
+                //   text: 'Likes',
+                // ),
+                // GButton(
+                //   icon: Icons.search,
+                //   text: 'Search',
+                // ),
+                GButton(
+                  icon: Icons.person_rounded,
+                  text: 'Profile',
+                ),
               ],
+              selectedIndex: _page,
+              onTabChange: updatePage,
             ),
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
-  }
-
- 
-  
+}

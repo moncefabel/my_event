@@ -8,7 +8,8 @@ const bookingSchema = new mongooseBook.Schema({
     state: {type:String, required:true},
     people: {type:Number, },
     time: {type: String, },
-    date: {type: String, }
+    date: {type: String, },
+    tokenDevice: {type: String}
 })
 
 const bookingModel = mongooseBook.model("demandes",bookingSchema)
