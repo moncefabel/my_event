@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:app_web/routing/route_names.dart';
 import 'package:app_web/views/Home/home_views.dart';
 import '../models/etb.dart';
-import '../views/About/friend_request_view.dart';
+import '../views/Reservation/friend_request_view.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {

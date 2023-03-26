@@ -1,5 +1,4 @@
 import express from 'express'
-import { checkProprio } from '../middleware/authMiddleware'
 const router:express.Router = express.Router()
 const authController = require('../controllers/authController')
 

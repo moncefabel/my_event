@@ -49,8 +49,11 @@ class _FriendRequestViewState extends State<FriendRequestView> {
 
   }
 
-  void sendPushNotifications(Etablissement etb, Booking req){
+  void sendConfirmationPushNotifications(Etablissement etb, Booking req){
     requestService.sendPushNotificationsConfirmation(context: context, etb: etb, req:req);
+  }
+  void sendDenyPushNotifications(Etablissement etb, Booking req){
+    requestService.sendPushNotificationsDeny(context: context, etb: etb, req:req);
   }
 
   void denyRequest(String requestId) {
@@ -286,7 +289,7 @@ class _FriendRequestViewState extends State<FriendRequestView> {
                                   Colors.green)),
                           onPressed: () {
                             confirmRequest(req.id);
-                            sendPushNotifications(etb, req);
+                            sendConfirmationPushNotifications(etb, req);
                           },
                           child: const Text(
                             'Accept',
@@ -308,6 +311,7 @@ class _FriendRequestViewState extends State<FriendRequestView> {
                                   MaterialStateProperty.all<Color>(Colors.red)),
                           onPressed: () {
                             denyRequest(req.id);
+                            sendDenyPushNotifications(etb,req);
                           },
                           child: const Text(
                             'Deny',
