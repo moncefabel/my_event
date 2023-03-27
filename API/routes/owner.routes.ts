@@ -17,10 +17,10 @@ router.post("/register", authController.addProprio)
 router.post("/signIn",authController.signInProprio )
 
 //Déconnexion d'un utilisateur
-router.post("/logOut",authController.logOut)
+router.post("/logOut",checkUser, authController.logOut)
 
 //Modifier les informations d'un utilisateur
-router.put("/update/:id",checkUser, ownerController.updateOwner)
+router.put("/update",checkUser, ownerController.updateOwner)
 
 //Modification du mot de passe
 router.put("/updatePassword/:id",checkUser, ownerController.changePassword)

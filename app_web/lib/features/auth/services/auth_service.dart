@@ -109,7 +109,7 @@ class AuthService {
       var response = jsonDecode(tokenRes.body);
       if(response == true ){
         http.Response userRes = await http.get(
-          Uri.parse('$uri/'),
+          Uri.parse('$uri/jwt'),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
             'jwt': token

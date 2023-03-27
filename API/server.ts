@@ -24,7 +24,7 @@ app.use(cookieParser())
 app.use("/proprioId",checkProprio)
 app.use("/clientId",checkClient)
 
-app.use("/", checkUser, async(req:any,res ) => {
+app.get("/jwt", checkUser, async(req:any,res ) => {
     try{
         let user = await Proprio.findById(req.user);  
         if(user == null) {
@@ -37,10 +37,10 @@ app.use("/", checkUser, async(req:any,res ) => {
 })
 
 
-app.use("/api", router)
-app.use("/apiEtb", checkUser,routerEtb)
+app.use("/api",router)
+app.use("/apiEtb",checkUser, routerEtb)
 app.use("/apiClient", routerClient)
-app.use("/apiBooking",checkUser, routerBooking)
+app.use("/apiBooking",checkUser,  routerBooking)
 
 
 db.connect()

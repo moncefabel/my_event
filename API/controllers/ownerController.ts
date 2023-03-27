@@ -29,9 +29,8 @@ const getOwnerById =async (req, res) => {
 
 const updateOwner = async(req, res) => {
     
-    checkingValidId(req,res)
     try{
-        const user = await model.Proprio.findById(req.params.id)
+        const user = await model.Proprio.findById(req.headers.id)
         
         user.lastName= req.body.lastName || user.lastName
         user.firstName= req.body.firstName || user.firstName
