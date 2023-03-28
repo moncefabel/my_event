@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
 import 'package:app_web/constants/error_handling.dart';
 import 'package:app_web/constants/utils.dart';
@@ -194,13 +193,13 @@ class ProprioService {
     }
   }
 
-  void updateProprio(
-      {required BuildContext context,
-      required String firstName,
-      required String lastName,
-      required String phoneNumber,
-      required String email,
-      }) async {
+  void updateProprio({
+    required BuildContext context,
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+    required String email,
+  }) async {
     try {
       Proprio proprio = Proprio(
           id: '',

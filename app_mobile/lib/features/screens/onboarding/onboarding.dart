@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:myevent/constants/utils.dart';
 import 'package:myevent/features/screens/Home/home.dart';
 import 'package:myevent/features/screens/Login/login_view.dart';
@@ -20,13 +18,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // onboarding75X (1:344)
         padding: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 20 * fem),
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xffffffff),
         ),
         child: Column(
@@ -57,7 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     fontWeight: FontWeight.w400,
                     height: 0.8888888889 * ffem / fem,
                     letterSpacing: 0.18 * fem,
-                    color: Color(0xff4c9fc1),
+                    color: const Color(0xff4c9fc1),
                   ),
                 ),
               ),
@@ -109,7 +107,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             width: double.infinity,
                             height: 58 * fem,
                             decoration: BoxDecoration(
-                              color: Color(0xff4c9fc1),
+                              color: const Color(0xff4c9fc1),
                               borderRadius: BorderRadius.circular(24 * fem),
                             ),
                             child: Center(
@@ -121,7 +119,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   fontWeight: FontWeight.w600,
                                   height: 1.4444444444 * ffem / fem,
                                   letterSpacing: 0.09 * fem,
-                                  color: Color(0xfffefefe),
+                                  color: const Color(0xfffefefe),
                                 ),
                               ),
                             ),
@@ -140,7 +138,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   fontWeight: FontWeight.w600,
                                   height: 1.5 * ffem / fem,
                                   letterSpacing: 0.08 * fem,
-                                  color: Color(0xffffffff),
+                                  color: const Color(0xffffffff),
                                 ),
                                 children: [
                                   TextSpan(
@@ -151,7 +149,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                       fontWeight: FontWeight.w600,
                                       height: 1.5 * ffem / fem,
                                       letterSpacing: 0.08 * fem,
-                                      color: Color(0xff111111),
+                                      color: const Color(0xff111111),
                                     ),
                                   ),
                                   TextSpan(
@@ -163,7 +161,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                       height: 1.5 * ffem / fem,
                                       letterSpacing: 0.08 * fem,
                                       decoration: TextDecoration.underline,
-                                      color: Color(0xff4c9fc1),
+                                      color: const Color(0xff4c9fc1),
                                     ),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
@@ -172,7 +170,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  LoginView()),
+                                                  const LoginView()),
                                         );
                                       },
                                   ),

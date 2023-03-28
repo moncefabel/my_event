@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../Widgets/OnHoverButton.dart';
+import '../../Widgets/on_hover_button.dart';
 import '../../features/proprio/services/proprio_service.dart';
 import '../../models/etb.dart';
 

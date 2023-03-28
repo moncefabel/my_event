@@ -1,5 +1,4 @@
 import 'package:app_web/providers/proprio_provider.dart';
-import 'package:app_web/views/Connection/SignIn/login_form.dart';
 import 'package:app_web/views/Connection/SignIn/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,14 +8,14 @@ import '../../features/proprio/services/proprio_service.dart';
 import '../../models/booking.dart';
 import '../../models/etb.dart';
 
-class FriendRequestView extends StatefulWidget {
-  const FriendRequestView({super.key});
+class LocationRentRequest extends StatefulWidget {
+  const LocationRentRequest({super.key});
 
   @override
-  State<FriendRequestView> createState() => _FriendRequestViewState();
+  State<LocationRentRequest> createState() => _LocationRentRequestState();
 }
 
-class _FriendRequestViewState extends State<FriendRequestView> {
+class _LocationRentRequestState extends State<LocationRentRequest> {
   RequestServices requestService = RequestServices();
   List<Etablissement>? etablissements;
   final ProprioService proprioService = ProprioService();
@@ -46,14 +45,16 @@ class _FriendRequestViewState extends State<FriendRequestView> {
 
   void confirmRequest(String requestId) {
     requestService.confirmRequest(context: context, requestId: requestId);
-
   }
 
-  void sendConfirmationPushNotifications(Etablissement etb, Booking req){
-    requestService.sendPushNotificationsConfirmation(context: context, etb: etb, req:req);
+  void sendConfirmationPushNotifications(Etablissement etb, Booking req) {
+    requestService.sendPushNotificationsConfirmation(
+        context: context, etb: etb, req: req);
   }
-  void sendDenyPushNotifications(Etablissement etb, Booking req){
-    requestService.sendPushNotificationsDeny(context: context, etb: etb, req:req);
+
+  void sendDenyPushNotifications(Etablissement etb, Booking req) {
+    requestService.sendPushNotificationsDeny(
+        context: context, etb: etb, req: req);
   }
 
   void denyRequest(String requestId) {
@@ -188,6 +189,7 @@ class _FriendRequestViewState extends State<FriendRequestView> {
     required Booking req,
     // required int people
   }) {
+    bool isButtonPressed = false;
     return ConstrainedBox(
       constraints: const BoxConstraints(
         minWidth: 120,
@@ -297,6 +299,9 @@ class _FriendRequestViewState extends State<FriendRequestView> {
                               backgroundColor: MaterialStateProperty.all<Color>(
                                   Colors.green)),
                           onPressed: () {
+                            setState(() {
+                              isButtonPressed = true;
+                            });
                             confirmRequest(req.id);
                             sendConfirmationPushNotifications(etb, req);
                           },
@@ -319,8 +324,11 @@ class _FriendRequestViewState extends State<FriendRequestView> {
                               backgroundColor:
                                   MaterialStateProperty.all<Color>(Colors.red)),
                           onPressed: () {
+                            setState(() {
+                              isButtonPressed = true;
+                            });
                             denyRequest(req.id);
-                            sendDenyPushNotifications(etb,req);
+                            sendDenyPushNotifications(etb, req);
                           },
                           child: const Text(
                             'Deny',

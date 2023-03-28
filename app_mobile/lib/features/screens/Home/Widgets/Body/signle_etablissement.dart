@@ -49,14 +49,14 @@ class _SingleEtbState extends State<SingleEtb> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: (MediaQuery.of(context).size.height),
       width: MediaQuery.of(context).size.width,
       child: ListView(
-        padding: EdgeInsets.only(top: 5.0),
+        padding: const EdgeInsets.only(top: 5.0),
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
+            padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
             child: ShaderMask(
               shaderCallback: ((Rect bounds) {
                 return const LinearGradient(
@@ -89,7 +89,7 @@ class _SingleEtbState extends State<SingleEtb> {
           ),
           const SizedBox(height: 20),
           Padding(
-            padding: EdgeInsets.only(left: 15.0, right: 15.0),
+            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
             child: Container(
               color: Colors.white,
               width: MediaQuery.of(context).size.width - 10.0,
@@ -113,11 +113,11 @@ class _SingleEtbState extends State<SingleEtb> {
 
   Widget _buildLocationItem(Etablissement etb) {
     return Padding(
-      padding: EdgeInsets.only(left: 10.0, right: 10.0),
+      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => EtbDetails(etb: etb)));
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => EtbDetails(etb: etb)));
         },
         child: Container(
           decoration: BoxDecoration(
@@ -127,14 +127,14 @@ class _SingleEtbState extends State<SingleEtb> {
                   end: Alignment.bottomRight,
                   colors: <Color>[
                     ColorPalette().gradientTopLeft,
-                    Color(0xff4c9fc1)
+                    const Color(0xff4c9fc1)
                   ])),
           height: 200.0,
           width: 150.0,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 height: 140.0,
                 width: 150.0,
                 child: Stack(
@@ -144,7 +144,7 @@ class _SingleEtbState extends State<SingleEtb> {
                       left: 10.0,
                       child: Hero(
                         tag: etb.images[0].toString(),
-                        child: Container(
+                        child: SizedBox(
                           height: 120.0,
                           width: 130.0,
                           child: Image.network(
@@ -158,7 +158,7 @@ class _SingleEtbState extends State<SingleEtb> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10.0),
+                padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
                   etb.nameEtb,
                   style: GoogleFonts.sourceSansPro(
@@ -166,7 +166,7 @@ class _SingleEtbState extends State<SingleEtb> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10.0, bottom: 5.0),
+                padding: const EdgeInsets.only(left: 10.0, bottom: 5.0),
                 child: Text(
                   etb.lieu,
                   style: GoogleFonts.sourceSansPro(
@@ -176,11 +176,11 @@ class _SingleEtbState extends State<SingleEtb> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         height: 40.0,
                         width: 60.0,
                         child: Row(
@@ -201,7 +201,7 @@ class _SingleEtbState extends State<SingleEtb> {
                     ]),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -220,14 +220,13 @@ class _SingleEtbState extends State<SingleEtb> {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                     fontSize: 11.0)),
-                            
                           ],
                         ),
                       ),
                     ]),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -246,13 +245,11 @@ class _SingleEtbState extends State<SingleEtb> {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                     fontSize: 11.0)),
-                            
                           ],
                         ),
                       ),
                     ]),
               ),
-              
             ],
           ),
         ),
@@ -263,8 +260,8 @@ class _SingleEtbState extends State<SingleEtb> {
   Widget _buildTypes(location, counter) {
     return Padding(
       padding: counter != 0
-          ? EdgeInsets.only(left: 25.0)
-          : EdgeInsets.only(left: 7.0),
+          ? const EdgeInsets.only(left: 25.0)
+          : const EdgeInsets.only(left: 7.0),
       child: Container(
         height: 50.0,
         color: Colors.white,
@@ -287,7 +284,7 @@ class _SingleEtbState extends State<SingleEtb> {
                     fontSize: 17.0),
               ),
             ),
-            SizedBox(height: 4.0),
+            const SizedBox(height: 4.0),
             Container(
               height: 8.0,
               width: 8.0,

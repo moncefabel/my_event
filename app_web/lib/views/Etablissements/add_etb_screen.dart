@@ -1,11 +1,10 @@
 // ignore_for_file: avoid_print, unused_field, prefer_const_constructors
-
-import 'package:app_web/Widgets/OnHoverButton.dart';
 import 'package:app_web/Widgets/location_list.dart';
 import 'package:app_web/features/proprio/services/proprio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../Widgets/on_hover_button.dart';
 import '../../constants/app_colors.dart';
 import '../../features/network_service.dart';
 import '../../models/auto_complete/auto_complete_predictions.dart';

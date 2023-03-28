@@ -1,5 +1,4 @@
 import 'package:app_web/Extensions/hover_extensions.dart';
-import 'package:app_web/views/Etablissements/add_etb_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:app_web/Widgets/Call_To_Action/call_to_action_mobile.dart';

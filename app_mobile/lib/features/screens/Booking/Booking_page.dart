@@ -30,7 +30,7 @@ class _BookingPageState extends State<BookingPage> {
         context: context,
         initialDate: selectedDate,
         firstDate: DateTime.now(),
-        lastDate: DateTime.now().add(Duration(days: 365)));
+        lastDate: DateTime.now().add(const Duration(days: 365)));
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -46,7 +46,6 @@ class _BookingPageState extends State<BookingPage> {
         selectedTime = picked;
       });
   }
-
 
   void getToken() async {
     await FirebaseMessaging.instance.getToken().then((token) {
@@ -70,41 +69,41 @@ class _BookingPageState extends State<BookingPage> {
         token: deviceToken,
         nameEtb: widget.etb.nameEtb,
         people: numPeople);
-        
   }
 
   @override
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Booking ${widget.etb.nameEtb}'),
-        backgroundColor: Color(0xff4c9fc1),
+        backgroundColor: const Color(0xff4c9fc1),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Number of People:',
               style: TextStyle(fontSize: 16.0),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Row(
               children: [
                 IconButton(
-                  icon: Icon(Icons.remove),
+                  icon: const Icon(Icons.remove),
                   onPressed: () {
                     if (numPeople > 1) {
                       setState(() {
@@ -115,10 +114,10 @@ class _BookingPageState extends State<BookingPage> {
                 ),
                 Text(
                   '$numPeople',
-                  style: TextStyle(fontSize: 16.0),
+                  style: const TextStyle(fontSize: 16.0),
                 ),
                 IconButton(
-                  icon: Icon(Icons.add),
+                  icon: const Icon(Icons.add),
                   onPressed: () {
                     setState(() {
                       numPeople++;
@@ -127,12 +126,12 @@ class _BookingPageState extends State<BookingPage> {
                 ),
               ],
             ),
-            SizedBox(height: 16.0),
-            Text(
+            const SizedBox(height: 16.0),
+            const Text(
               'Date:',
               style: TextStyle(fontSize: 16.0),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Row(
               children: [
                 Expanded(
@@ -141,7 +140,7 @@ class _BookingPageState extends State<BookingPage> {
                       _selectDate(context);
                     },
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
                         border: Border.all(color: Colors.grey),
@@ -149,11 +148,11 @@ class _BookingPageState extends State<BookingPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.calendar_today),
-                          SizedBox(width: 8.0),
+                          const Icon(Icons.calendar_today),
+                          const SizedBox(width: 8.0),
                           Text(
                             '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
-                            style: TextStyle(fontSize: 16.0),
+                            style: const TextStyle(fontSize: 16.0),
                           ),
                         ],
                       ),
@@ -162,12 +161,12 @@ class _BookingPageState extends State<BookingPage> {
                 ),
               ],
             ),
-            SizedBox(height: 16.0),
-            Text(
+            const SizedBox(height: 16.0),
+            const Text(
               'Arrival Time:',
               style: TextStyle(fontSize: 16.0),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Row(
               children: [
                 Expanded(
@@ -176,7 +175,7 @@ class _BookingPageState extends State<BookingPage> {
                       _selectTime(context);
                     },
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
                         border: Border.all(color: Colors.grey),
@@ -184,11 +183,11 @@ class _BookingPageState extends State<BookingPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.access_time),
-                          SizedBox(width: 8.0),
+                          const Icon(Icons.access_time),
+                          const SizedBox(width: 8.0),
                           Text(
                             '${selectedTime.hour}:${selectedTime.minute}',
-                            style: TextStyle(fontSize: 16.0),
+                            style: const TextStyle(fontSize: 16.0),
                           ),
                         ],
                       ),
@@ -197,14 +196,15 @@ class _BookingPageState extends State<BookingPage> {
                 ),
               ],
             ),
-            SizedBox(height: 200.0),
+            const SizedBox(height: 200.0),
             Center(
               child: ElevatedButton(
                 onPressed: () {
                   sendRequestForBooking();
                 },
-                style: ElevatedButton.styleFrom(primary: Color(0xff4c9fc1)),
-                child: Padding(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xff4c9fc1)),
+                child: const Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
                   child: Text(

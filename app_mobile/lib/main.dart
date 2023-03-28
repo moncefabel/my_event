@@ -1,7 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:myevent/constants/utils.dart';
-import 'package:myevent/notification_view.dart';
 import 'package:myevent/provider/customer_provider.dart';
 import 'package:myevent/router.dart';
 import 'package:myevent/features/screens/onboarding/onboarding.dart';
