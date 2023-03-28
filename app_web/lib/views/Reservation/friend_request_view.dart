@@ -250,6 +250,15 @@ class _FriendRequestViewState extends State<FriendRequestView> {
               ),
             ),
             Text(
+              "Nombre de personnes: ${req.people.toString()}",
+              style: const TextStyle(
+                color: Colors.grey,
+                fontFamily: 'OpenSans',
+                fontWeight: FontWeight.bold,
+                fontSize: 10,
+              ),
+            ),
+            Text(
               req.state,
               style: const TextStyle(
                 color: Colors.grey,

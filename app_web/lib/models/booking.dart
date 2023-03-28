@@ -7,7 +7,7 @@ class Booking{
   final String ownerId;
   final String etbId;
   final String state;
-  // final int people;
+  final int people;
   final String time;
   final String date;
   final String token;
@@ -19,7 +19,7 @@ class Booking{
     required this.etbId,
     required this.state,
     required this.ownerId,
-    // required this.people,
+    required this.people,
     required this.time,
     required this.token,
     required this.id
@@ -33,7 +33,7 @@ class Booking{
         'etbId': etbId,
         'state': state,
         'date': date,
-        // 'people': people,
+        'people': people,
         'time': time,
         'tokenDevice': token,
         '_id': id
@@ -45,7 +45,7 @@ class Booking{
       userId: map['userId'] ?? '',
       ownerId: map['ownerId'] ?? '', 
       etbId: map['etbId'] ?? '', 
-      // people: map['people'] ?? '', 
+      people: map['people'] ?? '', 
       date: map['date'] ?? '',
       time: map['time'] ?? '',
       state: map['state'] ?? '',

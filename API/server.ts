@@ -40,7 +40,7 @@ app.get("/jwt", checkUser, async(req:any,res ) => {
 app.use("/api",router)
 app.use("/apiEtb", routerEtb)
 app.use("/apiClient", routerClient)
-app.use("/apiBooking",checkUser,  routerBooking)
+app.use("/apiBooking",  routerBooking)
 
 
 db.connect()

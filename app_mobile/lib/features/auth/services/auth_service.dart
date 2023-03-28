@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'package:myevent/constants/error_handling.dart';
 import 'package:myevent/constants/utils.dart';
+import 'package:myevent/features/screens/Historic/notifications_bookings.dart';
 import 'package:myevent/models/customer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -64,11 +65,13 @@ class AuthService {
           context: context,
           onSuccess: () async {
             SharedPreferences prefs = await SharedPreferences.getInstance();
+            Provider.of<CustomerProvider>(context, listen: false)
+                .setCustomer(res.body);
             await prefs.setString("jwt", jsonDecode(res.body)['token']);
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (_) => const HomeScreen(),
+                builder: (_) => const HistoricBuyPage(),
               ),
               (route) => false,
             );

@@ -12,7 +12,8 @@ const addBooking = async (req, res) => {
         people: req.body.people,
         date: req.body.date,
         time: req.body.time,
-        tokenDevice: req.body.tokenDevice
+        tokenDevice: req.body.tokenDevice,
+        nameEtb: req.body.nameEtb,
     });
 
     await newBooking.save();
@@ -25,10 +26,8 @@ const addBooking = async (req, res) => {
 const getBookings = async(req,res) => {
 
     try{
-        console.log(req.headers.id);
         
         const bookings = await Booking.find({ownerId: req.headers.id})
-        console.log(bookings);
         
         res.status(200).json(bookings);
     }catch(error:any){
@@ -67,10 +66,20 @@ const getConfirmedBookings = async(req, res) => {
     }
 }
 
+const getBookingsOfTheUser = async(req, res) => {
+    try{
+        const bookings = await Booking.find({userId: req.headers.id})
+        res.status(200).json(bookings);
+    }catch(error:any){
+        res.status(400).send(error.message);
+    }
+}
+
 export = {
     addBooking,
     getBookings,
     confirmBooking,
     declineBooking,
-    getConfirmedBookings
+    getConfirmedBookings,
+    getBookingsOfTheUser
 }

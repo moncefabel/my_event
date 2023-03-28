@@ -8,6 +8,7 @@ router.get('/bookings',  bookingController.getBookings)
 router.put('/confirm', bookingController.confirmBooking)
 router.delete('/decline', bookingController.declineBooking)
 router.get('/confirmed', bookingController.getConfirmedBookings)
+router.get('/userBookings', bookingController.getBookingsOfTheUser)
 
 
 export = router

@@ -1,8 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
-import 'package:myevent/features/screens/Historic/historic_buy_page.dart';
 import 'package:myevent/provider/customer_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../models/etablissement.dart';
@@ -69,9 +67,10 @@ class _BookingPageState extends State<BookingPage> {
         state: "En attente",
         date: newFormat.format(selectedDate).toString(),
         time: selectedTime.hour.toString(),
-        token: deviceToken
-        // people: numPeople);
-        );
+        token: deviceToken,
+        nameEtb: widget.etb.nameEtb,
+        people: numPeople);
+        
   }
 
   @override

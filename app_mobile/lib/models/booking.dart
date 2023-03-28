@@ -8,10 +8,11 @@ class Booking{
   final String ownerId;
   final String etbId;
   final String state;
-  // final int people;
+  final int people;
   final String time;
   final String date;
   final String token;
+  final String nameEtb;
 
   Booking({
     required this.userId,
@@ -19,9 +20,10 @@ class Booking{
     required this.etbId,
     required this.state,
     required this.ownerId,
-    // required this.people,
+    required this.people,
     required this.time,
-    required this.token
+    required this.token,
+    required this.nameEtb
   });
 
   Map<String, dynamic> toMap() {
@@ -32,9 +34,10 @@ class Booking{
         'etbId': etbId,
         'state': state,
         'date': date,
-        // 'people': people,
+        'people': people,
         'time': time,
-        'tokenDevice': token
+        'tokenDevice': token,
+        'nameEtb': nameEtb
         
       };
     }
@@ -43,11 +46,12 @@ class Booking{
       userId: map['userId'] ?? '',
       ownerId: map['ownerId'] ?? '', 
       etbId: map['etbId'] ?? '', 
-      // people: map['people'] ?? '', 
+      people: map['people'] ?? '', 
       date: map['date'] ?? '',
       time: map['time'] ?? '',
       state: map['state'] ?? '',
-      token: map['tokenDevice'] ?? ''
+      token: map['tokenDevice'] ?? '',
+      nameEtb: map['nameEtb'] ?? ''
 
     );
   }

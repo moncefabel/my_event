@@ -44,7 +44,6 @@ class _SingleEtbState extends State<SingleEtb> {
   fetchEtbs() async {
     etbs = await homeService.fetchEtbs(
         context: context, place: widget.place, category: selectedItem);
-    print(etbs!.length);
     setState(() {});
   }
 
