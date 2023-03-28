@@ -1,6 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:myevent/constants/utils.dart';
 import 'package:myevent/provider/customer_provider.dart';
 import 'package:myevent/router.dart';
@@ -12,9 +11,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await FirebaseMessaging.instance.getInitialMessage();
-
-
-  
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(

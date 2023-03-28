@@ -1,6 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
+import 'package:myevent/features/screens/Historic/historic_buy_page.dart';
 import 'package:myevent/provider/customer_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../models/etablissement.dart';
@@ -47,28 +49,34 @@ class _BookingPageState extends State<BookingPage> {
       });
   }
 
-  void getToken() async{
-    await FirebaseMessaging.instance.getToken().then(
-      (token){
-        setState(() {
-          deviceToken = token!;
-        });
-      }
-    );
+
+  void getToken() async {
+    await FirebaseMessaging.instance.getToken().then((token) {
+      setState(() {
+        deviceToken = token!;
+      });
+    });
   }
-  void sendRequestForBooking(){
+
+  void sendRequestForBooking() {
     getToken();
     bookingService.requestForBooking(
-      context: context,
-      userId: Provider.of<CustomerProvider>(context, listen:false).customer.id,
-      ownerId: widget.etb.userId,
-      etbId: widget.etb.id,
-      state: "En attente",
-      date: newFormat.format(selectedDate).toString(),
-      time: selectedTime.hour.toString(),
-      token: deviceToken
-      // people: numPeople);
-    );
+        context: context,
+        userId:
+            Provider.of<CustomerProvider>(context, listen: false).customer.id,
+        ownerId: widget.etb.userId,
+        etbId: widget.etb.id,
+        state: "En attente",
+        date: newFormat.format(selectedDate).toString(),
+        time: selectedTime.hour.toString(),
+        token: deviceToken
+        // people: numPeople);
+        );
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {

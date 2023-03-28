@@ -6,7 +6,7 @@ import '../../auth/services/auth_service.dart';
 
 class HistoricBuyPage extends StatefulWidget {
   const HistoricBuyPage({super.key});
-
+  
   @override
   State<HistoricBuyPage> createState() => _HistoricBuyPageState();
 }

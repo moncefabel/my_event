@@ -108,18 +108,38 @@ const getEtbByPlace = async(req,res) => {
 
     
     try{
-        const etbs = await Etb.find({
-            location:
-            {
-                $near:
+        
+        if(req.query.category == 'All'){
+            const etbs = await Etb.find({
+                location:
                 {
-                    $geometry: {type: "Point", coordinates: [req.query.lng, req.query.lat]},
-                    $maxDistance: 5000,
+                    $near:
+                    {
+                        $geometry: {type: "Point", coordinates: [req.query.lng, req.query.lat]},
+                        $maxDistance: 5000,
 
+                    },
                 },
-            },
-        })
-        res.json(etbs)
+            })
+            console.log(etbs);
+            
+            res.json(etbs)
+        }
+        else{
+            const etbs = await Etb.find({
+                location:
+                {
+                    $near:
+                    {
+                        $geometry: {type: "Point", coordinates: [req.query.lng, req.query.lat]},
+                        $maxDistance: 5000,
+
+                    },
+                },
+                type: req.query.category
+            })
+            res.json(etbs)
+        }
     }catch(error:any){
         res.status(500).json({error: error.message})
     }
