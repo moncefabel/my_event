@@ -176,20 +176,19 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
               final request = requests![index];
               final etablissement = findEtbInTheList(request.etbId);
               return gridViewItem(
-                etb:
-                    etablissement!, // replace with the actual name for this item
-                req: request, // replace with the actual status for this item
+                etb: etablissement!,
+                req: request,
               );
             },
           );
   }
 
   Widget gridViewItem({
+    bool isButtonPressed = false,
     required Etablissement etb,
     required Booking req,
     // required int people
   }) {
-    bool isButtonPressed = false;
     return ConstrainedBox(
       constraints: const BoxConstraints(
         minWidth: 120,
