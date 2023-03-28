@@ -6,17 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:app_web/routing/route_names.dart';
 import 'package:app_web/views/Home/home_views.dart';
 import '../models/etb.dart';
-import '../views/Reservation/friend_request_view.dart';
+import '../views/Reservation/location_rent_request.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case homeRoute:
       return _getPageRoute(const HomeView());
     case aboutRoute:
-      return _getPageRoute(const FriendRequestView());
+      return _getPageRoute(const LocationRentRequest());
     case connectionRoute:
       return _getPageRoute(const ConnectionView());
-      case paramsRoute:
+    case paramsRoute:
       return _getPageRoute(const Params());
     case AddEtbScreen.routeName:
       return MaterialPageRoute(
@@ -25,13 +25,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
 
     case ModifyEtbScreen.routeName:
-      
-        var etb = settings.arguments as Etablissement;
-        return MaterialPageRoute(
+      var etb = settings.arguments as Etablissement;
+      return MaterialPageRoute(
         settings: settings,
-        builder: (_) =>  ModifyEtbScreen(
-          etb: etb
-        ), 
+        builder: (_) => ModifyEtbScreen(etb: etb),
       );
     default:
       throw MaterialPageRoute(
