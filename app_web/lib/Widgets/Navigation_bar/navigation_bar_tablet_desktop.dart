@@ -1,10 +1,19 @@
+import 'package:app_web/features/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:app_web/routing/route_names.dart';
 
 import 'navbar_item.dart';
 
-class NavigationBarTabletDesktop extends StatelessWidget {
+class NavigationBarTabletDesktop extends StatefulWidget {
   const NavigationBarTabletDesktop({super.key});
+
+  @override
+  State<NavigationBarTabletDesktop> createState() => _NavigationBarTabletDesktopState();
+}
+
+class _NavigationBarTabletDesktopState extends State<NavigationBarTabletDesktop> {
+
+    AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +25,20 @@ class NavigationBarTabletDesktop extends StatelessWidget {
               //const NavBarLogo('Main', homeRoute),
               Row(
                 mainAxisSize: MainAxisSize.min,
-                children: const <Widget>[
+                children:  const <Widget>[
                   NavBarItem('Connection', connectionRoute),
                   SizedBox(
                     width: 60,
                   ),
-                  NavBarItem('About', aboutRoute),
+                  NavBarItem('Reservations', aboutRoute), 
+                  SizedBox(
+                    width: 30,
+                  ),
+                  NavBarItem('Parametres', paramsRoute)
                 ],
+                
               )
             ]));
   }
 }
+

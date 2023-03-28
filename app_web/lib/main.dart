@@ -4,7 +4,6 @@ import 'package:app_web/locator.dart';
 import 'package:app_web/views/Layout_Template/layout_template.dart';
 import 'package:provider/provider.dart';
 import 'Widgets/Navigation_Drawer/navigation_drawer.dart';
-import 'friend_request_view.dart';
 
 void main(List<String> args) {
   setupLocator();
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
           textTheme:
               Theme.of(context).textTheme.apply(fontFamily: 'Open Sans')),
       home:
-          const FriendRequestView(), //LayoutTemplate() //MyHomePage(title: 'Flutter demo home page'),
+          const LayoutTemplate(), //LayoutTemplate() //MyHomePage(title: 'Flutter demo home page'),
     );
   }
 }

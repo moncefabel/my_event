@@ -14,6 +14,14 @@ const getAllEtablissements =  async (req,res) => {
     }   
 }
 
+const getEtbById = async(req,res) => {
+    try{
+        const etb = await Etb.find({_id : req.headers.id})
+        res.status(200).json(etb)
+    }catch(error:any){
+        res.status(400).send(error.message)
+    }  
+}
 
 const addEtb = async(req, res) => {
  
@@ -100,18 +108,38 @@ const getEtbByPlace = async(req,res) => {
 
     
     try{
-        const etbs = await Etb.find({
-            location:
-            {
-                $near:
+        
+        if(req.query.category == 'All'){
+            const etbs = await Etb.find({
+                location:
                 {
-                    $geometry: {type: "Point", coordinates: [req.query.lng, req.query.lat]},
-                    $maxDistance: 5000,
+                    $near:
+                    {
+                        $geometry: {type: "Point", coordinates: [req.query.lng, req.query.lat]},
+                        $maxDistance: 5000,
 
+                    },
                 },
-            },
-        })
-        res.json(etbs)
+            })
+            console.log(etbs);
+            
+            res.json(etbs)
+        }
+        else{
+            const etbs = await Etb.find({
+                location:
+                {
+                    $near:
+                    {
+                        $geometry: {type: "Point", coordinates: [req.query.lng, req.query.lat]},
+                        $maxDistance: 5000,
+
+                    },
+                },
+                type: req.query.category
+            })
+            res.json(etbs)
+        }
     }catch(error:any){
         res.status(500).json({error: error.message})
     }
@@ -124,5 +152,6 @@ export = {
     addEtb,
     updateEtb,
     deleteEtb,
-    getEtbByPlace
+    getEtbByPlace,
+    getEtbById
 }
