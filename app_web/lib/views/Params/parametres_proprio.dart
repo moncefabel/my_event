@@ -50,112 +50,135 @@ class _ParamsState extends State<Params> {
     _phoneNumberController.text = userProvider.proprio.phoneNumber;
     return Provider.of<ProprioProvider>(context).proprio.token.isEmpty
         ? const SignInScreen()
-        : Center(
-            child: Form(
-              key: _signUpFormKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.next,
-                    cursorColor: primaryColor,
-                    onSaved: (email) {},
-                    decoration: const InputDecoration(
-                      hintText: "Your email",
-                      prefixIcon: Padding(
-                        padding: EdgeInsets.all(defaultPadding),
-                        child: Icon(Icons.person),
-                      ),
-                    ),
-                    validator: (val) {
-                      if (val == null || val.isEmpty) {
-                        return 'Enter your your email';
-                      }
-                      return null;
-                    },
+        : Column(
+            children: [
+              const Center(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 50.0),
+                  child: Text(
+                    'Modify user information',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                        fontSize: 20.0),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: defaultPadding),
-                    child: TextFormField(
-                      controller: _firstNameController,
-                      textInputAction: TextInputAction.done,
-                      cursorColor: primaryColor,
-                      decoration: const InputDecoration(
-                        hintText: "First Name",
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.all(defaultPadding),
-                        ),
-                      ),
-                      validator: (val) {
-                        if (val == null || val.isEmpty) {
-                          return 'Enter your first name';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: defaultPadding),
-                    child: TextFormField(
-                      controller: _lastNameController,
-                      textInputAction: TextInputAction.done,
-                      cursorColor: primaryColor,
-                      decoration: const InputDecoration(
-                        hintText: "Last Name",
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.all(defaultPadding),
-                        ),
-                      ),
-                      validator: (val) {
-                        if (val == null || val.isEmpty) {
-                          return 'Enter your last name';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: defaultPadding),
-                    child: TextFormField(
-                      controller: _phoneNumberController,
-                      textInputAction: TextInputAction.done,
-                      cursorColor: primaryColor,
-                      decoration: const InputDecoration(
-                        hintText: "Phone number",
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.all(defaultPadding),
-                        ),
-                      ),
-                      validator: (val) {
-                        if (val == null || val.isEmpty) {
-                          return 'Enter your phone number';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: defaultPadding / 2),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_signUpFormKey.currentState!.validate()) {
-                        updateProprio();
-                      }
-                    },
-                    child: Text("Save".toUpperCase()),
-                  ),
-                  const SizedBox(height: defaultPadding),
-                  ElevatedButton(
-                      onPressed: () {
-                        AuthService().logOut(context);
-                      },
-                      child: const Text("Log out"))
-                ],
+                ),
               ),
-            ),
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.only(top: 150.0),
+                  height: MediaQuery.of(context).size.height / 2,
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: _signUpFormKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: _emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            textInputAction: TextInputAction.next,
+                            cursorColor: primaryColor,
+                            onSaved: (email) {},
+                            decoration: const InputDecoration(
+                              hintText: "Your email",
+                              prefixIcon: Padding(
+                                padding: EdgeInsets.all(defaultPadding),
+                                child: Icon(Icons.person),
+                              ),
+                            ),
+                            validator: (val) {
+                              if (val == null || val.isEmpty) {
+                                return 'Enter your your email';
+                              }
+                              return null;
+                            },
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: defaultPadding),
+                            child: TextFormField(
+                              controller: _firstNameController,
+                              textInputAction: TextInputAction.done,
+                              cursorColor: primaryColor,
+                              decoration: const InputDecoration(
+                                hintText: "First Name",
+                                prefixIcon: Padding(
+                                  padding: EdgeInsets.all(defaultPadding),
+                                ),
+                              ),
+                              validator: (val) {
+                                if (val == null || val.isEmpty) {
+                                  return 'Enter your first name';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: defaultPadding),
+                            child: TextFormField(
+                              controller: _lastNameController,
+                              textInputAction: TextInputAction.done,
+                              cursorColor: primaryColor,
+                              decoration: const InputDecoration(
+                                hintText: "Last Name",
+                                prefixIcon: Padding(
+                                  padding: EdgeInsets.all(defaultPadding),
+                                ),
+                              ),
+                              validator: (val) {
+                                if (val == null || val.isEmpty) {
+                                  return 'Enter your last name';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: defaultPadding),
+                            child: TextFormField(
+                              controller: _phoneNumberController,
+                              textInputAction: TextInputAction.done,
+                              cursorColor: primaryColor,
+                              decoration: const InputDecoration(
+                                hintText: "Phone number",
+                                prefixIcon: Padding(
+                                  padding: EdgeInsets.all(defaultPadding),
+                                ),
+                              ),
+                              validator: (val) {
+                                if (val == null || val.isEmpty) {
+                                  return 'Enter your phone number';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: defaultPadding / 2),
+                          ElevatedButton(
+                            onPressed: () {
+                              if (_signUpFormKey.currentState!.validate()) {
+                                updateProprio();
+                              }
+                            },
+                            child: Text("Save".toUpperCase()),
+                          ),
+                          const SizedBox(height: defaultPadding),
+                          ElevatedButton(
+                              onPressed: () {
+                                AuthService().logOut(context);
+                              },
+                              child: const Text("Log out"))
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           );
   }
 }
