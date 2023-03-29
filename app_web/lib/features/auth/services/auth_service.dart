@@ -62,6 +62,7 @@ class AuthService {
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
           });
+      print('working');
 
       httpErrorHandle(
           response: res,

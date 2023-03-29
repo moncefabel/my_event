@@ -16,6 +16,7 @@ class LocationRentRequest extends StatefulWidget {
 }
 
 class _LocationRentRequestState extends State<LocationRentRequest> {
+  bool isButtonPressed = false;
   RequestServices requestService = RequestServices();
   List<Etablissement>? etablissements;
   final ProprioService proprioService = ProprioService();
@@ -184,7 +185,6 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
   }
 
   Widget gridViewItem({
-    bool isButtonPressed = false,
     required Etablissement etb,
     required Booking req,
     // required int people
@@ -271,6 +271,16 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
             const SizedBox(
               height: 5.0,
             ),
+            isButtonPressed
+                ? const Text('Button Pressed')
+                : ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isButtonPressed = true;
+                      });
+                    },
+                    child: const Text('Press Me'),
+                  ),
             req.state != "En attente"
                 ? SizedBox(
                     height: 30,
