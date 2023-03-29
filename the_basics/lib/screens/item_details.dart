@@ -5,14 +5,21 @@ import 'package:the_basics/color_palette.dart';
 import 'package:the_basics/models/location_item.dart';
 
 class ItemDetails extends StatefulWidget {
+  final String text;
+  final String moreText;
   final LocationItem lItem;
-  const ItemDetails({super.key, required this.lItem});
+  const ItemDetails(
+      {super.key,
+      required this.lItem,
+      required this.text,
+      required this.moreText});
 
   @override
   State<ItemDetails> createState() => _ItemDetailsState();
 }
 
 class _ItemDetailsState extends State<ItemDetails> {
+  bool _showMore = false;
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -264,13 +271,35 @@ class _ItemDetailsState extends State<ItemDetails> {
                             color: Color(0xFF999A9B), fontSize: 17.0),
                       ),
                       SizedBox(height: 10.0),
-                      Container(
-                        height: 50.0,
-                        width: screenWidth - 30.0,
-                        child: Text(
-                            'Macyl, ajoute le truc des descriptions ici = easy af, fast af and we gucci on description bby!!!!!!!!!!',
-                            style: GoogleFonts.sourceSansPro(
-                                color: Colors.white, fontSize: 17.0)),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _showMore = !_showMore;
+                          });
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SingleChildScrollView(
+                              physics:
+                                  AlwaysScrollableScrollPhysics(), // set physics to AlwaysScrollableScrollPhysics
+                              scrollDirection: Axis.vertical,
+                              child: Text(
+                                widget.text +
+                                    (_showMore ? widget.moreText : ''),
+                                maxLines: _showMore ? null : 1,
+                                overflow: TextOverflow.clip,
+                                style: GoogleFonts.sourceSansPro(
+                                    color: Colors.white, fontSize: 17.0),
+                              ),
+                            ),
+                            if (!_showMore)
+                              Text(
+                                'Click for more',
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                          ],
+                        ),
                       ),
                       SizedBox(height: 10.0),
                       Text(

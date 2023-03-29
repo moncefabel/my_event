@@ -339,7 +339,12 @@ class _DashboardPageState extends State<DashboardPage> {
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => ItemDetails(lItem: lItem)));
+              builder: (context) => ItemDetails(
+                    lItem: lItem,
+                    text: 'This is some text.',
+                    moreText:
+                        '\nHere is some additional text that will be shown when the user taps on the widget.',
+                  )));
         },
         child: Container(
           decoration: BoxDecoration(
