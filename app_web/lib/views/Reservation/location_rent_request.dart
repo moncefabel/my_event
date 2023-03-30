@@ -16,9 +16,7 @@ class LocationRentRequest extends StatefulWidget {
 }
 
 class _LocationRentRequestState extends State<LocationRentRequest> {
-  bool isButtonPressed1 = true;
-  bool isButtonPressed2 = true;
-
+  bool isButtonPressed = false;
   RequestServices requestService = RequestServices();
   List<Etablissement>? etablissements;
   final ProprioService proprioService = ProprioService();
@@ -191,20 +189,6 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
     required Booking req,
     // required int people
   }) {
-    void handleButton1Pressed() {
-      setState(() {
-        confirmRequest(req.id);
-        sendConfirmationPushNotifications(etb, req);
-      });
-    }
-
-    void handleButton2Pressed() {
-      setState(() {
-        denyRequest(req.id);
-        sendDenyPushNotifications(etb, req);
-      });
-    }
-
     return ConstrainedBox(
       constraints: const BoxConstraints(
         minWidth: 120,
@@ -287,6 +271,16 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
             const SizedBox(
               height: 5.0,
             ),
+            isButtonPressed
+                ? const Text('Button Pressed')
+                : ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isButtonPressed = true;
+                      });
+                    },
+                    child: const Text('Press Me'),
+                  ),
             req.state != "En attente"
                 ? SizedBox(
                     height: 30,
@@ -314,7 +308,11 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
                               backgroundColor: MaterialStateProperty.all<Color>(
                                   Colors.green)),
                           onPressed: () {
-                            handleButton1Pressed;
+                            setState(() {
+                              isButtonPressed = true;
+                              confirmRequest(req.id);
+                              sendConfirmationPushNotifications(etb, req);
+                            });
                           },
                           child: const Text(
                             'Accept',
@@ -335,7 +333,11 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
                               backgroundColor:
                                   MaterialStateProperty.all<Color>(Colors.red)),
                           onPressed: () {
-                            handleButton2Pressed;
+                            setState(() {
+                              isButtonPressed = true;
+                              denyRequest(req.id);
+                              sendDenyPushNotifications(etb, req);
+                            });
                           },
                           child: const Text(
                             'Deny',
