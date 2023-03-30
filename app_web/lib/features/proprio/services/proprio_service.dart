@@ -1,9 +1,10 @@
 // ignore_for_file: avoid_print
-
 import 'dart:convert';
+import 'dart:math';
 import 'package:app_web/constants/error_handling.dart';
 import 'package:app_web/constants/utils.dart';
 import 'package:app_web/models/etb.dart';
+import 'package:app_web/models/proprio.dart';
 import 'package:app_web/providers/proprio_provider.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
@@ -187,6 +188,43 @@ class ProprioService {
             showSnackBar(context, 'Etablissement modifié avec succés');
           });
     } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
+  void updateProprio({
+    required BuildContext context,
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+    required String email,
+  }) async {
+    try {
+      Proprio proprio = Proprio(
+          id: '',
+          email: email,
+          firstName: firstName,
+          password: '',
+          lastName: lastName,
+          token: '',
+          phoneNumber: phoneNumber);
+      final proprioProvider =
+          Provider.of<ProprioProvider>(context, listen: false);
+      http.Response res = await http.put(Uri.parse('$uri/api/update'),
+          body: proprio.toJson(),
+          headers: <String, String>{
+            'Content-type': 'application/json; charset=UTF-8',
+            'jwt': proprioProvider.proprio.token,
+            'id': proprioProvider.proprio.id
+          });
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+          showSnackBar(context, 'Account created successfully');
+        },
+      );
+    } catch (error) {
       showSnackBar(context, e.toString());
     }
   }
