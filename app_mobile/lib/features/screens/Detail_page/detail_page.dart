@@ -206,9 +206,12 @@ class _EtbDetailsState extends State<EtbDetails> {
                       SizedBox(
                         height: 50.0,
                         width: screenWidth - 30.0,
-                        child: Text(widget.etb.description,
-                            style: GoogleFonts.sourceSansPro(
-                                color: Colors.white, fontSize: 17.0)),
+                        child: Text(
+                          widget.etb.description,
+                          style: GoogleFonts.sourceSansPro(
+                              color: Colors.white, fontSize: 17.0),
+                          overflow: TextOverflow.clip,
+                        ),
                       ),
                       const SizedBox(height: 120.0),
                       SizedBox(
