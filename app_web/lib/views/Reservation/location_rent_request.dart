@@ -16,7 +16,7 @@ class LocationRentRequest extends StatefulWidget {
 }
 
 class _LocationRentRequestState extends State<LocationRentRequest> {
-  bool isButtonPressed = false;
+  bool isAccepted = false;
   RequestServices requestService = RequestServices();
   List<Etablissement>? etablissements;
   final ProprioService proprioService = ProprioService();
@@ -271,8 +271,7 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
             const SizedBox(
               height: 5.0,
             ),
-            
-            req.state != "En attente"
+            req.state != "En attente" || isAccepted
                 ? SizedBox(
                     height: 30,
                     width: 80,
@@ -280,7 +279,11 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all<Color>(Colors.red)),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          isAccepted = false;
+                        });
+                      },
                       child: const Text(
                         'Annuler',
                         style: TextStyle(
@@ -300,7 +303,7 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
                                   Colors.green)),
                           onPressed: () {
                             setState(() {
-                              isButtonPressed = true;
+                              isAccepted = true;
                               confirmRequest(req.id);
                               sendConfirmationPushNotifications(etb, req);
                             });
@@ -325,7 +328,6 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
                                   MaterialStateProperty.all<Color>(Colors.red)),
                           onPressed: () {
                             setState(() {
-                              isButtonPressed = true;
                               denyRequest(req.id);
                               sendDenyPushNotifications(etb, req);
                             });
