@@ -271,16 +271,7 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
             const SizedBox(
               height: 5.0,
             ),
-            isButtonPressed
-                ? const Text('Button Pressed')
-                : ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        isButtonPressed = true;
-                      });
-                    },
-                    child: const Text('Press Me'),
-                  ),
+            
             req.state != "En attente"
                 ? SizedBox(
                     height: 30,
