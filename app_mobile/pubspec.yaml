@@ -57,6 +57,7 @@ dependencies:
   firebase_core: ^2.8.0
   glassmorphism_ui: ^0.3.0
   flutter_local_notifications: ^8.2.0
+  flutter_paypal: ^0.0.8
   
 
 dev_dependencies:
@@ -96,6 +97,7 @@ flutter:
     - assets/images/logo.png 
     - assets/icons/
     - assets/images/
+    - assets/gpay.json
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
