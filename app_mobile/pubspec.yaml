@@ -51,8 +51,14 @@ dependencies:
   location: ^4.4.0
   google_nav_bar: ^5.0.6
   iconify_flutter: ^0.0.5
-  intl: ^0.18.0
+  intl: ^0.17.0
+  awesome_notifications: ^0.7.4+1
+  firebase_messaging: ^14.3.0
+  firebase_core: ^2.8.0
   glassmorphism_ui: ^0.3.0
+  flutter_local_notifications: ^8.2.0
+  flutter_paypal: ^0.0.8
+  awesome_dialog: ^3.0.2
   
 
 dev_dependencies:

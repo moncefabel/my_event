@@ -19,4 +19,15 @@ class ProprioProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void clearValue(){
+    _proprio = Proprio(
+      id: '',
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      email: '',
+      password: '',
+      token: '');;
+  }
+
 }

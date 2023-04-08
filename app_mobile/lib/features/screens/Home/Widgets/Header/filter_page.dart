@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'filter_clas.dart';
+
 class FilterPage extends StatefulWidget {
   final EstablishmentFilter filter;
 
@@ -22,7 +23,7 @@ class _FilterPageState extends State<FilterPage> {
       body: Column(
         children: [
           CheckboxListTile(
-            title: Text('Bar '),
+            title: const Text('Bar '),
             value: _filter.bar,
             onChanged: (value) {
               setState(() {
@@ -31,7 +32,7 @@ class _FilterPageState extends State<FilterPage> {
             },
           ),
           CheckboxListTile(
-            title: Text('Restaurent'),
+            title: const Text('Restaurent'),
             value: _filter.restaurant,
             onChanged: (value) {
               setState(() {
@@ -54,7 +55,8 @@ class _FilterPageState extends State<FilterPage> {
           ElevatedButton(
             child: const Text('Apply Filters'),
             onPressed: () {
-              Navigator.pop(context, _filter); // Close the filter page and return the selected filters.
+              Navigator.pop(context,
+                  _filter); // Close the filter page and return the selected filters.
             },
           ),
         ],

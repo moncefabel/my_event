@@ -3,7 +3,6 @@ const {Booking} = require('../models/booking');
 
 const addBooking = async (req, res) => {
 
-    console.log(req.body.date);
     
     try{const newBooking = await Booking.create({
         userId: req.body.userId,
@@ -12,7 +11,9 @@ const addBooking = async (req, res) => {
         state: "En attente",
         people: req.body.people,
         date: req.body.date,
-        time: req.body.time
+        time: req.body.time,
+        tokenDevice: req.body.tokenDevice,
+        nameEtb: req.body.nameEtb,
     });
 
     await newBooking.save();
@@ -25,7 +26,9 @@ const addBooking = async (req, res) => {
 const getBookings = async(req,res) => {
 
     try{
-        const bookings = await Booking.find({ownerId: req.query.id})
+        
+        const bookings = await Booking.find({ownerId: req.headers.id})
+        
         res.status(200).json(bookings);
     }catch(error:any){
         res.status(400).send(error.message);
@@ -47,9 +50,7 @@ const confirmBooking = async(req, res) => {
 const declineBooking = async(req, res) => {
 
     try{
-        await Booking.findOneAndUpdate({_id: req.body.id},{
-            state: "Refusé"
-        })
+        await Booking.deleteOne({_id: req.body.id})
         res.status(200).send("Réservation refusé");
     }catch(error:any){
         res.status(400).send(error.message);
@@ -65,10 +66,20 @@ const getConfirmedBookings = async(req, res) => {
     }
 }
 
+const getBookingsOfTheUser = async(req, res) => {
+    try{
+        const bookings = await Booking.find({userId: req.headers.id})
+        res.status(200).json(bookings);
+    }catch(error:any){
+        res.status(400).send(error.message);
+    }
+}
+
 export = {
     addBooking,
     getBookings,
     confirmBooking,
     declineBooking,
-    getConfirmedBookings
+    getConfirmedBookings,
+    getBookingsOfTheUser
 }

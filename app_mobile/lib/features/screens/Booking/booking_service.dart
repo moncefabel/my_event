@@ -14,7 +14,10 @@ class BookingService {
       required String etbId,
       required String state,
       required String date,
-      required String time
+      required String time,
+      required String token,
+      required String nameEtb,
+      required int people
       }) async {
     try {
       Booking reservation = Booking(
@@ -22,9 +25,11 @@ class BookingService {
         ownerId: ownerId,
         state: state,
         etbId: etbId,
-        // people: people,
+        people: people,
         time: time,
         userId: userId,
+        token: token,
+        nameEtb: nameEtb,
       );
 
       http.Response res = await http.post(Uri.parse('$uri/apiBooking/add'),

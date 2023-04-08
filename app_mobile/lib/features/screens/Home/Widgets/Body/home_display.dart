@@ -1,9 +1,9 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myevent/features/screens/Home/Widgets/FooterBar/navigation_bar.dart';
 import 'package:myevent/features/screens/Home/Widgets/Header/header_section.dart';
-import 'package:myevent/features/screens/Home/Widgets/Header/localisation_display.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../Filters_category/filter_category.dart';
 import '../Header/search_bar.dart';
@@ -15,7 +15,7 @@ void showLayoutGuidelines() {
 }
 
 class EtbDisplay extends StatefulWidget {
-    static const String routeName = '/home';
+  static const String routeName = '/home';
 
   const EtbDisplay({Key? key}) : super(key: key);
 
@@ -29,6 +29,7 @@ class _EtbDisplayState extends State<EtbDisplay> {
   void initState() {
     super.initState();
     _getCurrentLocation();
+    requestPermission();
   }
 
   _getCurrentLocation() async {
@@ -42,34 +43,50 @@ class _EtbDisplayState extends State<EtbDisplay> {
     }
   }
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    body: Center(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            _currentPosition == null
-                ? Text(
-                    "Welcome",
-                    style:
-                        GoogleFonts.lobster(fontSize: 30.0, color: Colors.black),
-                  )
-                : HeaderSection(
-                    currentPosition: _currentPosition!,
-                  ),
-            const SizedBox(
-              width: 300,
-              height: 70,
-              child: SearchBar(),
-            ),
-            _currentPosition == null
-                ? const CircularProgressIndicator()
-                : SingleEtb(place: _currentPosition!)
-          ],
+  void requestPermission() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    print('User granted permission: ${settings.authorizationStatus}');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _currentPosition == null
+                  ? Text(
+                      "Welcome",
+                      style: GoogleFonts.lobster(
+                          fontSize: 30.0, color: Colors.black),
+                    )
+                  : HeaderSection(
+                      currentPosition: _currentPosition!,
+                    ),
+              const SizedBox(
+                width: 300,
+                height: 70,
+                child: SearchBar(),
+              ),
+              _currentPosition == null
+                  ? const CircularProgressIndicator()
+                  : SingleEtb(place: _currentPosition!)
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 }

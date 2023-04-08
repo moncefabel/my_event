@@ -1,4 +1,5 @@
 import express from 'express'
+import { checkUser } from '../middleware/authMiddleware'
 const router:express.Router = express.Router()
 const ownerController = require('../controllers/ownerController')
 const authController = require('../controllers/authController')
@@ -16,15 +17,15 @@ router.post("/register", authController.addProprio)
 router.post("/signIn",authController.signInProprio )
 
 //Déconnexion d'un utilisateur
-router.post("/logOut",authController.logOut)
+router.post("/logOut",checkUser, authController.logOut)
 
 //Modifier les informations d'un utilisateur
-router.put("/update/:id", ownerController.updateOwner)
+router.put("/update",checkUser, ownerController.updateOwner)
 
 //Modification du mot de passe
-router.put("/updatePassword/:id", ownerController.changePassword)
+router.put("/updatePassword/:id",checkUser, ownerController.changePassword)
 
 //Supprimer un propriétaire
-router.delete("/delete/:id", ownerController.deleteOwner)
+router.delete("/delete/:id",checkUser, ownerController.deleteOwner)
 
 export = router

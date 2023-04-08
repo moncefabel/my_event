@@ -17,7 +17,7 @@ class _NavigationDrawerHeaderState extends State<NavigationDrawerHeader> {
   @override
   void initState() {
     super.initState();
-    authService.getProprioData(context);
+    authService.getPrprioData(context);
   }
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ import 'package:app_web/constants/error_handling.dart';
 import 'package:app_web/constants/app_colors.dart';
 import 'package:app_web/constants/utils.dart';
 import 'package:app_web/models/proprio.dart';
-import 'package:app_web/views/Etablissements/add_etb_screen.dart';
+import 'package:app_web/views/Connection/connection.view.dart';
 import 'package:app_web/views/Etablissements/show_etb_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -14,7 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../providers/proprio_provider.dart';
-import '../../../routing/route_names.dart';
 
 class AuthService {
   void signUpUser(
@@ -63,6 +62,7 @@ class AuthService {
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
           });
+      print('working');
 
       httpErrorHandle(
           response: res,
@@ -75,7 +75,7 @@ class AuthService {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder:(_) => const EtbsScreen(),
+                builder: (_) => const EtbsScreen(),
               ),
               (route) => false,
             );
@@ -93,31 +93,46 @@ class AuthService {
 
       String? token = prefs.getString('jwt');
 
-      if(token == null){
+      if (token == null) {
         prefs.setString('jwt', '');
       }
       var tokenRes = await http.post(
         Uri.parse('$uri/proprioId'),
         headers: <String, String>{
-            'Content-type': 'application/json; charset=UTF-8',
-            'jwt': token!
+          'Content-type': 'application/json; charset=UTF-8',
+          'jwt': token!
         },
       );
 
       var response = jsonDecode(tokenRes.body);
-      if(response == true ){
+      if (response == true) {
         http.Response userRes = await http.get(
-          Uri.parse('$uri/'),
+          Uri.parse('$uri/jwt'),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
             'jwt': token
           },
         );
-        var userProvider = Provider.of<ProprioProvider>(context,listen: false);
+        var userProvider = Provider.of<ProprioProvider>(context, listen: false);
         userProvider.setProprio(userRes.body);
       }
     } catch (e) {
       // showSnackBar(context, e.toString());
+    }
+  }
+
+  void logOut(BuildContext context) async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      await sharedPreferences.setString("jwt", '');
+      Provider.of<ProprioProvider>(context, listen: false).clearValue();
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (_) => const ConnectionView()),
+          (route) => false);
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

@@ -1,11 +1,10 @@
 // ignore_for_file: avoid_print, unused_field, prefer_const_constructors
-
-import 'package:app_web/Widgets/OnHoverButton.dart';
 import 'package:app_web/Widgets/location_list.dart';
 import 'package:app_web/features/proprio/services/proprio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../Widgets/on_hover_button.dart';
 import '../../constants/app_colors.dart';
 import '../../features/network_service.dart';
 import '../../models/auto_complete/auto_complete_predictions.dart';
@@ -128,105 +127,98 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Column(
-                            children: [
-                              Text('Nom du lieu'),
-                              SizedBox(
-                                width: 500,
-                                child: TextField(controller: nameEtbController),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Lieu'),
-                              SizedBox(
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Text('Nom du lieu'),
+                                SizedBox(
                                   width: 500,
-                                  child: TextFormField(
-                                    onChanged: (value) {
-                                      placeAutoComplete(value);
-                                    },
-                                    controller: lieuController,
-                                    textInputAction: TextInputAction.search,
-                                  )),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Capacite Maximale'),
-                              SizedBox(
-                                width: 500,
-                                child: TextField(
-                                  controller: capaciteMaxController,
+                                  child:
+                                      TextField(controller: nameEtbController),
                                 ),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Capacite minimale'),
-                              SizedBox(
-                                width: 500,
-                                child: TextField(
-                                  controller: capaciteMinController,
-                                ),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Heure d\'ouverture'),
-                              SizedBox(
-                                width: 500,
-                                child: TextField(
-                                  controller: heureOController,
-                                ),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Heure de fermeture'),
-                              SizedBox(
-                                width: 500,
-                                child: TextField(
-                                  controller: heureFController,
-                                ),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Prix'),
-                              SizedBox(
-                                width: 500,
-                                child: TextField(
-                                  controller: priceController,
-                                ),
-                              ),
-                              Padding(padding: EdgeInsets.only(top: 10)),
-                              Text('Type'),
-                              SizedBox(
+                                Padding(padding: EdgeInsets.only(top: 10)),
+                                Text('Lieu'),
+                                SizedBox(
+                                    width: 500,
+                                    child: TextFormField(
+                                      onChanged: (value) {
+                                        placeAutoComplete(value);
+                                      },
+                                      controller: lieuController,
+                                      textInputAction: TextInputAction.search,
+                                    )),
+                                Padding(padding: EdgeInsets.only(top: 10)),
+                                Text('Capacite Maximale'),
+                                SizedBox(
                                   width: 500,
-                                  child: DropdownButton(value: _selectedVal, items: const [
-                                    DropdownMenuItem(
-                                        child: Text("Restaurant"),
-                                        value: "Restaurant"),
-                                    DropdownMenuItem(
-                                        child: Text("Bar"), value: "Bar"),
-                                    DropdownMenuItem(
-                                        child: Text("Karaoké"),
-                                        value: "Karaoké"),
-                                    DropdownMenuItem(
-                                        child: Text("Café"),
-                                        value: "Café"),
-                                  ], onChanged: (val){
-                                    setState((){
-                                      typeController.text = val as String;
-                                      _selectedVal = val ;
-                                    });
-                                  })),
-                              const Padding(padding: EdgeInsets.only(top: 10)),
-                              const Text('Description'),
-                              Container(
-                                padding: const EdgeInsets.all(8.0),
-                                width: 500,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  border: Border.all(color: Colors.grey),
-                                ),
-                                child: TextField(
-                                  decoration: const InputDecoration(
-                                    hintText: 'Type your description here',
-                                    border: InputBorder.none,
+                                  child: TextField(
+                                    controller: capaciteMaxController,
                                   ),
-                                  controller: descriptionController,
-                                  maxLines: null,
                                 ),
-                              ),
-                            ],
+                                Padding(padding: EdgeInsets.only(top: 10)),
+                                Text('Capacite minimale'),
+                                SizedBox(
+                                  width: 500,
+                                  child: TextField(
+                                    controller: capaciteMinController,
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.only(top: 10)),
+                                Text('Heure d\'ouverture'),
+                                SizedBox(
+                                  width: 500,
+                                  child: TextField(
+                                    controller: heureOController,
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.only(top: 10)),
+                                Text('Heure de fermeture'),
+                                SizedBox(
+                                  width: 500,
+                                  child: TextField(
+                                    controller: heureFController,
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.only(top: 10)),
+                                Text('Prix'),
+                                SizedBox(
+                                  width: 500,
+                                  child: TextField(
+                                    controller: priceController,
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.only(top: 10)),
+                                Text('Type'),
+                                SizedBox(
+                                  width: 500,
+                                  child: TextField(
+                                    controller: typeController,
+                                  ),
+                                ),
+                                const Padding(
+                                    padding: EdgeInsets.only(top: 10)),
+                                const Text('Description'),
+                                Container(
+                                  padding: const EdgeInsets.all(8.0),
+                                  width: 500,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    border: Border.all(color: Colors.grey),
+                                  ),
+                                  child: TextField(
+                                    decoration: const InputDecoration(
+                                      hintText: 'Type your description here',
+                                      border: InputBorder.none,
+                                    ),
+                                    onChanged: (value) {
+                                      setState(() {
+                                      });
+                                    },
+                                    maxLines: null,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),

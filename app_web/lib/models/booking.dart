@@ -9,7 +9,7 @@ class Booking {
   final String time;
   final String date;
   final String token;
-  final String nameEtb;
+  final String id;
 
   Booking(
       {required this.userId,
@@ -20,7 +20,7 @@ class Booking {
       required this.people,
       required this.time,
       required this.token,
-      required this.nameEtb});
+      required this.id});
 
   Map<String, dynamic> toMap() {
     return {
@@ -32,7 +32,7 @@ class Booking {
       'people': people,
       'time': time,
       'tokenDevice': token,
-      'nameEtb': nameEtb
+      '_id': id
     };
   }
 
@@ -46,7 +46,7 @@ class Booking {
         time: map['time'] ?? '',
         state: map['state'] ?? '',
         token: map['tokenDevice'] ?? '',
-        nameEtb: map['nameEtb'] ?? '');
+        id: map['_id']);
   }
 
   String toJson() => json.encode(toMap());

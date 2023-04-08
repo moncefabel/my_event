@@ -20,12 +20,11 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
   AuthService authService = AuthService();
 
   @override
-  void initState()  {
+  void initState() {
     super.initState();
     _getAddress();
     authService.getCustomerData(context);
   }
-
 
   _getAddress() async {
     try {
@@ -34,8 +33,7 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
       if (placemarks.isNotEmpty) {
         Placemark placemark = placemarks[0];
         setState(() {
-          _currentAddress =
-              ' ${placemark.locality}, ${placemark.country}';
+          _currentAddress = ' ${placemark.locality}, ${placemark.country}';
         });
       }
     } catch (e) {
@@ -49,7 +47,7 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.95;
 
-    return Container(
+    return SizedBox(
       // group1000003474FRX (1:401)
       width: 92 * fem,
       height: double.infinity,
@@ -63,21 +61,20 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
               child: Text(
                 // hiandykt5 (1:402)
                 Provider.of<CustomerProvider>(context).customer.token.isNotEmpty
-                ? 'Hi, ${Provider.of<CustomerProvider>(context).customer.firstName}'
-                : 'Hi dear',
+                    ? 'Hi, ${Provider.of<CustomerProvider>(context).customer.firstName}'
+                    : 'Hi dear',
                 style: SafeGoogleFont(
                   'Plus Jakarta Sans',
                   fontSize: 16 * ffem,
                   fontWeight: FontWeight.w700,
                   height: 1.4444444444 * ffem / fem,
                   letterSpacing: 0.09 * fem,
-                  color: Color(0xff111111),
+                  color: const Color(0xff111111),
                 ),
               ),
             ),
           ),
           InkWell(
-          
             child: Flexible(
               flex: 1,
               child: Container(
@@ -108,15 +105,15 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
                           5, // increase the flex value to make the text widget bigger
                       child: Text(
                         _currentAddress.isNotEmpty
-                                ? _currentAddress
-                                : 'Loading...',
+                            ? _currentAddress
+                            : 'Loading...',
                         style: SafeGoogleFont(
                           'Plus Jakarta Sans',
                           fontSize: 11 * ffem,
                           fontWeight: FontWeight.w500,
                           height: 1.6666666667 * ffem / fem,
                           letterSpacing: 0.06 * fem,
-                          color: Color.fromARGB(255, 99, 105, 110),
+                          color: const Color.fromARGB(255, 99, 105, 110),
                         ),
                         overflow: TextOverflow.visible, // add this line
                       ),

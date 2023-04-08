@@ -3,6 +3,7 @@ import 'package:app_web/features/proprio/services/proprio_service.dart';
 import 'package:app_web/views/Etablissements/add_etb_screen.dart';
 import 'package:app_web/views/Etablissements/modify_etb_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../Widgets/loader.dart';
 import '../../models/etb.dart';
@@ -48,51 +49,67 @@ class _EtbsScreenState extends State<EtbsScreen> {
     return etablissements == null
         ? const Loader()
         : Scaffold(
-            body: Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: ListView.builder(
-                itemCount: etablissements!.length,
-                itemBuilder: (context, index) {
-                  final etbsData = etablissements![index];
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 200,
-                        width: 300,
-                        child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        ModifyEtbScreen(etb: etbsData)),
-                              );
-                            },
-                            child: SingleEtb(image: etbsData.images[0])),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            body: Column(
+              children: [
+                Title(
+                    color: Colors.black,
+                    child: Text(
+                      'Veuillez Ajoutez Un Etablissement',
+                      style: GoogleFonts.sourceSansPro(
+                          fontWeight: FontWeight.bold, fontSize: 30.0),
+                    )),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: etablissements!.length,
+                    itemBuilder: (context, index) {
+                      final etbsData = etablissements![index];
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Expanded(
-                            child: Text(
-                              etbsData.nameEtb,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SizedBox(
+                                height: 200,
+                                width: 300,
+                                child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ModifyEtbScreen(etb: etbsData)),
+                                      );
+                                    },
+                                    child:
+                                        SingleEtb(image: etbsData.images[0])),
+                              ),
+                              Text(
+                                etbsData.nameEtb,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                              ),
+                              const SizedBox(
+                                width: 10.0,
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    deleteEtb(etbsData, index);
+                                  },
+                                  icon: const Icon(
+                                    Icons.delete_outline,
+                                  )),
+                            ],
                           ),
-                          IconButton(
-                              onPressed: () {
-                                deleteEtb(etbsData, index);
-                              },
-                              icon: const Icon(
-                                Icons.delete_outline,
-                              ))
+                          const SizedBox(
+                            height: 10.0,
+                          )
                         ],
-                      )
-                    ],
-                  );
-                },
-              ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: navigateToAddEtb,
