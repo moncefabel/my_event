@@ -1,9 +1,12 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:myevent/features/screens/Booking/Booking_page.dart';
+import 'package:myevent/features/screens/Login/components/login_screen.dart';
+import 'package:myevent/features/screens/Signup/signup_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../../../models/etablissement.dart';
+import '../../../provider/customer_provider.dart';
 
 class PriceEtb extends StatelessWidget {
   const PriceEtb(this.etb);
@@ -25,20 +28,20 @@ class PriceEtb extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(30)),
               child: Row(children: [
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Text(
                   etb.prix.toString(),
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-                Text("€",
+                const Text("€",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
               ]),
             ),
           ),
           Align(
-            alignment: Alignment(0.3, 0),
+            alignment: const Alignment(0.3, 0),
             child: Container(
               height: double.maxFinite,
               width: 80,
@@ -48,20 +51,55 @@ class PriceEtb extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(6),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(6),
+                      decoration: const BoxDecoration(
                           shape: BoxShape.circle, color: Colors.white),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => BookingPage(
-                                      etb: etb,
-                                    )),
-                          );
+                          Provider.of<CustomerProvider>(context, listen: false)
+                                  .customer
+                                  .token
+                                  .isNotEmpty
+                              ? Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => BookingPage(
+                                            etb: etb,
+                                          )),
+                                )
+                              : AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.info,
+                                  animType: AnimType.topSlide,
+                                  showCloseIcon: true,
+                                  title: "Warning",
+                                  desc:
+                                      "Pour reserver veuillez vous connecter ou créer un compte",
+                                  btnOk: ElevatedButton(
+                                    child: const Text("Sign In"),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginScreen()),
+                                      );
+                                    },
+                                  ),
+                                  btnCancel: ElevatedButton(
+                                    child: const Text("Sign Up"),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const SignUpScreen()),
+                                      );
+                                    },
+                                  ),
+                                ).show();
                         },
-                        child: Text(
+                        child: const Text(
                           "Book",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),

@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:myevent/constants/error_handling.dart';
 import 'package:myevent/constants/utils.dart';
 import 'package:myevent/features/screens/Historic/notifications_bookings.dart';
+import 'package:myevent/features/screens/Login/login_view.dart';
+import 'package:myevent/features/screens/Params/log_out_button.dart';
 import 'package:myevent/models/customer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -41,6 +43,13 @@ class AuthService {
         context: context,
         onSuccess: () {
           showSnackBar(context, 'Account created successfully');
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const LoginView(),
+              ),
+              (route) => false,
+            );
         },
       );
     } catch (e) {
@@ -71,7 +80,7 @@ class AuthService {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (_) => const HistoricBuyPage(),
+                builder: (_) => const MylogoutPage(),
               ),
               (route) => false,
             );
