@@ -19,6 +19,6 @@ void httpErrorHandle({
       break;
 
     default:
-      showSnackBar(context, response.body);
+      // showSnackBar(context, response.body);
   }
 }

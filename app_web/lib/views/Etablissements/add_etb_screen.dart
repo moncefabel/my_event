@@ -191,10 +191,26 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                                 Text('Type'),
                                 SizedBox(
                                   width: 500,
-                                  child: TextField(
-                                    controller: typeController,
-                                  ),
+                                  child: DropdownButton(value: _selectedVal, items: const [
+                                    DropdownMenuItem(
+                                        child: Text("Restaurant"),
+                                        value: "Restaurant"),
+                                    DropdownMenuItem(
+                                        child: Text("Bar"), value: "Bar"),
+                                    DropdownMenuItem(
+                                        child: Text("Karaoké"),
+                                        value: "Karaoké"),
+                                    DropdownMenuItem(
+                                        child: Text("Café"),
+                                        value: "Café"),
+                                  ], onChanged: (val){
+                                    setState((){
+                                      typeController.text = val as String;
+                                      _selectedVal = val ;
+                                    });
+                                  }),
                                 ),
+                                
                                 const Padding(
                                     padding: EdgeInsets.only(top: 10)),
                                 const Text('Description'),
@@ -212,6 +228,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                                     ),
                                     onChanged: (value) {
                                       setState(() {
+                                        descriptionController.text = value;
                                       });
                                     },
                                     maxLines: null,

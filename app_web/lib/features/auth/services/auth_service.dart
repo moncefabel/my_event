@@ -44,6 +44,13 @@ class AuthService {
         context: context,
         onSuccess: () {
           showSnackBar(context, 'Account created successfully');
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const ConnectionView(),
+              ),
+              (route) => false,
+            );
         },
       );
     } catch (e) {
