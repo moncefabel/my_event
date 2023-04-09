@@ -46,6 +46,8 @@ dependencies:
   type_ahead_text_field: ^0.0.2
   flutter_typeahead: ^4.3.7
   google_fonts: ^4.0.3
+  flutter_string_encryption: ^0.3.1
+  crypto: ^3.0.2
 
 dev_dependencies:
   flutter_test:

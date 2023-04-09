@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:myevent/provider/customer_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:crypto/crypto.dart';
 import '../../screens/Home/Widgets/Body/home_display.dart';
 
 class AuthService {
@@ -23,10 +23,13 @@ class AuthService {
       required String lastName,
       required String phoneNumber}) async {
     try {
+      var bytes = utf8.encode(password);
+      var digest = sha256.convert(bytes);
+      final String hashPassword = digest.toString();
       Customer customer = Customer(
           id: '',
           email: email,
-          password: password,
+          password: hashPassword,
           firstName: firstName,
           lastName: lastName,
           token: '',
@@ -62,8 +65,11 @@ class AuthService {
     required String password,
   }) async {
     try {
+      var bytes = utf8.encode(password);
+      var digest = sha256.convert(bytes);
+      final String hashPassword = digest.toString();
       http.Response res = await http.post(Uri.parse('$uri/apiClient/signIn'),
-          body: jsonEncode({'email': email, 'password': password}),
+          body: jsonEncode({'email': email, 'password': hashPassword}),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
           });

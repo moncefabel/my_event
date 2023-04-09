@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
-
+import 'package:crypto/crypto.dart';
 import 'package:app_web/constants/error_handling.dart';
 import 'package:app_web/constants/app_colors.dart';
 import 'package:app_web/constants/utils.dart';
@@ -24,10 +24,13 @@ class AuthService {
       required String lastName,
       required String phoneNumber}) async {
     try {
+      var bytes = utf8.encode(password);
+      var digest = sha256.convert(bytes);
+      final String hashPassword = digest.toString();
       Proprio proprio = Proprio(
           id: '',
           email: email,
-          password: password,
+          password: hashPassword,
           firstName: firstName,
           lastName: lastName,
           token: '',
@@ -64,12 +67,14 @@ class AuthService {
     required String password,
   }) async {
     try {
+      var bytes = utf8.encode(password);
+      var digest = sha256.convert(bytes);
+      final String hashPassword = digest.toString();
       http.Response res = await http.post(Uri.parse('$uri/api/signIn'),
-          body: jsonEncode({'email': email, 'password': password}),
+          body: jsonEncode({'email': email, 'password': hashPassword}),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
           });
-      print('working');
 
       httpErrorHandle(
           response: res,

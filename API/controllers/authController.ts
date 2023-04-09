@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose')
 const {Proprio} = require('../models/proprio')
 const {Customer} = require('../models/customer')
@@ -10,15 +11,13 @@ const maxAge = 3 * 24 * 60 * 60 * 1000;
 const addProprio =  async (req,res) => {
 
     try{
-        const salt = await bcrypt.genSalt()
-        const hashPassword =  await bcrypt.hash(req.body.password, salt)
-        
+    
         const newUser = await Proprio.create({
             lastName: req.body.lastName,
             firstName: req.body.firstName,
             phoneNumber: req.body.phoneNumber,
             email: req.body.email,
-            password: hashPassword,
+            password: req.body.password,
         })
         
         res.status(200).json(newUser.id)
@@ -30,15 +29,14 @@ const addProprio =  async (req,res) => {
 const addCustomer =  async (req,res) => {
 
     try{
-        const salt = await bcrypt.genSalt()
-        const hashPassword =  await bcrypt.hash(req.body.password, salt)
+        
         
         const newUser = await Customer.create({
             lastName: req.body.lastName,
             firstName: req.body.firstName,
             phoneNumber: req.body.phoneNumber,
             email: req.body.email,
-            password: hashPassword,
+            password: req.body.password,
         })
         
         res.status(200).json(newUser.id)
@@ -53,9 +51,11 @@ const signInProprio = async(req, res) => {
         
         const user = await Proprio.findOne({email: req.body.email})
         if(isExists(user)){
-            const auth = await bcrypt.compare(req.body.password, user.password)    
-                    
-            if(auth){
+                
+
+            if(req.body.password == user.password){
+                console.log("hello");
+                
                 const token = createToken(user._id)
                 res.status(200).json({token, ...user._doc})
             }else{
@@ -73,9 +73,8 @@ const signInCustomer = async(req, res) => {
         
         const user = await Customer.findOne({email: req.body.email})
         if(isExists(user)){
-            const auth = await bcrypt.compare(req.body.password, user.password)    
                     
-            if(auth){
+            if(req.body.password == user.password){
                 const token = createToken(user._id)
                 res.status(200).json({token, ...user._doc})
             }else{
