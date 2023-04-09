@@ -107,7 +107,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
     }
   }
 
-  
+  bool _isVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -143,6 +143,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                                     child: TextFormField(
                                       onChanged: (value) {
                                         placeAutoComplete(value);
+                                        _isVisible = true;
                                       },
                                       controller: lieuController,
                                       textInputAction: TextInputAction.search,
@@ -244,16 +245,27 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                 ),
               ),
             ),
-            Expanded(
-                child: ListView.builder(
-                    itemCount: placePredictions.length,
-                    itemBuilder: (context, index) => LocationList(
-                          press: () {
-                            lieuController.text =
-                                placePredictions[index].description.toString();
-                          },
-                          location: placePredictions[index].description!,
-                        ))),
+            if(_isVisible)
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 200,
+                
+                child: Expanded(
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: placePredictions.length,
+                        itemBuilder: (context, index) => LocationList(
+                              press: () {
+                                lieuController.text =
+                                    placePredictions[index].description.toString();
+                                setState(() {
+                                  _isVisible = false;
+                                });
+                              },
+                              location: placePredictions[index].description!,
+                        )
+                      )
+                    ),
+              ),
       
             Padding(padding: EdgeInsets.only(top: 30)),
             SizedBox(
