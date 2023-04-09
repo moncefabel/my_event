@@ -27,6 +27,8 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
   final TextEditingController capaciteMaxController = TextEditingController();
   final TextEditingController capaciteMinController = TextEditingController();
   final TextEditingController lieuController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
   final ProprioService proprioService = ProprioService();
   final _updateEtbFormKey = GlobalKey<FormState>();
 
@@ -65,6 +67,8 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
     capaciteMinController.dispose();
     lieuController.dispose();
     priceController.dispose();
+    descriptionController.dispose();
+
   }
 
   void updateEtb() {
@@ -81,7 +85,8 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
           images: widget.etb.images,
           nameEtb: nameEtbController.text,
           prix: priceController.text,
-          userId: widget.etb.userId);
+          userId: widget.etb.userId,
+          description: widget.etb.description);
     }
   }
 
@@ -89,14 +94,14 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
   Widget build(BuildContext context) {
     nameEtbController.text = widget.etb.nameEtb;
     lieuController.text = widget.etb.lieu;
-    priceController.text = widget.etb.prix;
+    priceController.text = widget.etb.prix.toString();
     heureFController.text = widget.etb.heureFermeture;
     heureOController.text = widget.etb.heureOuverture;
     capaciteMaxController.text = widget.etb.capaciteMax;
     capaciteMinController.text = widget.etb.capaciteMin;
     typeController.text = widget.etb.type;
+    descriptionController.text = widget.etb.description;
 
-    String _description = '';
 
     return Scaffold(
       body: Padding(
@@ -190,11 +195,7 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
                                 hintText: 'Type your description here',
                                 border: InputBorder.none,
                               ),
-                              onChanged: (value) {
-                                setState(() {
-                                  _description = value;
-                                });
-                              },
+                              controller: descriptionController,
                               maxLines: null,
                             ),
                           ),

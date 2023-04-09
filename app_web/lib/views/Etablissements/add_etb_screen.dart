@@ -27,15 +27,21 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
   final TextEditingController capaciteMaxController = TextEditingController();
   final TextEditingController capaciteMinController = TextEditingController();
   final TextEditingController lieuController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
 
   final ProprioService proprioService = ProprioService();
 
-  String _description = '';
 
+  final _categories = ['Restaurant', 'Bar', 'Karaoké', 'Café'];
+  String? _selectedVal = "Restaurant";
   List<AutoCompletePrediction> placePredictions = [];
   final List<XFile> _imageFiles = [];
   final ImagePicker imagePicker = ImagePicker();
 
+ 
+    
+  
   Future<void> _pickImage() async {
     final List<XFile> selectedImages = await imagePicker.pickMultiImage();
     if (selectedImages.isNotEmpty) {
@@ -64,6 +70,8 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
     capaciteMinController.dispose();
     lieuController.dispose();
     priceController.dispose();
+    descriptionController.dispose();
+
   }
 
   void addEtb() {
@@ -78,7 +86,8 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
           capaciteMin: capaciteMinController.text,
           images: _imageFiles,
           nameEtb: nameEtbController.text,
-          prix: priceController.text);
+          prix: priceController.text,
+          description: descriptionController.text);
     }
   }
 
@@ -97,6 +106,8 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
       }
     }
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -180,10 +191,26 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                                 Text('Type'),
                                 SizedBox(
                                   width: 500,
-                                  child: TextField(
-                                    controller: typeController,
-                                  ),
+                                  child: DropdownButton(value: _selectedVal, items: const [
+                                    DropdownMenuItem(
+                                        child: Text("Restaurant"),
+                                        value: "Restaurant"),
+                                    DropdownMenuItem(
+                                        child: Text("Bar"), value: "Bar"),
+                                    DropdownMenuItem(
+                                        child: Text("Karaoké"),
+                                        value: "Karaoké"),
+                                    DropdownMenuItem(
+                                        child: Text("Café"),
+                                        value: "Café"),
+                                  ], onChanged: (val){
+                                    setState((){
+                                      typeController.text = val as String;
+                                      _selectedVal = val ;
+                                    });
+                                  }),
                                 ),
+                                
                                 const Padding(
                                     padding: EdgeInsets.only(top: 10)),
                                 const Text('Description'),
@@ -201,7 +228,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                                     ),
                                     onChanged: (value) {
                                       setState(() {
-                                        _description = value;
+                                        descriptionController.text = value;
                                       });
                                     },
                                     maxLines: null,
@@ -227,6 +254,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                           },
                           location: placePredictions[index].description!,
                         ))),
+      
             Padding(padding: EdgeInsets.only(top: 30)),
             SizedBox(
               height: 50.0,
