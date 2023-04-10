@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           textTheme:
               Theme.of(context).textTheme.apply(fontFamily: 'Open Sans')),
       home:
-          const LayoutTemplate(), //MyHomePage(title: 'Flutter demo home page'),
+          const LayoutTemplate(), 
     );
   }
 }

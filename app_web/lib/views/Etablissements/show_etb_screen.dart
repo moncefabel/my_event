@@ -2,6 +2,7 @@ import 'package:app_web/Widgets/signle_etb.dart';
 import 'package:app_web/features/proprio/services/proprio_service.dart';
 import 'package:app_web/views/Etablissements/add_etb_screen.dart';
 import 'package:app_web/views/Etablissements/modify_etb_screen.dart';
+import 'package:app_web/views/Reservation/location_rent_request.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -59,60 +60,89 @@ class _EtbsScreenState extends State<EtbsScreen> {
                           style: GoogleFonts.sourceSansPro(
                               fontWeight: FontWeight.bold, fontSize: 30.0),
                         ))
-                    : Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Expanded(
-                          child: ListView.builder(
-                            itemCount: etablissements!.length,
-                            itemBuilder: (context, index) {
-                              final etbsData = etablissements![index];
-                              return Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      SizedBox(
-                                        height: 200,
-                                        width: 300,
-                                        child: GestureDetector(
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ModifyEtbScreen(
-                                                            etb: etbsData)),
-                                              );
-                                            },
-                                            child: SingleEtb(
-                                                image: etbsData.images[0])),
-                                      ),
-                                      Text(
-                                        etbsData.nameEtb,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2,
-                                      ),
-                                      const SizedBox(
-                                        width: 10.0,
-                                      ),
-                                      IconButton(
-                                          onPressed: () {
-                                            deleteEtb(etbsData, index);
+                    : Expanded(
+                        child: ListView.builder(
+                          itemCount: etablissements!.length,
+                          itemBuilder: (context, index) {
+                            final etbsData = etablissements![index];
+                            return Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  150.0, 10.0, 150.0, 10.0),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width - 300,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.blue.shade200,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        SizedBox(
+                                          height: 200,
+                                          width: 300,
+                                          child: GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ModifyEtbScreen(
+                                                              etb: etbsData)),
+                                                );
+                                              },
+                                              child: SingleEtb(
+                                                  image: etbsData.images[0])),
+                                        ),
+                                        Text(
+                                          etbsData.nameEtb,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 2,
+                                        ),
+                                        const SizedBox(
+                                          width: 10.0,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const LocationRentRequest()),
+                                            );
                                           },
-                                          icon: const Icon(
-                                            Icons.delete_outline,
-                                          )),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 10.0,
-                                  )
-                                ],
-                              );
-                            },
-                          ),
+                                          child: Text(
+                                            "Total notifications: ${etbsData.capaciteMax}",
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10.0,
+                                        ),
+                                        IconButton(
+                                            onPressed: () {
+                                              deleteEtb(etbsData, index);
+                                            },
+                                            icon: const Icon(
+                                              Icons.delete_outline,
+                                            )),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 10.0,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ),
               ],

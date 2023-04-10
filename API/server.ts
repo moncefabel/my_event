@@ -7,9 +7,10 @@ import routerEtb from './routes/etb.routes'
 import routerClient from './routes/customer.routes'
 import routerBooking from './routes/booking.routes'
 import {checkClient, checkProprio, checkUser} from './middleware/authMiddleware'
+import swaggerDocs from './utils/swagger'
 require("dotenv").config({path: "./config/.env"})
 const db = require ("./config/db")
-const app:express.Application = express()
+const app:express.Express = express()
 const {Proprio} = require('./models/proprio')
 const {Customer} = require('./models/customer')
 
@@ -50,4 +51,5 @@ app.get(("/"), (req:express.Request, res:express.Response) => {
 
 app.listen(process.env.PORT, () => {
     console.log("Listening on port "+ process.env.PORT);
+    swaggerDocs(app, 5000);
 })

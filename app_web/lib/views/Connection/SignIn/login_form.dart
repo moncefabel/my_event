@@ -50,7 +50,7 @@ final TextEditingController _passwordController = TextEditingController();
             cursorColor: primaryColor,
             onSaved: (email) {},
             decoration: const InputDecoration(
-              hintText: "Your emaill",
+              hintText: "Your email",
               prefixIcon: Padding(
                 padding: EdgeInsets.all(defaultPadding),
                 child: Icon(Icons.person),

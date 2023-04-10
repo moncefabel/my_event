@@ -90,6 +90,8 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
     }
   }
 
+  bool _isVisible = true;
+
   @override
   Widget build(BuildContext context) {
     nameEtbController.text = widget.etb.nameEtb;
