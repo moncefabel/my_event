@@ -17,16 +17,6 @@ const getAllOwners =  async (req,res) => {
 }
 
 
-const getOwnerById =async (req, res) => {
-    
-    try{
-        const user = await model.Proprio.findById(req.params.id).select("-password")
-        res.status(200).json(user)
-    }catch(error:any){
-        res.status(400).send(error.message)
-    }
-}
-
 const updateOwner = async(req, res) => {
     
     try{
@@ -78,7 +68,6 @@ const deleteOwner = async(req, res) => {
 
 export = {
     getAllOwners,
-    getOwnerById,
     updateOwner,
     changePassword,
     deleteOwner

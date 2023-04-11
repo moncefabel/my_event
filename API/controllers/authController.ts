@@ -53,9 +53,7 @@ const signInProprio = async(req, res) => {
         if(isExists(user)){
                 
 
-            if(req.body.password == user.password){
-                console.log("hello");
-                
+            if(req.body.password == user.password){                
                 const token = createToken(user._id)
                 res.status(200).json({token, ...user._doc})
             }else{
