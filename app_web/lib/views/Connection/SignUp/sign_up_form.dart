@@ -60,11 +60,12 @@ class _SignUpFormState extends State<SignUpForm> {
                 child: Icon(Icons.person),
               ),
             ),
-            validator: (val) {
-              if (val == null || val.isEmpty) {
-                return 'Enter your your email';
+            validator: (value){
+              if(value!.isEmpty || !RegExp(r'^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$').hasMatch(value)){
+                return "Enter correct Email";
+              }else{
+                return null;
               }
-              return null;
             },
           ),
           Padding(
@@ -82,8 +83,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
               ),
               validator: (val) {
-                if (val == null || val.isEmpty) {
-                  return 'Enter your your password';
+                if (!RegExp(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$').hasMatch(val!) || val.isEmpty) {
+                  return 'Enter your password';
                 }
                 return null;
               },
@@ -102,7 +103,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
               ),
               validator: (val) {
-                if (val == null || val.isEmpty) {
+                if (!RegExp(r'^[a-zA-Z]{2,}$').hasMatch(val!) || val.isEmpty) {
                   return 'Enter your first name';
                 }
                 return null;
@@ -122,7 +123,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
               ),
               validator: (val) {
-                if (val == null || val.isEmpty) {
+                if (!RegExp(r'^[a-zA-Z]{2,}$').hasMatch(val!) || val.isEmpty) {
                   return 'Enter your last name';
                 }
                 return null;
@@ -142,8 +143,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
               ),
               validator: (val) {
-                if (val == null || val.isEmpty) {
-                  return 'Enter your phone number';
+                if (!RegExp(r'^[+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{3,4}[-\s\.]?[0-9]{3,4}$').hasMatch(val!) || val.isEmpty) {
+                  return 'Enter a valid phone number';
                 }
                 return null;
               },

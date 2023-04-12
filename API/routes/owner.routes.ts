@@ -76,10 +76,40 @@ router.post("/register", authController.addProprio);
  */
 router.post("/signIn", authController.signInProprio);
 
-//Déconnexion d'un utilisateur
-router.post("/logOut", checkUser, authController.logOut);
 
-//Modifier les informations d'un utilisateur
+
+/**
+ * @openapi
+ * /api/update:
+ *  put:
+ *   tags:
+ *   - Proprios
+ *   summary: Update owner's informations
+ *   parameters:
+ *   - name: token
+ *     in: header
+ *     description: an authorization token
+ *     required: true
+ *     type: string
+ *   requestBody:
+ *     required: true
+ *     content:
+ *       application/json:
+ *          schema:
+ *             $ref: '#/components/schemas/ProprioSchemaUpdate'  
+ *   responses:
+ *     200:
+ *       description: Success
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ProprioSchemaResponse'
+ *     400:
+ *       description: Bad request
+ *     401: 
+ *       description: No auth token, owner not connected
+ *      
+ */
 router.put("/update", checkUser, ownerController.updateOwner);
 
 //Modification du mot de passe

@@ -36,16 +36,6 @@ class _MylogoutPageState extends State<MylogoutPage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
-              title: const Text('Home'),
-              leading: const Icon(Icons.home),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, HomeScreen.routeName);
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
               title: const Text('Logout'),
               leading: const Icon(Icons.logout),
               onTap: () {

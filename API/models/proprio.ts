@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 /**
  * @openapi
@@ -39,16 +39,50 @@ import mongoose from 'mongoose'
  *          type: String
  *        _id:
  *          type: String
- *        
+ *        phoneNumber:
+ *          type: String
+ *    ProprioSchemaUpdate:
+ *      type: object
+ *      properties:
+ *        email:
+ *          type: String
+ *          default: modifyEmail@example.com
+ *        firstName:
+ *          type: String
+ *          default: test
+ *        lastName:
+ *          type: String
+ *          default: test
+ *        phoneNumber:
+ *          type: String
+ *          default: 0987625186
+ *
+ *
  */
 const proprioSchema = new mongoose.Schema({
-    lastName: {type:String, required:true },
-    firstName: {type:String, required:true},
-    phoneNumber: {type:String, required:true, unique:true},
-    email: {type:String, required:true, unique:true},
-    password: {type: String, required:true},
-})
+  lastName: {
+    type: String,
+    required: true,
+  },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+});
 
-
-const proprioModel = mongoose.model("proprios",proprioSchema)
-export = {Proprio: proprioModel}
+const proprioModel = mongoose.model("proprios", proprioSchema);
+export = { Proprio: proprioModel };
