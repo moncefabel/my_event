@@ -15,7 +15,17 @@ void httpErrorHandle({
       break;
 
     case 400:
-      showSnackBar(context, jsonDecode(response.body)['msg']['email']);
+      final res = jsonDecode(response.body);
+      if (res['code'].toString().contains("11000")) {
+        popUpUniqueEmail(context, "Email déjà utilisé");
+      }
+      break;
+    case 402:
+      signInErrors(context, "Email Introuvable");
+
+      break;
+    case 401:
+      signInErrors(context, "Mot de passe incorrect");
       break;
 
     default:

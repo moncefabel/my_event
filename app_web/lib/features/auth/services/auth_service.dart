@@ -46,7 +46,6 @@ class AuthService {
         response: res,
         context: context,
         onSuccess: () {
-          showSnackBar(context, 'Account created successfully');
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
@@ -57,7 +56,7 @@ class AuthService {
         },
       );
     } catch (e) {
-      showSnackBar(context, e.toString());
+      print(e.toString());
     }
   }
 
@@ -93,7 +92,7 @@ class AuthService {
             );
           });
     } catch (e) {
-      showSnackBar(context, e.toString());
+      // showSnackBar(context, e.toString());
     }
   }
 

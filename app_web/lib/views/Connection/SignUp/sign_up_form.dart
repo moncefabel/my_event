@@ -84,7 +84,7 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               validator: (val) {
                 if (!RegExp(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$').hasMatch(val!) || val.isEmpty) {
-                  return 'Enter your password';
+                  return 'Password: at least 1 uppercase, 1 lowercase, 1 number, 6 characters';
                 }
                 return null;
               },

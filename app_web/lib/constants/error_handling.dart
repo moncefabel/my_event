@@ -8,32 +8,27 @@ void httpErrorHandle({
   required http.Response response,
   required BuildContext context,
   required VoidCallback onSuccess,
-}){
-  switch(response.statusCode) {
+}) {
+  switch (response.statusCode) {
     case 200:
       onSuccess();
       break;
 
     case 400:
-      print(jsonDecode(response.body));
-      if(jsonDecode(response.body)['message'].toString().contains("phoneNumber")){
-        showSnackBar(context, "Veuillez entrer un numéro de téléphone correct");
+      final res = jsonDecode(response.body);
+      if (res['code'].toString().contains("11000")) {
+        popUpUniqueEmail(context, "Email déjà utilisé");
       }
-      if(jsonDecode(response.body)['message'].toString().contains("email")){
-        showSnackBar(context, "Veuillez entrer une adresse mail valide");
-      }
-      if(jsonDecode(response.body)['message'].toString().contains("password")){
-        showSnackBar(context, "Veuillez entrer un mot de passe qui comporte au moins 6 caractères dont une majuscule, miniscule, chiffre");
-      }
-      if(jsonDecode(response.body)['message'].toString().contains("firstName")){
-        showSnackBar(context, "Veuillez entrer prénom valid");
-      }
-      if(jsonDecode(response.body)['message'].toString().contains("lastName")){
-        showSnackBar(context, "Veuillez entrer un nom valide");
-      }
+      break;
+    case 402:
+      signInErrors(context, "Email Introuvable");
+
+      break;
+    case 401:
+      signInErrors(context, "Mot de passe incorrect");
       break;
 
     default:
-      // showSnackBar(context, response.body);
+    // showSnackBar(context, response.body);
   }
 }
