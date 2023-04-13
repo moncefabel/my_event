@@ -40,13 +40,13 @@ class _HeaderSectionState extends State<HeaderSection> {
           ),
           SizedBox(
             // actionJgd (1:384)
-            width: 45 * fem,
-            height: 45 * fem,
+            width: 60 * fem,
+            height: 60 * fem,
             child: IconButton(
-              icon: Image.asset(
-                'assets/screens/images/action.png',
-                width: 200,
-                height: 200,
+              iconSize: 40,
+              icon: Icon(
+                Icons.circle_notifications,
+                color: Colors.blue.shade200,
               ),
               onPressed: () {
                 Navigator.push(

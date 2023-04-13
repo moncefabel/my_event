@@ -74,10 +74,10 @@ const signInCustomer = async(req, res) => {
                 const token = createToken(user._id)
                 res.status(200).json({token, ...user._doc})
             }else{
-                throw Error("Password incorrect")
+                res.status(401).send("Password incorrect")
             }
         }else{
-            throw Error("Email introuvable")
+            res.status(402).send("Email introuvable")
         }
     }catch(error:any){
         res.status(400).send(error.message)

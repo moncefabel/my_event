@@ -24,12 +24,7 @@ class _FilterCategoryState extends State<FilterCategory> {
     'Appartment',
     'Bar',
     'Restaurant',
-    'Air BNB',
-    'Pool',
-    'Rooftop',
-    'Underground',
-    'Mansion',
-    'Complex'
+    'Karaoké'
   ];
   @override
   Widget build(BuildContext context) {

@@ -11,8 +11,8 @@ class ProfilImage extends StatelessWidget {
     return Container(
       // yyo (1:400)
       margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 15 * fem, 0 * fem),
-      width: 40 * fem,
-      height: 40 * fem,
+      width: 50 * fem,
+      height: 50 * fem,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(100 * fem),
         child: Image.asset(

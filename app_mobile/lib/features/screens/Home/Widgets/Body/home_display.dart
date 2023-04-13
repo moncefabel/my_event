@@ -6,7 +6,6 @@ import 'package:myevent/features/screens/Home/Widgets/FooterBar/navigation_bar.d
 import 'package:myevent/features/screens/Home/Widgets/Header/header_section.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../Filters_category/filter_category.dart';
-import '../Header/search_bar.dart';
 import 'signle_etablissement.dart';
 import 'package:flutter/rendering.dart';
 
@@ -78,7 +77,6 @@ class _EtbDisplayState extends State<EtbDisplay> {
               const SizedBox(
                 width: 300,
                 height: 70,
-                child: SearchBar(),
               ),
               _currentPosition == null
                   ? const CircularProgressIndicator()

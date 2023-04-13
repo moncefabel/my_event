@@ -115,6 +115,8 @@ void signInErrors(BuildContext context, String text) {
   if (ScaffoldMessenger.of(context).mounted) {
     AwesomeDialog(
       context: context,
+      dialogType: DialogType.error,
+      animType: AnimType.topSlide,
       showCloseIcon: true,
       title: "Erreur",
       desc: text,

@@ -62,7 +62,7 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
                 // hiandykt5 (1:402)
                 Provider.of<CustomerProvider>(context).customer.token.isNotEmpty
                     ? 'Hi, ${Provider.of<CustomerProvider>(context).customer.firstName}'
-                    : 'Hi dear',
+                    : 'Hi',
                 style: SafeGoogleFont(
                   'Plus Jakarta Sans',
                   fontSize: 16 * ffem,
@@ -88,10 +88,9 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
                     Flexible(
                       flex: 1,
                       child: Container(
-                        // bxsmap11LrH (1:405)
                         margin: EdgeInsets.fromLTRB(
                             0 * fem, 0 * fem, 6.67 * fem, 0 * fem),
-                        width: 10.67 * fem,
+                        width: 15.67 * fem,
                         height: 13.33 * fem,
                         child: Image.asset(
                           'assets/screens/images/bxs-map-1-1-ftZ.png',
