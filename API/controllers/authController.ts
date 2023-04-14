@@ -4,7 +4,6 @@ const {Proprio} = require('../models/proprio')
 const {Customer} = require('../models/customer')
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken");
-const {signUpErrors} = require('../utils/errors')
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 
 

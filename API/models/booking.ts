@@ -7,10 +7,10 @@ const bookingSchema = new mongooseBook.Schema({
     ownerId: {type: mongooseBook.ObjectId, required:true},
     state: {type:String, required:true},
     people: {type:Number, required:true},
-    time: {type: String, required:true},
+    time: {type: Date, required:true},
     date: {type: String, required:true},
-    tokenDevice: {type: String, required:true},
-    nameEtb: {type: String, required:true}
+    tokenDevice: {type: String, },
+    nameEtb: {type: String, }
 })
 
 const bookingModel = mongooseBook.model("demandes",bookingSchema)

@@ -75,28 +75,6 @@ class PriceEtb extends StatelessWidget {
                                   title: "Warning",
                                   desc:
                                       "Pour reserver veuillez vous connecter ou créer un compte",
-                                  btnOk: ElevatedButton(
-                                    child: const Text("Sign In"),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const LoginScreen()),
-                                      );
-                                    },
-                                  ),
-                                  btnCancel: ElevatedButton(
-                                    child: const Text("Sign Up"),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SignUpScreen()),
-                                      );
-                                    },
-                                  ),
                                 ).show();
                         },
                         child: const Text(
