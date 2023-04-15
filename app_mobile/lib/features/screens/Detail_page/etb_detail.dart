@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:myevent/features/screens/Detail_page/image_dialog.dart';
 import 'package:myevent/features/screens/Detail_page/price_etb.dart';
 import 'package:myevent/models/etablissement.dart';
@@ -25,7 +23,7 @@ class EtbDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildIconText(Icons.access_time_outlined, Colors.blue,
-                  "${etb.heureOuverture.hour.toString()} - ${etb.heureFermeture.hour.toString()}"),
+                  "${etb.heureOuverture.hour.toString()}:00 - ${etb.heureFermeture.hour.toString()}:00"),
               _buildIconText(Icons.man_2_outlined, Colors.red,
                   "${etb.capaciteMin.toString()} - ${etb.capaciteMax.toString()}")
             ],

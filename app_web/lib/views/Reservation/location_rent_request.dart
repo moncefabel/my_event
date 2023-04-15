@@ -239,9 +239,10 @@ class _LocationRentRequestState extends State<LocationRentRequest> {
               ],
             ),
             Container(
+              
               margin: const EdgeInsets.only(top: 2),
               child: Text(
-                "Date et Heure de réservation: ${req.date} à ${req.time}h",
+                "Date et Heure de réservation: ${req.date} à ${req.time.substring(11,16)}h",
                 style: const TextStyle(
                   color: Colors.grey,
                   fontFamily: 'OpenSans',
