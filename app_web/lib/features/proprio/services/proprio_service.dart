@@ -41,6 +41,8 @@ class ProprioService {
         );
         imageUrls.add(res.secureUrl);
       }
+      var capMax = int.parse(capaciteMax);
+      var capMin = int.parse(capaciteMin);
 
       Etablissement newEtb = Etablissement(
           userId: proprioProvider.proprio.id,
@@ -49,12 +51,13 @@ class ProprioService {
           lieu: lieu,
           heureOuverture: heureOuverture,
           heureFermeture: heureFermeture,
-          capaciteMax: capaciteMax,
-          capaciteMin: capaciteMin,
+          capaciteMax: capMax,
+          capaciteMin: capMin,
           nameEtb: nameEtb,
           images: imageUrls,
           prix: prix,
           description: description);
+      print(newEtb.toJson());
       http.Response res = await http.post(
         Uri.parse('$uri/apiEtb/add'),
         headers: {
@@ -70,7 +73,7 @@ class ProprioService {
             showSnackBar(context, 'Etablissement ajouté avec succés');
           });
     } catch (e) {
-      showSnackBar(context, e.toString());
+      print( e.toString());
     }
   }
 

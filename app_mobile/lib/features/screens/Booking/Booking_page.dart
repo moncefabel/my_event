@@ -21,7 +21,7 @@ class _BookingPageState extends State<BookingPage> {
   int numPeople = 1;
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
-  final newFormat = DateFormat("yy-MM-dd");
+  final newFormat = DateFormat("yyyy-MM-dd");
   String deviceToken = '';
   final BookingService bookingService = BookingService();
   // Function to show date picker

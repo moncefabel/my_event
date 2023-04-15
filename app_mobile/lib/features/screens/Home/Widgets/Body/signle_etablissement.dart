@@ -215,7 +215,7 @@ class _SingleEtbState extends State<SingleEtb> {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                     fontSize: 11.0)),
-                            Text(etb.capaciteMin,
+                            Text(etb.capaciteMin.toString(),
                                 style: GoogleFonts.sourceSansPro(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
@@ -240,7 +240,7 @@ class _SingleEtbState extends State<SingleEtb> {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                     fontSize: 11.0)),
-                            Text(etb.capaciteMax,
+                            Text(etb.capaciteMax.toString(),
                                 style: GoogleFonts.sourceSansPro(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,

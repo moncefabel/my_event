@@ -17,17 +17,25 @@ void httpErrorHandle({
     case 400:
       final res = jsonDecode(response.body);
       if (res['code'].toString().contains("11000")) {
-        popUpUniqueEmail(context, "Email déjà utilisé");
+        errorPopUp(context, "Email déjà utilisé");
       }
       break;
     case 402:
-      signInErrors(context, "Email Introuvable");
-
+      errorPopUp(context, "Email Introuvable");
       break;
+
     case 401:
-      signInErrors(context, "Mot de passe incorrect");
+      errorPopUp(context, "Mot de passe incorrect");
       break;
 
+    case 406:
+      errorPopUp(context, "Nombre de personnes inférieur ou supérieur au nombre possible");
+      break;
+
+    case 407:
+      errorPopUp(context, "L'heure ne respecte pas la plage horaire");
+      break;
+    
     default:
       // showSnackBar(context, response.body);
   }

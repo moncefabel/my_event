@@ -21,12 +21,19 @@ void httpErrorHandle({
       }
       break;
     case 402:
-      signInErrors(context, "Email Introuvable");
+      popUpError(context, "Email Introuvable");
 
       break;
     case 401:
-      signInErrors(context, "Mot de passe incorrect");
+      popUpError(context, "Mot de passe incorrect");
       break;
+    case 408:
+      popUpError(context, "Capacités non valide");
+      break;
+    case 409:
+      popUpError(context, "Horaires non valide");
+      break;
+
 
     default:
     // showSnackBar(context, response.body);

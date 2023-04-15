@@ -25,7 +25,7 @@ void popUpUniqueEmail(BuildContext context, String text) {
   }
 }
 
-void signInErrors(BuildContext context, String text) {
+void popUpError(BuildContext context, String text) {
   if (ScaffoldMessenger.of(context).mounted) {
     AwesomeDialog(
       context: context,

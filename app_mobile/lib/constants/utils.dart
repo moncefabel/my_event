@@ -91,37 +91,17 @@ void showSnackBar(BuildContext context, String text) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
 }
 
-void popUpUniqueEmail(BuildContext context, String text) {
+void errorPopUp(BuildContext context, String text) {
   if (ScaffoldMessenger.of(context).mounted) {
     AwesomeDialog(
       context: context,
       showCloseIcon: true,
       title: "Erreur",
       desc: text,
-      btnOk: ElevatedButton(
-        child: const Text("Sign In"),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const LoginScreen()),
-          );
-        },
-      ),
     ).show();
   }
 }
+
 
-void signInErrors(BuildContext context, String text) {
-  if (ScaffoldMessenger.of(context).mounted) {
-    AwesomeDialog(
-      context: context,
-      dialogType: DialogType.error,
-      animType: AnimType.topSlide,
-      showCloseIcon: true,
-      title: "Erreur",
-      desc: text,
-    ).show();
-  }
-}
 String uri = 'http://192.168.1.56:5000';
 const String Apikey = "";

@@ -29,9 +29,7 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
   final TextEditingController lieuController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
-
   final ProprioService proprioService = ProprioService();
-
 
   final _categories = ['Restaurant', 'Bar', 'Karaoké', 'Café'];
   String? _selectedVal = "Restaurant";
@@ -39,9 +37,6 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
   final List<XFile> _imageFiles = [];
   final ImagePicker imagePicker = ImagePicker();
 
- 
-    
-  
   Future<void> _pickImage() async {
     final List<XFile> selectedImages = await imagePicker.pickMultiImage();
     if (selectedImages.isNotEmpty) {
@@ -71,7 +66,6 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
     lieuController.dispose();
     priceController.dispose();
     descriptionController.dispose();
-
   }
 
   void addEtb() {
@@ -168,17 +162,32 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                                 Text('Heure d\'ouverture'),
                                 SizedBox(
                                   width: 500,
-                                  child: TextField(
+                                  child: TextFormField(
                                     controller: heureOController,
+                                    validator: (val) {
+                                      if (!RegExp(r'^([01]\d|2[0-3]):([0-5]\d)(:([0-5]\d))?')
+                                              .hasMatch(val!) ||
+                                          val.isEmpty) {
+                                        return 'Heure non valide: HH:MM:SS';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ),
                                 Padding(padding: EdgeInsets.only(top: 10)),
                                 Text('Heure de fermeture'),
                                 SizedBox(
                                   width: 500,
-                                  child: TextField(
-                                    controller: heureFController,
-                                  ),
+                                  child: TextFormField(
+                                      controller: heureFController,
+                                      validator: (val) {
+                                        if (!RegExp(r'^([01]\d|2[0-3]):([0-5]\d)(:([0-5]\d))?')
+                                                .hasMatch(val!) ||
+                                            val.isEmpty) {
+                                          return 'Heure non valide: HH:MM:SS';
+                                        }
+                                        return null;
+                                      }),
                                 ),
                                 Padding(padding: EdgeInsets.only(top: 10)),
                                 Text('Prix'),
@@ -192,26 +201,27 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                                 Text('Type'),
                                 SizedBox(
                                   width: 500,
-                                  child: DropdownButton(value: _selectedVal, items: const [
-                                    DropdownMenuItem(
-                                        child: Text("Restaurant"),
-                                        value: "Restaurant"),
-                                    DropdownMenuItem(
-                                        child: Text("Bar"), value: "Bar"),
-                                    DropdownMenuItem(
-                                        child: Text("Karaoké"),
-                                        value: "Karaoké"),
-                                    DropdownMenuItem(
-                                        child: Text("Café"),
-                                        value: "Café"),
-                                  ], onChanged: (val){
-                                    setState((){
-                                      typeController.text = val as String;
-                                      _selectedVal = val ;
-                                    });
-                                  }),
+                                  child: DropdownButton(
+                                      value: _selectedVal,
+                                      items: const [
+                                        DropdownMenuItem(
+                                            child: Text("Restaurant"),
+                                            value: "Restaurant"),
+                                        DropdownMenuItem(
+                                            child: Text("Bar"), value: "Bar"),
+                                        DropdownMenuItem(
+                                            child: Text("Karaoké"),
+                                            value: "Karaoké"),
+                                        DropdownMenuItem(
+                                            child: Text("Café"), value: "Café"),
+                                      ],
+                                      onChanged: (val) {
+                                        setState(() {
+                                          typeController.text = val as String;
+                                          _selectedVal = val;
+                                        });
+                                      }),
                                 ),
-                                
                                 const Padding(
                                     padding: EdgeInsets.only(top: 10)),
                                 const Text('Description'),
@@ -245,28 +255,25 @@ class _AddEtbScreenState extends State<AddEtbScreen> {
                 ),
               ),
             ),
-            if(_isVisible)
+            if (_isVisible)
               SizedBox(
                 width: MediaQuery.of(context).size.width - 200,
-                
                 child: Expanded(
                     child: ListView.builder(
                         shrinkWrap: true,
                         itemCount: placePredictions.length,
                         itemBuilder: (context, index) => LocationList(
                               press: () {
-                                lieuController.text =
-                                    placePredictions[index].description.toString();
+                                lieuController.text = placePredictions[index]
+                                    .description
+                                    .toString();
                                 setState(() {
                                   _isVisible = false;
                                 });
                               },
                               location: placePredictions[index].description!,
-                        )
-                      )
-                    ),
+                            ))),
               ),
-      
             Padding(padding: EdgeInsets.only(top: 30)),
             SizedBox(
               height: 50.0,

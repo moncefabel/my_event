@@ -1,4 +1,5 @@
 import axios from "axios";
+import { log } from "console";
 
 const mongoose = require("mongoose");
 const { Etb } = require("../models/etb");
@@ -24,6 +25,7 @@ const getEtbById = async (req, res) => {
 
 const addEtb = async (req, res) => {
   try {
+    console.log(req.body)
     if (!hoursValid(req.body.heureOuverture, req.body.heureFermeture)) {
       res.status(409).send("Horaires non valide");
     } else if (!nbPeopleValid(req.body.capaciteMax, req.body.capaciteMin)) {
@@ -40,13 +42,16 @@ const addEtb = async (req, res) => {
       );
       let lat = response.data.results[0].geometry.location.lat;
       let long = response.data.results[0].geometry.location.lng;
+      const heureO = new Date(`2023-01-01T${req.body.heureOuverture}`)
+      const heureF = new Date(`2023-01-01T${req.body.heureFermeture}`)
+
 
       const newEtb = await Etb.create({
         nomEtablissement: req.body.nameEtb,
         prix: req.body.prix,
         lieu: req.body.lieu,
-        heureOuverture: req.body.heureOuverture,
-        heureFermeture: req.body.heureFermeture,
+        heureOuverture: heureO,
+        heureFermeture: heureF,
         type: req.body.type,
         userId: req.body.userId,
         images: req.body.images,

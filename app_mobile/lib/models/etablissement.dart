@@ -5,10 +5,10 @@ class Etablissement {
   final String id;
   final String type;
   final String lieu;
-  final String heureOuverture;
-  final String heureFermeture;
-  final String capaciteMax;
-  final String capaciteMin;
+  final DateTime heureOuverture;
+  final DateTime heureFermeture;
+  final int capaciteMax;
+  final int capaciteMin;
   final String nameEtb;
   final List<String> images;
   final String prix;
@@ -46,13 +46,16 @@ class Etablissement {
   }
 
   factory Etablissement.fromMap(Map<String, dynamic> map) {
+    DateTime heureO = DateTime.parse(map['heureOuverture']);
+    DateTime heureF = DateTime.parse(map['heureFermeture']);
+
     return Etablissement(
         userId: map['userId'] ?? '',
         id: map['_id'] ?? '',
         type: map['type'] ?? '',
         lieu: map['lieu'] ?? '',
-        heureOuverture: map['heureOuverture'] ?? '',
-        heureFermeture: map['heureFermeture'] ?? '',
+        heureOuverture: heureO,
+        heureFermeture: heureF,
         capaciteMax: map['capaciteMax'] ?? '',
         capaciteMin: map['capaciteMin'] ?? '',
         nameEtb: map['nomEtablissement'] ?? '',

@@ -8,6 +8,7 @@ const addBooking = async (req, res) => {
 
   try {
     const etb = await getEtbRequestedById(req.body.etbId);
+    
     if (
       !nbPeopleIsValid(req.body.people, etb[0].capaciteMin, etb[0].capaciteMax)
     ) {
@@ -16,12 +17,14 @@ const addBooking = async (req, res) => {
         .send("Nombre de personnes inférieur ou supérieur au nombre possible");
     }
     else if (
-      !timeIsValid(req.body.time, etb[0].heureOuverture, etb[0].heureFermeture)
+      !timeIsValid(req.body.time, etb[0].heureOuverture, etb[0].heureFermeture, req.body.date)
     ) {
       res
         .status(407)
         .send("L'heure est invalide ou ne respecte pas les criteres");
     } else {
+      const dateToString = new Date(`${req.body.date}T${req.body.time}:00`)
+      
       const newBooking = await Booking.create({
         userId: req.body.userId,
         etbId: req.body.etbId,
@@ -29,7 +32,7 @@ const addBooking = async (req, res) => {
         state: "En attente",
         people: req.body.people,
         date: req.body.date,
-        time: req.body.time,
+        time: dateToString,
         tokenDevice: req.body.tokenDevice,
         nameEtb: req.body.nameEtb,
       });
@@ -97,8 +100,9 @@ const getBookingsOfTheUser = async (req, res) => {
 function nbPeopleIsValid(nbPeople: Number, minCap: Number, maxCap: Number) {
   return nbPeople <= maxCap && nbPeople >= minCap;
 }
-function timeIsValid(timeRequested: Date, heureO: Date, heureF: Date) {
-  const date = new Date(timeRequested);
+function timeIsValid(timeRequested: Date, heureO: Date, heureF: Date, dateReq:Date) {
+  const dateToString = `${dateReq}T${timeRequested}:00`
+  const date = new Date(dateToString);
 
   const heureReservee = date.getHours();
   const heureOuv = heureO.getHours();

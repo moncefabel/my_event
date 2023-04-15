@@ -99,8 +99,8 @@ class ModifyEtbScreenState extends State<ModifyEtbScreen> {
     priceController.text = widget.etb.prix.toString();
     heureFController.text = widget.etb.heureFermeture;
     heureOController.text = widget.etb.heureOuverture;
-    capaciteMaxController.text = widget.etb.capaciteMax;
-    capaciteMinController.text = widget.etb.capaciteMin;
+    capaciteMaxController.text = widget.etb.capaciteMax.toString();
+    capaciteMinController.text = widget.etb.capaciteMin.toString();
     typeController.text = widget.etb.type;
     descriptionController.text = widget.etb.description;
 

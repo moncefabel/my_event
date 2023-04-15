@@ -8,8 +8,8 @@ class Etablissement{
   final String lieu;
   final String heureOuverture;
   final String heureFermeture;
-  final String capaciteMax;
-  final String capaciteMin;
+  final int capaciteMax;
+  final int capaciteMin;
   final String nameEtb;
   final List<String> images;
   final String prix;
