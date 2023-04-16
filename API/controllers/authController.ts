@@ -21,7 +21,6 @@ const addProprio =  async (req,res) => {
         
         res.status(200).json(newUser.id)
     }catch(error:any){
-        // const errors = signUpErrors(error)
         res.status(400).send(error)
     }
 }
@@ -40,7 +39,6 @@ const addCustomer =  async (req,res) => {
         
         res.status(200).json(newUser.id)
     }catch(error:any){
-        // const errors = signUpErrors(error)
         res.status(400).send(error.message)
     }
 }

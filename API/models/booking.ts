@@ -1,6 +1,42 @@
 const mongooseBook = require('mongoose')
 
-
+/**
+ * @openapi
+ * components:
+ *  schemas:
+ *    BookingSchema:
+ *      type: object
+ *      required:
+ *        - nameEtb
+ *        - Statut
+ *        - Heure
+ *        - nbPersonnes
+ *        - userId
+ *        - etbId   
+ *        - ownerId
+ *        - date
+ *        - tokenDevice
+ *      properties:
+ *        nameEtb:
+ *          type: String
+ *        userId:
+ *          type: ObjectID
+ *        ownerId:
+ *          type: ObjectID
+ *        etbId:
+ *          type: ObjectID
+ *        nbPersonnes:
+ *          type: Number
+ *        heure:
+ *          type: Date
+ *        date:
+ *          type: String
+ *        state:
+ *          type: String
+ *        tokenDevice:
+ *          type: String
+ *
+ */
 const bookingSchema = new mongooseBook.Schema({
     userId: {type:mongooseBook.ObjectId, required:true },
     etbId: {type: mongooseBook.ObjectId, required:true},

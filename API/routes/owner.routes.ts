@@ -110,12 +110,6 @@ router.post("/signIn", authController.signInProprio);
  *       description: No auth token, owner not connected
  *      
  */
-router.put("/update", checkUser, ownerController.updateOwner);
-
-//Modification du mot de passe
-router.put("/updatePassword/:id", checkUser, ownerController.changePassword);
-
-//Supprimer un propriétaire
-router.delete("/delete/:id", checkUser, ownerController.deleteOwner);
+router.put("/update", checkUser, ownerController.updateOwner)
 
 export = router;
