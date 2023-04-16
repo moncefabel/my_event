@@ -23,7 +23,7 @@ const addBooking = async (req, res) => {
         .status(407)
         .send("L'heure est invalide ou ne respecte pas les criteres");
     } else {
-      // const dateToString = new Date(`${req.body.date}T${req.body.time}:00`)
+      const dateToString = new Date(`${req.body.date}T${req.body.time}:00`)
       
       const newBooking = await Booking.create({
         userId: req.body.userId,
@@ -32,7 +32,7 @@ const addBooking = async (req, res) => {
         state: "En attente",
         people: req.body.people,
         date: req.body.date,
-        time: req.body.time,
+        time: dateToString,
         tokenDevice: req.body.tokenDevice,
         nameEtb: req.body.nameEtb,
       });
@@ -102,12 +102,11 @@ function nbPeopleIsValid(nbPeople: Number, minCap: Number, maxCap: Number) {
 }
 function timeIsValid(timeRequested: Date, heureO: Date, heureF: Date, dateReq:Date) {
   const dateToString = `${dateReq}T${timeRequested}:00`
-  const date = new Date(timeRequested);
+  const date = new Date(dateToString);
   
   const heureReservee = date.getHours();
   const heureOuv = heureO.getHours();
   const heureFerm = heureF.getHours();
-  console.log(heureReservee+ " "+heureOuv + " "+heureFerm);
 
   return heureReservee >= heureOuv && heureReservee < heureFerm;
 }

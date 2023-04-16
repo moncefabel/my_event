@@ -101,7 +101,8 @@ function nbPeopleValid(maxCap, minCap) {
 }
 const updateEtb = async (req, res) => {
   try {
-    console.log(req.body);
+    const heureO = new Date(`2023-01-01T${req.body.heureOuverture}`)
+    const heureF = new Date(`2023-01-01T${req.body.heureFermeture}`)
 
     await Etb.findOneAndUpdate(
       { _id: req.body._id },
@@ -109,8 +110,8 @@ const updateEtb = async (req, res) => {
         nomEtablissement: req.body.nameEtb,
         prix: req.body.prix,
         lieu: req.body.lieu,
-        heureOuverture: req.body.heureOuverture,
-        heureFermeture: req.body.heureFermeture,
+        heureOuverture: heureO,
+        heureFermeture: heureF,
         type: req.body.type,
         capaciteMax: req.body.capaciteMax,
         capciteMin: req.body.capaciteMin,

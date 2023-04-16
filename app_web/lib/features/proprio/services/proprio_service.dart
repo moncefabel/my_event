@@ -166,15 +166,16 @@ class ProprioService {
         );
         imageUrls.add(res.secureUrl);
       }
-
+      var capMax = int.parse(capaciteMax);
+      var capMin = int.parse(capaciteMin);
       Etablissement newEtb = Etablissement(
           id: id,
           type: type,
           lieu: lieu,
           heureOuverture: heureOuverture,
           heureFermeture: heureFermeture,
-          capaciteMax: capaciteMax,
-          capaciteMin: capaciteMin,
+          capaciteMax: capMax,
+          capaciteMin: capMin,
           nameEtb: nameEtb,
           images: imageUrls,
           prix: prix,

@@ -50,7 +50,7 @@ class _HistoricBuyPageState extends State<HistoricBuyPage> {
                           leading: const Icon(Icons.shopping_bag),
                           title: Text(data.nameEtb),
                           subtitle: Text(
-                              '${data.date} - ${data.time}h - ${data.state}'),
+                              '${data.date} - ${data.time.substring(11,16)}h - ${data.state}'),
                         ),
                       ),
                       IconButton(

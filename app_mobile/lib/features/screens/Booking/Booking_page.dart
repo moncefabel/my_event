@@ -57,6 +57,7 @@ class _BookingPageState extends State<BookingPage> {
 
   void sendRequestForBooking() {
     getToken();
+    print("hello");
     bookingService.requestForBooking(
         context: context,
         userId:

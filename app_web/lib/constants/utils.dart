@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
+String uri = 'http://yr_ip_address:5000';
 void popUpUniqueEmail(BuildContext context, String text) {
   if (ScaffoldMessenger.of(context).mounted) {
     AwesomeDialog(

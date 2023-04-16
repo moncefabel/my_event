@@ -103,5 +103,5 @@ void errorPopUp(BuildContext context, String text) {
 }
 
 
-String uri = 'http://192.168.1.56:5000';
+String uri = 'http://yr_ip_address:5000';
 const String Apikey = "";

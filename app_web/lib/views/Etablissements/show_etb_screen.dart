@@ -108,21 +108,21 @@ class _EtbsScreenState extends State<EtbsScreen> {
                                         const SizedBox(
                                           width: 10.0,
                                         ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const LocationRentRequest()),
-                                            );
-                                          },
-                                          child: Text(
-                                            "Total notifications: ${etbsData.capaciteMax}",
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 2,
-                                          ),
-                                        ),
+                                        // GestureDetector(
+                                        //   onTap: () {
+                                        //     Navigator.push(
+                                        //       context,
+                                        //       MaterialPageRoute(
+                                        //           builder: (context) =>
+                                        //               const LocationRentRequest()),
+                                        //     );
+                                        //   },
+                                          // child: Text(
+                                          //   "Total notifications: ${etbsData.capaciteMax}",
+                                          //   overflow: TextOverflow.ellipsis,
+                                          //   maxLines: 2,
+                                          // ),
+                                        // ),
                                         const SizedBox(
                                           width: 10.0,
                                         ),
