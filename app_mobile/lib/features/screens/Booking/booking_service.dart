@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../constants/error_handling.dart';
 import '../../../constants/utils.dart';
 import '../../../models/booking.dart';
@@ -15,7 +16,7 @@ class BookingService {
       required String state,
       required String date,
       required String time,
-      required String token,
+      required String tokenDevice,
       required String nameEtb,
       required int people
       }) async {
@@ -28,14 +29,17 @@ class BookingService {
         people: people,
         time: time,
         userId: userId,
-        token: token,
+        token: tokenDevice,
         nameEtb: nameEtb,
       );
+      SharedPreferences prefs = await SharedPreferences.getInstance();
 
+      String? tokenJwt = prefs.getString('jwt');
       http.Response res = await http.post(Uri.parse('$uri/apiBooking/add'),
           body: reservation.toJson(),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',
+            'jwt': tokenJwt!
           });
       httpErrorHandle(
         response: res,

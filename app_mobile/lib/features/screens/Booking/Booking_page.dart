@@ -57,7 +57,6 @@ class _BookingPageState extends State<BookingPage> {
 
   void sendRequestForBooking() {
     getToken();
-    print("hello");
     bookingService.requestForBooking(
         context: context,
         userId:
@@ -67,7 +66,7 @@ class _BookingPageState extends State<BookingPage> {
         state: "En attente",
         date: newFormat.format(selectedDate).toString(),
         time: selectedTime.hour.toString(),
-        token: deviceToken,
+        tokenDevice: deviceToken,
         nameEtb: widget.etb.nameEtb,
         people: numPeople);
   }
