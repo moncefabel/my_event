@@ -33,7 +33,8 @@ class AuthService {
           firstName: firstName,
           lastName: lastName,
           token: '',
-          phoneNumber: phoneNumber);
+          phoneNumber: phoneNumber,
+          position: Provider.of<CustomerProvider>(context, listen:false).customer.position);
 
       http.Response res = await http.post(Uri.parse('$uri/apiClient/register'),
           body: customer.toJson(),

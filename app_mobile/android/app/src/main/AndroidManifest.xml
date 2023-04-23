@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
    <application
-        android:label="test"
+        android:label="MyEvent"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver" android:exported="false"/>

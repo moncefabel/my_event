@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myevent/features/screens/Detail_page/detail_page.dart';
 
 import 'package:myevent/features/screens/Home/home_services.dart';
+import 'package:myevent/provider/etb_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../constants/color_palette.dart';
 import '../../../../../models/etablissement.dart';
@@ -21,7 +23,7 @@ class SingleEtb extends StatefulWidget {
 class _SingleEtbState extends State<SingleEtb> {
   String selectedItem = 'All';
   int counter = -1;
-  List<Etablissement>? etbs;
+  List<Etablissement> etbs = [];
   final HomeServices homeService = HomeServices();
 
   final List<String> locationTypes = [
@@ -42,8 +44,13 @@ class _SingleEtbState extends State<SingleEtb> {
   }
 
   fetchEtbs() async {
-    etbs = await homeService.fetchEtbs(
-        context: context, place: widget.place, category: selectedItem);
+    if(Provider.of<EtbProvider>(context, listen:false).etbs.isEmpty){
+      Provider.of<EtbProvider>(context, listen: false).setEtbs(await homeService
+          .fetchEtbs(context: context, place: widget.place, category: "All"));
+      // ignore: use_build_context_synchronously
+    }
+    etbs = Provider.of<EtbProvider>(context, listen: false).etbs;
+
     setState(() {});
   }
 
@@ -75,9 +82,9 @@ class _SingleEtbState extends State<SingleEtb> {
                   children: [
                     ...locationTypes.map((e) {
                       counter++;
-                      if (counter <= 8)
+                      if (counter <= 8) {
                         return _buildTypes(e, counter);
-                      else {
+                      } else {
                         counter = 0;
                         return _buildTypes(e, counter);
                       }
@@ -94,12 +101,12 @@ class _SingleEtbState extends State<SingleEtb> {
               color: Colors.white,
               width: MediaQuery.of(context).size.width - 10.0,
               height: 300.0,
-              child: etbs == null
+              child: Provider.of<EtbProvider>(context, listen:false).etbs.isEmpty
                   ? const CircularProgressIndicator()
                   : ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        ...etbs!.map((e) {
+                        ...etbs.map((e) {
                           return _buildLocationItem(e);
                         }).toList()
                       ],
@@ -271,8 +278,17 @@ class _SingleEtbState extends State<SingleEtb> {
               onTap: () {
                 setState(() {
                   selectedItem = location;
+                  etbs = Provider.of<EtbProvider>(context, listen: false).etbs;
+                  List<Etablissement> filteredEtbs = [];
+                  if (selectedItem != "All") {
+                    for (Etablissement etb in etbs) {
+                      if (etb.type == selectedItem) {
+                        filteredEtbs.add(etb);
+                      }
+                    }
+                    etbs = filteredEtbs;
+                  }
                 });
-                fetchEtbs();
               },
               child: Text(
                 location,

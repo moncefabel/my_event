@@ -48,7 +48,6 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
     double ffem = fem * 0.95;
 
     return SizedBox(
-      // group1000003474FRX (1:401)
       width: 92 * fem,
       height: double.infinity,
       child: Column(
@@ -57,9 +56,8 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
           Flexible(
             flex: 1,
             child: Padding(
-              padding: EdgeInsets.only(top: 0 * fem), // add top padding
+              padding: EdgeInsets.only(top: 0 * fem),
               child: Text(
-                // hiandykt5 (1:402)
                 Provider.of<CustomerProvider>(context).customer.token.isNotEmpty
                     ? 'Hi, ${Provider.of<CustomerProvider>(context).customer.firstName}'
                     : 'Hi',
@@ -75,13 +73,11 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
             ),
           ),
           InkWell(
-            child: Flexible(
-              flex: 1,
+            
               child: Container(
-                // group1000003473SW1 (1:403)
                 padding:
-                    EdgeInsets.fromLTRB(2.67 * fem, 0 * fem, 0 * fem, 0 * fem),
-                width: double.infinity,
+                  EdgeInsets.fromLTRB(2.67 * fem, 0 * fem, 0 * fem, 0 * fem),
+                  width: double.infinity,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -101,7 +97,7 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
                     ),
                     Expanded(
                       flex:
-                          5, // increase the flex value to make the text widget bigger
+                          5,
                       child: Text(
                         _currentAddress.isNotEmpty
                             ? _currentAddress
@@ -114,13 +110,13 @@ class LocalisationDisplayState extends State<LocalisationDisplay> {
                           letterSpacing: 0.06 * fem,
                           color: const Color.fromARGB(255, 99, 105, 110),
                         ),
-                        overflow: TextOverflow.visible, // add this line
+                        overflow: TextOverflow.visible,
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
+            
           ),
         ],
       ),

@@ -2,10 +2,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myevent/features/screens/Home/Widgets/FooterBar/navigation_bar.dart';
 import 'package:myevent/features/screens/Home/Widgets/Header/header_section.dart';
+import 'package:myevent/provider/customer_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import '../Filters_category/filter_category.dart';
+import 'package:provider/provider.dart';
 import 'signle_etablissement.dart';
 import 'package:flutter/rendering.dart';
 
@@ -36,6 +36,7 @@ class _EtbDisplayState extends State<EtbDisplay> {
     if (permissionStatus == PermissionStatus.granted) {
       final position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
+      Provider.of<CustomerProvider>(context, listen:false).setPosition(position);
       setState(() {
         _currentPosition = position;
       });
@@ -45,7 +46,7 @@ class _EtbDisplayState extends State<EtbDisplay> {
   void requestPermission() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-    NotificationSettings settings = await messaging.requestPermission(
+    await messaging.requestPermission(
       alert: true,
       announcement: false,
       badge: true,
@@ -54,8 +55,6 @@ class _EtbDisplayState extends State<EtbDisplay> {
       provisional: false,
       sound: true,
     );
-
-    print('User granted permission: ${settings.authorizationStatus}');
   }
 
   @override
@@ -65,22 +64,22 @@ class _EtbDisplayState extends State<EtbDisplay> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _currentPosition == null
+              Provider.of<CustomerProvider>(context, listen:false).customer.position.latitude == 0
                   ? Text(
                       "Welcome",
                       style: GoogleFonts.lobster(
                           fontSize: 30.0, color: Colors.black),
                     )
                   : HeaderSection(
-                      currentPosition: _currentPosition!,
+                      currentPosition: Provider.of<CustomerProvider>(context, listen:false).customer.position,
                     ),
               const SizedBox(
                 width: 300,
                 height: 70,
               ),
-              _currentPosition == null
+              Provider.of<CustomerProvider>(context, listen:false).customer.position.latitude == 0
                   ? const CircularProgressIndicator()
-                  : SingleEtb(place: _currentPosition!)
+                  : SingleEtb(place: Provider.of<CustomerProvider>(context, listen:false).customer.position)
             ],
           ),
         ),

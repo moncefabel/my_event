@@ -140,6 +140,8 @@ const deleteEtb = async (req, res) => {
 
 const getEtbByPlace = async (req, res) => {
   try {
+    console.log(req.query.lng, req.query.lat);
+    
     if (req.query.category == "All") {
       const etbs = await Etb.find({
         location: {
